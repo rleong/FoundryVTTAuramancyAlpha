@@ -1,0 +1,26 @@
+{
+  "AURAMANCY.AttributeStr": "Strength",
+  "AURAMANCY.AttributeCon": "Constitution",
+  "AURAMANCY.AttributeDex": "Dexterity",
+  "AURAMANCY.AttributeInt": "Intellect",
+  "AURAMANCY.AttributeWil": "Willpower",
+  "AURAMANCY.AttributeCha": "Charisma",
+  "AURAMANCY.AttributePer": "Perception",
+  "AURAMANCY.AttributeAgi": "Agility",
+
+  "AURAMANCY.AttributeStrAbbr": "str",
+  "AURAMANCY.AttributeConAbbr": "con",
+  "AURAMANCY.AttributeDexAbbr": "dex",
+  "AURAMANCY.AttributeIntAbbr": "int",
+  "AURAMANCY.AttributeWilAbbr": "wil",
+  "AURAMANCY.AttributeChaAbbr": "cha",
+  "AURAMANCY.AttributePerAbbr": "per",
+  "AURAMANCY.AttributeAgiAbbr": "agi",
+
+  "AURAMANCY.EffectCreate": "Create Effect",
+  "AURAMANCY.EffectToggle": "Toggle Effect",
+  "AURAMANCY.EffectEdit": "Edit Effect",
+  "AURAMANCY.EffectDelete": "Delete Effect",
+
+  "AURAMANCY.Add": "Add"
+}

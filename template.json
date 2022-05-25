@@ -1,0 +1,90 @@
+{
+  "Actor": {
+    "types": ["character", "npc"],
+    "templates": {
+      "base": {
+        "health": {
+          "value": 10,
+          "min": 0,
+          "max": 10,
+          "true_max": 10
+        },
+        "buffer": {
+          "value": 0,
+          "min": 0
+        },
+        "proficiency": {
+          "value": 2
+        },
+        "save_dc": {
+          "value": 12
+        },
+        "attributes": {
+    			"str": {
+    			  "value": 0
+    			},
+    			"agi": {
+    			  "value": 0
+    			},
+    			"dex": {
+    			  "value": 0
+    			},
+    			"con": {
+    			  "value": 0
+    			},
+    			"int": {
+    			  "value": 0
+    			},
+    			"wil": {
+    			  "value": 0
+    			},
+    			"per": {
+    			  "value": 0
+    			},
+    			"cha": {
+    			  "value": 0
+    			}
+    		},
+        "biography": ""
+      }
+    },
+    "character": {
+      "templates": ["base"],
+      "properties": {
+        "level": {
+          "value": 1
+        },
+        "reserve": {
+          "die": 8,
+          "value": 1,
+          "max": 1
+        }
+      }
+    },
+    "npc": {
+      "templates": ["base"],
+      "cr": 0
+    }
+  },
+  "Item": {
+    "types": ["item", "feature", "spell"],
+    "templates": {
+      "base": {
+        "description": ""
+      }
+    },
+    "item": {
+      "templates": ["base"],
+      "quantity": 1,
+      "weight": 0,
+      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+    },
+    "feature": {
+      "templates": ["base"]
+    },
+    "spell": {
+      "templates": ["base"],
+      "spellLevel": 1
+    }
+  }
+}
