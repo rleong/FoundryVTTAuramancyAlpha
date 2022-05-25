@@ -10,14 +10,14 @@
 					<h3 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" style="text-align: center;"/></h3>
 					<img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
 					<br>
-					<div class="grid-container">
+					<div class="grid-container" style="height: 30px;">
 						<div class="grid-item-center" style="width: 25px;">
 							<label style="font-size: 12px;">Proficiency:</label>
-							<input type="text" name="data.proficiency.value" value="{{data.proficiency.value}}" data-dtype="Number" disabled="disabled"/>
+							<input type="text" name="data.proficiency.value" value="{{data.proficiency.value}}" data-dtype="Number" style="height: 15px;" disabled="disabled"/>
 						</div>
 						<div class="grid-item-center" style="width: 50px;">
 							<label style="font-size: 12px;">Save DC:</label>
-							<input type="text" name="data.save_dc.value" value="{{data.save_dc.value}}" data-dtype="Number" disabled="disabled"/>
+							<input type="text" name="data.save_dc.value" value="{{data.save_dc.value}}" data-dtype="Number" style="height: 15px;" disabled="disabled"/>
 						</div>
 					</div>
 				</div>
