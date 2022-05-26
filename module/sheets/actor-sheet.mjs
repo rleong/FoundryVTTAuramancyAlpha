@@ -11,8 +11,8 @@ export class AuramancyActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["auramancy", "sheet", "actor"],
       template: "systems/auramancy/templates/actor/actor-sheet.html",
-      width: 600,
-      height: 600,
+      width: 700,
+      height: 700,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "features" }]
     });
   }

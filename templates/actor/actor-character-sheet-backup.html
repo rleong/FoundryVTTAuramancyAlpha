@@ -1,0 +1,220 @@
+<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+
+	<header class="sheet-header">
+
+		<div class="header-fields">
+
+			<div class="resources grid-container">
+
+				<div class="resource grid-item-left">
+					<h3 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name" style="text-align: center;"/></h3>
+					<img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}"/>
+					<br>
+					<div class="grid-container" style="height: 30px;">
+						<div class="grid-item-center" style="width: 25px;">
+							<label style="font-size: 12px;">Proficiency:</label>
+							<input type="text" name="data.proficiency.value" value="{{data.proficiency.value}}" data-dtype="Number" style="height: 15px;" disabled="disabled"/>
+						</div>
+						<div class="grid-item-center" style="width: 50px;">
+							<label style="font-size: 12px;">Save DC:</label>
+							<input type="text" name="data.save_dc.value" value="{{data.save_dc.value}}" data-dtype="Number" style="height: 15px;" disabled="disabled"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="resource grid-item-center">
+					<div class="grid-container">
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Strength.png" class="icon-img"/>
+							<figcaption for="data.attributes.str.value" class="rollable" data-roll="d20+@attributes.str.value">Strength</figcaption>
+							<input type="text" name="data.attributes.str.value" value="{{data.attributes.str.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Agility.png" class="icon-img"/>
+							<figcaption for="data.attributes.agi.value" class="rollable" data-roll="d20+@attributes.agi.value">Agility</figcaption>
+							<input type="text" name="data.attributes.agi.value" value="{{data.attributes.agi.value}}" data-dtype="Number"/>
+						</div>
+					</div>
+					<br>
+					<div class="grid-container">
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Dexterity.png" class="icon-img"/>
+							<figcaption for="data.attributes.dex.value" class="rollable" data-roll="d20+@attributes.dex.value">Dexterity</figcaption>
+							<input type="text" name="data.attributes.dex.value" value="{{data.attributes.dex.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Constitution.png" class="icon-img"/>
+							<figcaption for="data.attributes.con.value" class="rollable" data-roll="d20+@attributes.con.value">Constitution</figcaption>
+							<input type="text" name="data.attributes.con.value" value="{{data.attributes.con.value}}" data-dtype="Number"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="resource grid-item-right">
+					<div class="grid-container">
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Intellect.png" class="icon-img"/>
+							<figcaption for="data.attributes.int.value" class="rollable" data-roll="d20+@attributes.int.value">Intellect</figcaption>
+							<input type="text" name="data.attributes.int.value" value="{{data.attributes.int.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Willpower.png" class="icon-img"/>
+							<figcaption for="data.attributes.wil.value" class="rollable" data-roll="d20+@attributes.wil.value">Willpower</figcaption>
+							<input type="text" name="data.attributes.wil.value" value="{{data.attributes.wil.value}}" data-dtype="Number"/>
+						</div>
+					</div>
+					<br>
+					<div class="grid-container">
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Perception.png" class="icon-img"/>
+							<figcaption for="data.attributes.per.value" class="rollable" data-roll="d20+@attributes.per.value">Perception</figcaption>
+							<input type="text" name="data.attributes.per.value" value="{{data.attributes.per.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item-stats-center">
+							<img src="systems/auramancy/icons/stats/Charisma.png" class="icon-img"/>
+							<figcaption for="data.attributes.cha.value" class="rollable" data-roll="d20+@attributes.cha.value">Charisma</figcaption>
+							<input type="text" name="data.attributes.cha.value" value="{{data.attributes.cha.value}}" data-dtype="Number"/>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</header>
+
+	{{!-- Sheet Tab Navigation --}}
+	<nav class="sheet-tabs tabs" data-group="primary">
+		{{!-- Default tab is specified in actor-sheet.mjs --}}
+		<a class="item" data-tab="overview">Overview</a>
+		<a class="item" data-tab="resources">Resources</a>
+		<a class="item" data-tab="abilities">Abilities</a>
+		<a class="item" data-tab="levels">Levels</a>
+		<a class="item" data-tab="assets">Assets</a>
+		<a class="item" data-tab="social">Social</a>
+	</nav>
+
+	{{!-- Sheet Body --}}
+	<section class="sheet-body">
+
+		{{!-- Overview Tab --}}
+		<div class="tab overview" data-group="primary" data-tab="overview">
+
+			<div class="resources grid-container">
+
+				<div class="resource grid-item-left">
+					<div class="grid-container">
+						<div class="grid-item-center" style="">
+							<img src="systems/auramancy/icons/stats/hp.png" class="sm-icon-img"/>
+							<label>HP</label>
+						</div>
+						<div class="grid-item-center" style="">
+							<input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
+							<label>Current</label>
+						</div>
+						<div class="grid-item-center">
+							<span>/</span>
+							<span> </span>
+						</div>
+						<div class="grid-item-center" style="">
+							<input type="text" name="data.health.max" value="{{data.health.max}}" data-dtype="Number"/>
+							<label>Max</label>
+						</div>
+					</div>
+					<div class="">
+						<progress name="data.health.value" value="{{data.health.value}}" max="{{data.health.max}}" style="width: 95%;"/>
+					</div>
+					<div class="grid-container">
+						<div class="grid-item-center" style="">
+							<img src="systems/auramancy/icons/stats/buffer.png" class="sm-icon-img"/>
+							<label style="font-size: 12px;">Buffer</label>
+						</div>
+						<div class="grid-item-center" style="">
+							<input type="text" name="data.buffer.value" value="{{data.buffer.value}}" data-dtype="Number"/>
+							<label>Current</label>
+						</div>
+						<div class="grid-item-center">
+							<span>/</span>
+							<span> </span>
+						</div>
+						<div class="grid-item-center" style="">
+							<input type="text" name="data.buffer.min" value="{{data.buffer.min}}" data-dtype="Number"/>
+							<label>Min</label>
+						</div>
+					</div>
+					<div class="">
+						<progress name="data.buffer.value" value="{{data.buffer.value}}" max="{{data.buffer.min}}" style="width: 95%;"/>
+					</div>
+				</div>
+
+				<div class="resource grid-item-center">
+					<div class="grid-container">
+						<div class="grid-item-center" style="">
+							<img src="systems/auramancy/icons/stats/d{{data.reserve.die}}.png" class="sm-icon-img"/>
+							<label style="font-size: 12px;" class="rollable" data-roll="d@reserve.die+@attributes.con.value">Reserve</label>
+						</div>
+						<div class="grid-item-center" style="">
+							<select name="data.reserve.die">
+								{{selectOptions config.reserveDice selected=data.reserve.die}}
+							</select>
+						</div>
+						<div class="grid-item-center" style="width: 55px;">
+							<input type="text" name="data.reserve.value" value="{{data.reserve.value}}" data-dtype="Number"/>
+							<label>Current</label>
+						</div>
+						<div class="grid-item-center">
+							<span>/</span>
+							<span> </span>
+						</div>
+						<div class="grid-item-center" style="width: 55px;">
+							<input type="text" name="data.reserve.max" value="{{data.reserve.max}}" data-dtype="Number"/>
+							<label>Max</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="resource grid-item-right">
+				</div>
+
+			</div>
+
+
+
+
+
+		</div>
+
+		{{!-- Resources Tab --}}
+		<div class="tab resources" data-group="primary" data-tab="resources">
+
+		</div>
+
+		{{!-- Abilities Tab --}}
+		<div class="tab abilities" data-group="primary" data-tab="abilities">
+
+		</div>
+
+		{{!-- Levels Tab --}}
+		<div class="tab levels" data-group="primary" data-tab="levels">
+			<div class="grid-container">
+				<div class="grid-item-center" style="width: 25px;">
+					<img src="systems/auramancy/icons/stats/level.png" class="exsm-icon-img"/>
+					<label for="data.level.value" style="font-size: 14px;">Level: </label>
+				</div>
+				<div class="grid-item-center" style="width: 50px;">
+					<input type="text" name="data.level.value" value="{{data.level.value}}" data-dtype="Number"/>
+				</div>
+			</div>
+		</div>
+
+		{{!-- Assets Tab --}}
+		<div class="tab assets" data-group="primary" data-tab="assets">
+
+		</div>
+
+		{{!-- Social Tab --}}
+		<div class="tab reactions" data-group="primary" data-tab="social">
+
+		</div>
+
+	</section>
+</form>
