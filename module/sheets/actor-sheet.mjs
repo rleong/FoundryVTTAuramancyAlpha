@@ -1,4 +1,6 @@
 import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
+import ActorSensoriesConfig from "../apps/sensories-config.js";
+import ActorDamageStatsConfig from "../apps/damage-stats-config.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -12,8 +14,8 @@ export class AuramancyActorSheet extends ActorSheet {
       classes: ["auramancy", "sheet", "actor"],
       template: "systems/auramancy/templates/actor/actor-sheet.html",
       width: 700,
-      height: 700,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "features" }]
+      height: 800,
+      tabs: [{ navSelector: ".sheet-navigation", contentSelector: ".sheet-body", initial: "overview" }]
     });
   }
 
@@ -31,6 +33,9 @@ export class AuramancyActorSheet extends ActorSheet {
     // sheets are the actor object, the data object, whether or not it's
     // editable, the items array, and the effects array.
     const context = super.getData();
+
+    // const data = {
+    // };
 
     // Use a safe clone of the actor data for further operations.
     const actorData = this.actor.data.toObject(false);
@@ -56,6 +61,9 @@ export class AuramancyActorSheet extends ActorSheet {
 
     // Prepare active effects
     context.effects = prepareActiveEffectCategories(this.actor.effects);
+
+    // sensories
+    context.sensories = this._getSensories(actorData);
 
     return context;
   }
@@ -139,6 +147,15 @@ export class AuramancyActorSheet extends ActorSheet {
     // -------------------------------------------------------------
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
+
+    // Configure Special Flags
+    html.find(".config-button").click(this._onConfigMenu.bind(this));
+
+    // Trait Selector
+    html.find(".trait-selector").click(this._onTraitSelector.bind(this));
+
+    // Damage Selector
+    html.find(".damage-selector").click(this._onDamageSelector.bind(this));
 
     // Add Inventory Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -225,6 +242,122 @@ export class AuramancyActorSheet extends ActorSheet {
       });
       return roll;
     }
+  }
+
+  /**
+   * Prepare the data structure for traits data like languages, resistances & vulnerabilities, and proficiencies.
+   * @param {object} traits   The raw traits data object from the actor data. *Will be mutated.*
+   * @private
+   */
+  _prepareTraits(traits) {
+    const map = {
+      dr: CONFIG.AURAMANCY.damageResistanceTypes,
+      di: CONFIG.AURAMANCY.damageResistanceTypes,
+      dv: CONFIG.AURAMANCY.damageResistanceTypes,
+      ci: CONFIG.AURAMANCY.conditionTypes,
+      languages: CONFIG.AURAMANCY.languages
+    };
+    for ( let [t, choices] of Object.entries(map) ) {
+      const trait = traits[t];
+      if ( !trait ) continue;
+      let values = [];
+      if ( trait.value ) {
+        values = trait.value instanceof Array ? trait.value : [trait.value];
+      }
+      trait.selected = values.reduce((obj, t) => {
+        obj[t] = choices[t];
+        return obj;
+      }, {});
+
+      // Add custom entry
+      if ( trait.custom ) {
+        trait.custom.split(";").forEach((c, i) => trait.selected[`custom${i+1}`] = c.trim());
+      }
+      trait.cssClass = !isObjectEmpty(trait.selected) ? "" : "inactive";
+    }
+
+    // Populate and localize proficiencies
+    // for ( const t of ["armor", "weapon", "tool"] ) {
+    //   const trait = traits[`${t}Prof`];
+    //   if ( !trait ) continue;
+    //   Actor5e.prepareProficiencies(trait, t);
+    //   trait.cssClass = !isObjectEmpty(trait.selected) ? "" : "inactive";
+    // }
+  }
+
+  _getDamageStats(actorData) {
+
+  }
+
+  /**
+   * Prepare sensories object for display.
+   * @param {object} actorData  Copy of actor data being prepared for display.
+   * @returns {object}          sensories grouped by key with localized and formatted string.
+   * @protected
+   */
+  _getSensories(actorData) {
+    const sensories = actorData.data.traits.sensories || {};
+    const tags = {};
+    for ( let [k, label] of Object.entries(CONFIG.AURAMANCY.sensories) ) {
+      const v = sensories[k] ?? 0;
+      if ( v === 0 ) continue;
+      tags[k] = `${label}: ${v} ${sensories.units}`;
+    }
+    if ( sensories.special ) tags.special = sensories.special;
+    return tags;
+  }
+
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options.
+   * @param {Event} event      The click event which originated the selection.
+   * @returns {TraitSelector}  Newly displayed application.
+   * @private
+   */
+  _onTraitSelector(event) {
+    event.preventDefault();
+    // const a = event.currentTarget;
+    // const label = a.parentElement.querySelector("label");
+    // const choices = CONFIG.DND5E[a.dataset.options];
+    // const options = { name: a.dataset.target, title: `${label.innerText}: ${this.actor.name}`, choices };
+    return new ActorDamageStatsConfig(this.actor).render(true);
+  }
+
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options.
+   * @param {Event} event      The click event which originated the selection.
+   * @returns {TraitSelector}  Newly displayed application.
+   * @private
+   */
+  _onDamageSelector(event) {
+    event.preventDefault();
+    const name = event.currentTarget.name;
+    // const a = event.currentTarget;
+    // const label = a.parentElement.querySelector("label");
+    const damage_types = CONFIG.AURAMANCY.damageTypes;
+    const damage_subtypes = CONFIG.AURAMANCY.damageSubtypes;
+    const options = { damage_types, damage_subtypes, name };
+    console.log(options)
+    return new ActorDamageStatsConfig(this.object, options).render(true);
+  }
+
+  /**
+  * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options.
+  * @param {Event} event   The click event which originated the selection.
+  * @private
+  */
+  _onConfigMenu(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    let app;
+    switch ( button.dataset.action ) {
+      case "sensories":
+        app = new ActorSensoriesConfig(this.object);
+        break;
+      case "damagestats":
+        app = new ActorDamageStatsConfig(this.object);
+        break;
+    }
+    app?.render(true);
   }
 
 }

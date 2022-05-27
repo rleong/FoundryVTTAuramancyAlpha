@@ -1,0 +1,42 @@
+<div class="overview grid-item grid-container" style="padding-top: 5px; border-top: 2px groove #eeede0;">
+
+  <div class="grid-container-two">
+
+    <div class="grid-container" style="border: 2px groove #eeede0;">
+
+      <div class="grid-item-left">
+        <label>Size: </label>
+        <select class="" name="data.traits.size">
+          {{#select data.traits.size}}
+          {{#each config.sizeCategories as |label size|}}
+            <option value="{{size}}">{{label}}</option>
+          {{/each}}
+          {{/select}}
+        </select>
+      </div>
+
+      <div class="grid-item-left">
+        <label>Sensories: </label>
+        <a class="config-button" data-action="sensories" title="Sensories">
+          <i class="fas fa-cog"></i>
+        </a>
+        <ul class="traits-list">
+        {{#each sensories as |v k|}}
+          <li class="tag {{k}}">{{v}}</li>
+        {{/each}}
+        </ul>
+      </div>
+
+      <div class="grid-item-left">
+        <label>Damage Resistance: </label>
+        <a class="damage-selector" data-options="damagestats" title="Damage Resistance" name="Resistance">
+          <i class="fas fa-edit"></i>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,47 @@
+<form autocomplete="off">
+
+  <p class="notes">Select which Damage {{name}} your character has. You may leave the Subtype or Amount blank if necessary.</p>
+
+  <div class="grid-container">
+    <div class="grid-item" style="border: 2px groove #eeede0;">
+      <label style="font-size: 16px;">Damage {{name}}</label>
+    </div>
+    <div class="grid-container-three">
+      <div class="grid-container">
+        <div class="grid-item">
+          <label style="font-size: 12px;">Damage Type</label>
+        </div>
+        <div class="grid-item">
+          <select name="" style="font-size: 10px; width: 80px;">
+            {{selectOptions damage_types}}
+          </select>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-item">
+          <label style="font-size: 12px;">Damage Subtype</label>
+        </div>
+        <div class="grid-item">
+          <select name="" style="font-size: 10px; width: 100px;">
+            {{selectOptions damage_subtypes}}
+          </select>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-item">
+          <label style="font-size: 12px;">Amount</label>
+        </div>
+        <div class="grid-item">
+          <input class="input-medium" type="text" data-dtype="Number"/>
+        </div>
+      </div>
+    </div>
+    <div class="grid-item" style="height: 15px;">
+
+    </div>
+  </div>
+
+
+  <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+
+</form>

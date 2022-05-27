@@ -75,6 +75,14 @@
 .grid-item {
   text-align: center;
 }
+.grid-item-left {
+  text-align: left;
+  float: left;
+}
+.grid-item-inline {
+  text-align: center;
+  white-space: nowrap;
+}
 .grid-item-padded {
   text-align: center;
   padding-bottom: 3px;
@@ -87,6 +95,54 @@
   text-align: center;
   border: 2px groove #eeede0;
   width: 85px;
+}
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Sheets                                   */
+/* ----------------------------------------- */
+.sheet-tabs {
+  -webkit-box-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+}
+.sheet-navigation {
+  flex: 0 0 30px;
+  margin-bottom: 5px;
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+.sheet-navigation .item {
+  height: 30px;
+  line-height: 32px;
+  margin: 0 24px;
+  border-bottom: 3px solid #b5b3a4;
+}
+.sheet-navigation .item.active {
+  border-bottom: 3px solid #44191A;
+}
+.sheet-body,
+.sheet-body .tab,
+.sheet-body .tab .editor  {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Tabs                                     */
+/* ----------------------------------------- */
+.tab.overview,
+.tab.assets,
+.tab.features,
+.tab.actions,
+.tab.attacks,
+.tab.reactions {
+  overflow-y: hidden;
 }
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
@@ -113,6 +169,16 @@
   height: 25px;
   border: 0;
 }
+.tiny-image {
+  width: 15px;
+  height: 15px;
+  border: 0;
+}
+.miniscule-image {
+  width: 10px;
+  height: 10px;
+  border: 0;
+}
 .name-header input[type="text"]{
   height: 40px;
   font-family: "Modesto Condensed", "Palatino Linotype", serif;
@@ -126,34 +192,68 @@ input.borderless-input-small {
   background-color: transparent;
   color: gray;
 }
-input.long {
+input.borderless-input-small-hover {
+  border: 0;
+  font-size: 12px;
+  background-color: transparent;
+  color: gray;
+}
+.borderless-input-small-hover:hover {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+input.input-small-inline {
+  border-color: gray;
+  font-size: 8px;
+  background-color: transparent;
+  color: gray;
+  height: 10px;
+  width: 20px;
+}
+input.input-small-inline-borderless {
+  border-color: gray;
+  font-size: 8px;
+  background-color: transparent;
+  color: gray;
+  height: 10px;
+  width: 20px;
+}
+input.input-small-inline-borderless-hover {
+  border-color: gray;
+  font-size: 8px;
+  background-color: transparent;
+  color: gray;
+  height: 10px;
+  width: 20px;
+}
+.input-small-inline-borderless-hover:hover {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+input.input-medium-inline {
+  border-color: gray;
+  font-size: 10px;
+  background-color: transparent;
+  color: gray;
+  height: 15px;
+  width: 25px;
+}
+input.input-small {
+  width: 40px;
+}
+input.input-medium {
+  width: 60px;
+}
+input.input-large {
+  width: 60px;
+  font-size: 20px;
+  height: 35px;
+}
+input.input-long {
   height: 65px;
   font-size: 24px;
-}
-.sheet-tabs {
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
-  flex: 0;
-}
-.sheet-navigation {
-  flex: 0 0 30px;
-  margin-bottom: 5px;
-  font-family: "Modesto Condensed", "Palatino Linotype", serif;
-  font-size: 20px;
-  font-weight: 700;
-}
-.sheet-navigation .item {
-  height: 30px;
-  line-height: 32px;
-  margin: 0 24px;
-  border-bottom: 3px solid #b5b3a4;
-}
-.sheet-navigation .item.active {
-  border-bottom: 3px solid #44191A;
-}
-.sheet-body {
-  flex: 1;
-  overflow: hidden;
 }
 .small-gray-text {
   font-size: 8px;
@@ -163,3 +263,93 @@ input.long {
   font-size: 10px;
   color: gray;
 }
+.traits-list {
+  flex: 0 0 100%;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.trait-list li.form-group {
+  flex-basis: 100%;
+}
+.traits .form-group,
+.traits .form-group-stacked {
+  margin: 0 0 3px 0;
+  justify-content: space-between;
+}
+.config-button {
+  flex: 1;
+}
+.tag {
+  display: inline-block;
+  margin: 0 2px 0 0;
+  padding: 0 3px;
+  font-size: 10px;
+  line-height: 16px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+}
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+/*  Form Group                               */
+/* ----------------------------------------- */
+.form-group label {
+  flex: 2;
+  color: #4b4a44;
+  font-weight: bold;
+}
+.form-group .form-fields {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.form-group .form-fields > * {
+  flex: 1;
+}
+.form-group .form-fields .flex1 {
+  flex: 1;
+}
+.form-group .form-fields .flex2 {
+  flex: 2;
+}
+.form-group .form-fields .flex3 {
+  flex: 3;
+}
+.form-group .form-fields .flex4 {
+  flex: 4;
+}
+.form-group .form-fields > * {
+  margin: 0 3px 0 0;
+}
+.form-group .form-fields > *:last-child {
+  margin-right: 0;
+}
+.form-group.stacked > label {
+  flex: 0 0 100%;
+  margin: 0;
+}
+.form-group.stacked label.checkbox,
+.form-group.stacked label.radio {
+  flex: auto;
+  text-align: left;
+}
+/* ----------------------------------------- */
+/* Trait Selector
+/* ----------------------------------------- */
+.trait-selector .trait-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.trait-selector .trait-list li ol.trait-list {
+  margin-left: 1.5em;
+}
+.trait-selector input[type="text"] {
+  height: 24px;
+  margin: 2px;
+  

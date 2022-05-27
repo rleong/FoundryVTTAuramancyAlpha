@@ -15,10 +15,11 @@
 					<input type="text" name="data.traits.ancestry" value="{{data.traits.ancestry}}" placeholder="Ancestry"></input>
 				</div>
 				<div class="grid-item-padded">
-					<input type="text" name="data.auramancy.color" value="{{data.auramancy.color}}" placeholder="Aura Color"></input>
-				</div>
-				<div class="grid-item-padded">
 					<input type="text" name="data.auramancy.scent" value="{{data.auramancy.scent}}" placeholder="Aura Scent"></input>
+				</div>
+				<div class="grid-item-padded grid-item-inline" style="width: 80%;">
+					<input type="text" name="data.auramancy.color" value="{{data.auramancy.color}}" placeholder="Aura Color"></input>
+					<input type="color" name="data.auramancy.hex" value="{{data.auramancy.hex}}" style="width: 30px;">
 				</div>
 			</div>
 
@@ -28,166 +29,224 @@
 						<input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
 					</h1>
 				</div>
-				<div class="grid-item">
-					<div class="grid-container-two">
 
-						<div class="grid-item" style="width: 220px;">
-							<div class="" style="width: 220px; border: 2px groove #eeede0;">
-								<div class="" style="border-bottom: 2px groove #eeede0;">
-									<label>Hit Points:</label>
-									<progress name="data.health.hp.value" value="{{data.health.hp.value}}" max="{{data.health.hp.max}}"/>
+				{{!-- Stats --}}
+				<div class="grid-container-three" style="border: 2px groove #eeede0;">
+
+					{{!-- Stats --}}
+					<div class="grid-container" style="width: 100px; border-right: 2px groove #eeede0;">
+						<div class="grid-container" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+								<label>Armor Class</label>
+							</div>
+							<div class="grid-container" style="padding-top: 3px;">
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.stats.ac.value" value="{{data.stats.ac.value}}" placeholder="8" data-dtype="Number" disabled="disabled"/>
 								</div>
-								<div class="grid-container-three" style="border-bottom: 2px groove #eeede0;">
-									<div class="grid-container" style="width: 70px; border-right: 2px groove #eeede0;">
-										<div class="grid-item">
-												<label style="font-size: 13px;">Buffer:</label>
-												<input type="text" name="data.health.buffer.value" value="{{data.health.buffer.value}}" placeholder="0" data-dtype="Number"/>
-										</div>
-										<div class="grid-item">
-											<label class="small-gray-text">Minimum:</label>
-											<input type="text" class="borderless-input-small" name="data.health.buffer.min" value="{{data.health.buffer.min}}" placeholder="0" data-dtype="Number"/>
-										</div>
-									</div>
-									<div class="grid-container" style="width: 70px;">
-										<div class="grid-item">
-											<label style="font-size: 13px;">Current:</label>
-											<input type="text" name="data.health.hp.value" value="{{data.health.hp.value}}" placeholder="{{data.health.hp.max}}" data-dtype="Number"/>
-										</div>
-										<div class="grid-item">
-											<label style="font-size: 13px;">Maximum:</label>
-											<input type="text" name="data.health.hp.max" value="{{data.health.hp.max}}" placeholder="{{data.health.hp.max}}" data-dtype="Number"/>
-										</div>
-									</div>
-									<div class="grid-container" style="width: 70px; border-left: 2px groove #eeede0;">
-										<div class="grid-item">
-											<label style="font-size: 13px;">Impairment:</label>
-											<input type="text" name="data.health.impairment" value="{{data.health.impairment}}" placeholder="{{data.health.impairment}}" data-dtype="Number"/>
-										</div>
-										<div class="grid-item">
-											<label class="small-gray-text">Max HP Modifier:</label>
-											<input type="text" class="borderless-input-small" name="data.health.hp.mod" value="{{data.health.hp.mod}}" placeholder="0" data-dtype="Number"/>
-										</div>
-									</div>
-								</div>
-								<div class="" style="border-bottom: 2px groove #eeede0;">
-									<label>Aura Reserve:</label>
-								</div>
-								<div class="grid-container-three">
-									<div class="grid-container" style="width: 70px; border-right: 2px groove #eeede0;">
-										<div class="grid-item">
-											<label style="font-size: 13px;">Current:</label>
-											<input type="text" name="data.health.reserve.value" value="{{data.health.reserve.value}}" placeholder="{{data.health.reserve.value}}" data-dtype="Number"/>
-										</div>
-										<div class="grid-item">
-											<label class="small-gray-text">Temporary:</label>
-											<input type="text" class="borderless-input-small" name="data.health.reserve.temp" value="{{data.health.reserve.temp}}" placeholder="0" data-dtype="Number"/>
-										</div>
-									</div>
-									<div class="grid-container" style="width: 70px;">
-										<label style="font-size: 13px;">Hit Die:</label>
-										<div class="grid-item">
-											<img class="small-image" src="systems/auramancy/icons/stats/d{{data.health.reserve.die}}.png"/>
-										</div>
-										<div class="grid-item">
-											<select name="data.health.reserve.die">
-												{{selectOptions config.reserveDice selected=data.health.reserve.die}}
-											</select>
-										</div>
-									</div>
-									<div class="grid-container" style="width: 70px; border-left: 2px groove #eeede0;">
-										<div class="grid-item">
-											<label style="font-size: 13px;">Maximum:</label>
-											<input type="text" name="data.health.reserve.max" value="{{data.health.reserve.max}}" placeholder="{{data.health.reserve.max}}" data-dtype="Number"/>
-										</div>
-										<div class="grid-item">
-											<label class="small-gray-text">Temporary:</label>
-											<input type="text" class="borderless-input-small" name="data.health.reserve.temp_max" value="{{data.health.reserve.temp_max}}" placeholder="0" data-dtype="Number"/>
-										</div>
-									</div>
+								<div class="grid-item-inline">
+									<label class="small-gray-text">AC Mod:</label>
+									<input type="text" class="input-small-inline" name="data.stats.ac.temp" value="{{data.stats.ac.temp}}" placeholder="0" data-dtype="Number"/>
 								</div>
 							</div>
 						</div>
+						<div class="grid-container">
+							<div class="grid-item-inline" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+								<label>Proficiency</label>
+							</div>
+							<div class="grid-container" style="padding-top: 3px;">
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.stats.proficiency.value" value="{{data.stats.proficiency.value}}" placeholder="{{data.stats.proficiency.value}}" data-dtype="Number" disabled="disabled"/>
+								</div>
+								<div class="grid-item-inline">
+									<label class="medium-gray-text" style="color: black;">Save DC: </label>
+									<input type="text" class="input-small-inline" style="color: black; font-size: 10px;" name="data.stats.proficiency.save" value="{{data.stats.proficiency.save}}" placeholder="{{data.stats.proficiency.save}}" data-dtype="Number" disabled="disabled"/>
+								</div>
+							</div>
+						</div>
+					</div>
 
-						<div class="grid-item" style="width: 220px;">
-							<div class="" style="width: 220px; border: 2px groove #eeede0;">
-								<div class="" style="border-bottom: 2px groove #eeede0;">
-									<label>Stats:</label>
-								</div>
-								<div class="grid-container-three">
-									<div class="grid-container" style="width: 70px; border-right: 2px groove #eeede0;">
-										<label style="font-size: 13px;">AC:</label>
-										<input type="text" name="data.stats.ac.value" value="{{data.stats.ac.value}}" placeholder="{{data.stats.ac.value}}" data-dtype="Number"/>
-										<label class="small-gray-text">Temp. AC:</label>
-										<input type="text" class="borderless-input-small" name="data.stats.ac.temp" value="{{data.stats.ac.temp}}" placeholder="0" data-dtype="Number"/>
-									</div>
-									<div class="grid-item" style="width: 70px;">
-										<label style="font-size: 13px;">Proficiency:</label>
-										<input type="text" name="data.stats.proficiency.value" value="{{data.stats.proficiency.value}}" placeholder="{{data.stats.proficiency.value}}" data-dtype="Number"/>
-										<label class="small-gray-text">Save DC:</label>
-										<input type="text" class="borderless-input-small" name="data.stats.proficiency.save" value="{{data.stats.proficiency.save}}" placeholder="{{data.stats.proficiency.save}}" data-dtype="Number"/>
-									</div>
-									<div class="grid-item" style="width: 70px; border-left: 2px groove #eeede0;">
-										<label style="font-size: 13px;">Movement:</label>
-										<input type="text" name="data.stats.movement.value" value="{{data.stats.movement.value}}" placeholder="{{data.stats.movement.value}}" data-dtype="Number"/>
-										<div class="grid-container-two">
-											<div class="grid-item" style="border-right: 2px groove #eeede0;">
-												<label class="small-gray-text">Max:</label>
-												<input type="text" class="borderless-input-small" name="data.stats.movement.max" value="{{data.stats.movement.max}}" placeholder="0" data-dtype="Number"/>
-											</div>
-											<div class="grid-item">
-												<label class="small-gray-text">Temp:</label>
-												<input type="text" class="borderless-input-small" name="data.stats.movement.temp" value="{{data.stats.movement.temp}}" placeholder="0" data-dtype="Number"/>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="" style="border-bottom: 2px groove #eeede0; border-top: 2px groove #eeede0;">
-									<div class="grid-container-two">
-										<div class="grid-item" style="width: 70px; border-right: 2px groove #eeede0;">
-											<label>Turn:</label>
-										</div>
-										<div class="grid-item" style="width: 140px;">
-											<label>Aether Well:</label>
-										</div>
-									</div>
+					{{!-- Hit Points --}}
+					<div class="grid-container" style="width: 300px;">
+						<div class="grid-container" style="padding-top: 3px; height: 20px;">
+							<svg>
+								<rect height="5" style="fill: #6eb1ba; stroke-width: 1; stroke: gray; width: calc(({{data.health.buffer.value}} / max(1, {{data.health.buffer.min}})) * 300px);"/>
+							</svg>
+							<svg>
+								<rect height="15" style="fill: transparent; stroke-width: 2; stroke: gray; width: 300px;"/>
+								<rect height="15" style="fill: {{data.auramancy.hex}}; stroke-width: 1; stroke: gray; width: calc(({{data.health.hp.value}} / {{data.health.hp.max}}) * 300px);"/>
+							</svg>
+						</div>
+
+						<div class="grid-container-two" style="width: 300px; border-top: 2px groove #eeede0;">
+
+							<div class="grid-container" style="width: 150px; border-right: 2px groove #eeede0;">
+								<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+									<label style="font-size: 16px;">Hit Points</label>
 								</div>
 								<div class="grid-container-two">
-									<div class="grid-container" style="width: 70px; border-right: 2px groove #eeede0;">
-										<div class="grid-container-two">
-											<label style="font-size: 13px;">AP:</label>
-											<label class="glow">↻</label>
-										</div>
-										<input type="text" name="data.ap.value" value="{{data.ap.value}}" placeholder="{{data.ap.value}}" data-dtype="Number"/>
-										<div class="grid-container-two">
-											<div class="grid-item" style="border-right: 2px groove #eeede0;">
-												<label class="small-gray-text">Max:</label>
-												<input type="text" class="borderless-input-small" name="data.ap.max" value="{{data.ap.max}}" placeholder="0" data-dtype="Number"/>
-											</div>
-											<div class="grid-item">
-												<label class="small-gray-text">Temp:</label>
-												<input type="text" class="borderless-input-small" name="data.ap.temp" value="{{data.ap.temp}}" placeholder="0" data-dtype="Number"/>
-											</div>
-										</div>
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Current</label>
+										<input class="input-medium" type="text" name="data.health.hp.value" value="{{data.health.hp.value}}" placeholder="{{data.health.hp.max}}" data-dtype="Number"/>
 									</div>
-									<div class="grid-item" style="width: 140px;">
-										<label style="font-size: 13px;">Aether Charges:</label>
-										<input type="text" name="data.auramancy.charges.value" value="{{data.auramancy.charges.value}}" placeholder="{{data.auramancy.charges.value}}" data-dtype="Number"/>
-										<div class="grid-container-two">
-											<div class="grid-item" style="border-right: 2px groove #eeede0;">
-												<label class="small-gray-text">Max:</label>
-												<input type="text" class="borderless-input-small" name="data.auramancy.charges.max" value="{{data.auramancy.charges.max}}" placeholder="0" data-dtype="Number"/>
-											</div>
-											<div class="grid-item">
-												<label class="small-gray-text">Temp:</label>
-												<input type="text" class="borderless-input-small" name="data.auramancy.charges.temp" value="{{data.auramancy.charges.temp}}" placeholder="0" data-dtype="Number"/>
-											</div>
-										</div>
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Maximum</label>
+										<input class="input-medium" type="text" name="data.health.hp.max" value="{{data.health.hp.max}}" placeholder="{{data.health.hp.max}}" data-dtype="Number" disabled="disabled"/>
 									</div>
+								</div>
+								<div class="grid-item-inline">
+									<label class="small-gray-text">HP Max Mod:</label>
+									<input type="text" class="input-small-inline" name="data.health.hp.mod" value="{{data.health.hp.mod}}" placeholder="0" data-dtype="Number"/>
+								</div>
+							</div>
+
+							<div class="grid-container" style="width: 150px;">
+								<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+									<label style="font-size: 16px;">Buffer</label>
+								</div>
+								<div class="grid-container-two">
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Current</label>
+										<input class="input-medium" type="text" name="data.health.buffer.value" value="{{data.health.buffer.value}}" placeholder="{{data.health.buffer.min}}" data-dtype="Number" min="0"/>
+									</div>
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Minimum</label>
+										<input class="input-medium" type="text" name="data.health.buffer.min" value="{{data.health.buffer.min}}" placeholder="{{data.health.buffer.min}}" data-dtype="Number" min="0"/>
+									</div>
+								</div>
+								<div class="grid-item-inline" style="border-top: 2px groove #eeede0;">
+									<label style="font-size: 12px;">Impairment Level: </label>
+									<input type="text" class="input-medium-inline" name="data.health.impairment" value="{{data.health.impairment}}" placeholder="{{data.health.impairment}}" data-dtype="Number"/>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					{{!-- Aura Reserve --}}
+					<div class="grid-container" style="width: 100px; border-left: 2px groove #eeede0;">
+						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+							<label>Aura Reserve</label>
+						</div>
+						<div class="grid-item" style="padding-top: 3px;">
+							<img class="small-image" src="systems/auramancy/icons/stats/d{{data.health.reserve.die}}.png"/>
+						</div>
+						<div class="grid-item-inline" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 10px;">Hit Die: </label>
+							<select name="data.health.reserve.die" style="font-size: 10px; width: 50px;">
+								{{selectOptions config.reserveDice selected=data.health.reserve.die}}
+							</select>
+						</div>
+						<div class="grid-container-two">
+							<div class="grid-container" style="width: 50px;">
+								<div class="grid-item">
+									<label class="medium-gray-text">Current</label>
+								</div>
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.health.reserve.value" value="{{data.health.reserve.value}}" placeholder="{{data.health.reserve.value}}" data-dtype="Number"/>
+								</div>
+							</div>
+							<div class="grid-container" style="width: 50px;">
+								<div class="grid-item">
+									<label class="medium-gray-text">Maximum</label>
+								</div>
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.health.reserve.max" value="{{data.health.reserve.max}}" placeholder="{{data.health.reserve.max}}" data-dtype="Number" disabled="disabled"/>
 								</div>
 							</div>
 						</div>
-
+						<div class="grid-item-inline">
+							<label class="small-gray-text">Temporary: </label>
+							<input type="text" class="input-small-inline" name="data.health.reserve.temp" value="{{data.health.reserve.temp}}" placeholder="0" data-dtype="Number"/>
+						</div>
 					</div>
+
+				</div>
+
+				{{!-- Resources --}}
+				<div class="grid-container-three">
+
+					<div class="grid-container" style="width: 175px; border: 2px groove #eeede0;">
+						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 16px;">Movement</label>
+						</div>
+						<div class="grid-item" style="padding-top: 3px;">
+							<input class="input-large" type="text" name="data.stats.movement.value" value="{{data.stats.movement.value}}" placeholder="{{data.stats.movement.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
+								<label class="small-gray-text">Maximum:</label>
+								<input type="text" class="input-small-inline-borderless" name="data.stats.movement.max" value="{{data.stats.movement.max}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+							</div>
+							<div class="grid-item-inline">
+								<label class="small-gray-text">Temporary:</label>
+								<input type="text" class="input-small-inline-borderless-hover" name="data.stats.movement.temp" value="{{data.stats.movement.temp}}" placeholder="0" data-dtype="Number"/>
+							</div>
+						</div>
+						<div class="grid-item" style="padding-top: 3px; height: 15px;">
+							<div class="grid-container" >
+								<svg>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 170px;"/>
+									<rect height="5" style="fill: #666699; stroke-width: 1; stroke: gray; width: calc(({{data.stats.movement.value}} / {{data.stats.movement.max}}) * 170px);"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid-container" style="width: 175px; border: 2px groove #eeede0;">
+						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 16px;">Action Points</label>
+						</div>
+						<div class="grid-item" style="padding-top: 3px;">
+							<input class="input-large" type="text" name="data.ap.value" value="{{data.ap.value}}" placeholder="{{data.ap.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
+								<label class="small-gray-text">Maximum:</label>
+								<input type="text" class="input-small-inline-borderless" name="data.ap.max" value="{{data.ap.max}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+							</div>
+							<div class="grid-item-inline">
+								<label class="small-gray-text">Temporary:</label>
+								<input type="text" class="input-small-inline-borderless-hover" name="data.ap.temp" value="{{data.ap.temp}}" placeholder="0" data-dtype="Number"/>
+							</div>
+						</div>
+						<div class="grid-item" style="padding-top: 3px; height: 15px;">
+							<!-- <img class="miniscule-image" src="systems/auramancy/icons/free_use/items/I_GoldCoin.png"/> -->
+							<div class="grid-container">
+								<svg>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 170px;"/>
+									<rect height="5" style="fill: #fcba03; stroke-width: 1; stroke: gray; width: calc(({{data.ap.value}} / {{data.ap.max}}) * 170px);"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid-container" style="width: 175px; border: 2px groove #eeede0;">
+						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 16px;">Aether Well</label>
+						</div>
+						<div class="grid-item" style="padding-top: 3px;">
+							<input class="input-large" type="text" name="data.auramancy.charges.value" value="{{data.auramancy.charges.value}}" placeholder="{{data.auramancy.charges.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
+								<label class="small-gray-text">Maximum:</label>
+								<input type="text" class="input-small-inline-borderless" name="data.auramancy.charges.max" value="{{data.auramancy.charges.max}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+							</div>
+							<div class="grid-item-inline">
+								<label class="small-gray-text">Temporary:</label>
+								<input type="text" class="input-small-inline-borderless-hover" name="data.auramancy.charges.temp" value="{{data.auramancy.charges.temp}}" placeholder="0" data-dtype="Number"/>
+							</div>
+						</div>
+						<div class="grid-item" style="padding-top: 3px; height: 15px;">
+							<div class="grid-container">
+								<svg>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 170px;"/>
+									<rect height="5" style="fill: {{data.auramancy.hex}}; stroke-width: 1; stroke: gray; width: calc(({{data.auramancy.charges.value}} / {{data.auramancy.charges.max}}) * 170px);"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 
@@ -258,7 +317,7 @@
 	{{!-- Sheet Tab Navigation --}}
 	<nav class="sheet-navigation tabs" data-group="primary">
 		{{!-- Default tab is specified in actor-sheet.mjs --}}
-		<a class="item" data-tab="overview">Overview</a>
+		<a class="item active" data-tab="overview">Overview</a>
 		<a class="item" data-tab="assets">Assets</a>
 		<a class="item" data-tab="features">Features</a>
 		<a class="item" data-tab="actions">Actions</a>
@@ -270,27 +329,33 @@
 	<section class="sheet-body">
 
 		{{!-- Overview Tab --}}
-		<div class="" data-group="primary" data-tab="overview">
+		<div class="tab overview flexcol" data-group="primary" data-tab="overview">
+			{{> "systems/auramancy/templates/actor/parts/actor-overview.html"}}
 		</div>
 
 		{{!-- Assets Tab --}}
-		<div class="" data-group="primary" data-tab="assets">
+		<div class="tab assets flexcol" data-group="primary" data-tab="assets">
+
 		</div>
 
 		{{!-- Features Tab --}}
-		<div class="" data-group="primary" data-tab="features">
+		<div class="tab flexcol" data-group="primary" data-tab="features">
+
 		</div>
 
 		{{!-- Actions Tab --}}
-		<div class="" data-group="primary" data-tab="actions">
+		<div class="tab flexcol" data-group="primary" data-tab="actions">
+
 		</div>
 
 		{{!-- Attacks Tab --}}
-		<div class="" data-group="primary" data-tab="attacks">
+		<div class="tab flexcol" data-group="primary" data-tab="attacks">
+
 		</div>
 
 		{{!-- Reactions Tab --}}
-		<div class="" data-group="primary" data-tab="reactions">
+		<div class="tab flexcol" data-group="primary" data-tab="reactions">
+
 		</div>
 
 	</section>

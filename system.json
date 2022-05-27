@@ -8,7 +8,7 @@
   "author": "Asacolips",
   "esmodules": ["module/auramancy.mjs"],
   "styles": ["css/auramancy.css"],
-  "scripts": [],
+  "scripts": ["js/auramancy.js"],
   "packs": [],
   "languages": [
     {

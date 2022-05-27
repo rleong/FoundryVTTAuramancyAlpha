@@ -1,0 +1,20 @@
+<form autocomplete="off">
+    <p class="notes">Check which Sensories your character has. Leave the unit blank if there is no distance limit.</p>
+    {{#each sensories as |sensory name|}}
+    <div class="form-group">
+        <label style="font-size: 12px;">{{sensory.label}}</label>
+        <input name="data.traits.sensories.{{name}}" type="number" step="0.1" value="{{sensory.value}}"/>
+    </div>
+    {{/each}}
+    <div class="form-group">
+        <label style="font-size: 12px;">Units: </label>
+        <select name="data.traits.sensories.units" style="font-size: 12px;">
+            {{selectOptions movementUnits selected=units}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label style="font-size: 12px;">Special: </label>
+        <input type="text" name="data.traits.sensories.special" value="{{special}}"/>
+    </div>
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+</form>

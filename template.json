@@ -6,7 +6,6 @@
         "health": {
           "hp": {
             "value": 15,
-            "min": 0,
             "max": 15,
             "mod": 0
           },
@@ -18,8 +17,7 @@
             "die": 6,
             "value": 1,
             "max": 2,
-            "temp": 0,
-            "temp_max": 0
+            "temp": 0
           },
           "impairment": 0
         },
@@ -100,24 +98,49 @@
           "size": "med",
           "pronouns": "",
           "ancestry": "",
-          "di": {
+          "damage_immunities": {
             "value": [],
             "custom": ""
           },
-          "dr": {
+          "damage_resistances": {
             "value": [],
             "custom": ""
           },
-          "dv": {
+          "damage_vulnerabilities": {
             "value": [],
             "custom": ""
           },
-          "ci": {
+          "conditions": {
             "value": [],
             "custom": ""
+          },
+          "sensories": {
+            "blindsight": 0,
+            "darkvision": 0,
+            "echolocation": 0,
+            "greaterdarkvision": 0,
+            "infravision": 0,
+            "nightvision": 0,
+            "truesight": 0,
+            "seismicsense": 0,
+            "units": "ft",
+            "special": ""
           }
         },
-        "biography": ""
+        "proficiencies": {
+          "weapons": [],
+          "tools": [],
+          "instruments": [],
+          "games": [],
+          "languages": [],
+          "vehicles": [],
+          "misc": []
+        },
+        "social": {
+          "strings": [],
+          "characteristics": [],
+          "biography": ""
+        }
       }
     },
     "character": {

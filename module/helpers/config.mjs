@@ -33,3 +33,66 @@ AURAMANCY.reserveDice = {
   10: "d10",
   12: "d12"
 };
+
+AURAMANCY.sizeCategories = {
+  "mni": "Miniscule",
+  "tny": "Tiny",
+  "sml": "Small",
+  "med": "Medium",
+  "lrg": "Large",
+  "hge": "Huge",
+  "enm": "Enormous"
+};
+
+AURAMANCY.sensories = {
+  "blindsight": "Blindsight",
+  "darkvision": "Darkvision",
+  "echolocation": "Echolocation",
+  "greaterdarkvision": "Greater Darkvision",
+  "infravision": "Infravision",
+  "nightvision": "Night Vision",
+  "truesight": "Truesight",
+  "seismicsense": "Seismic Sense"
+};
+
+AURAMANCY.movementUnits = {
+  "ft": "Feet",
+  "mi": "Miles",
+  "m": "Meters",
+  "km": "Kilometers"
+};
+
+AURAMANCY.damageTypes = {
+  "physical": "Physical",
+  "energy": "Energy",
+  "magical": "Magical",
+  "mental": "Mental",
+  "miasmic": "Miasmic"
+};
+
+AURAMANCY.damageSubtypes = {
+  "bludgeoning": "Bludgeoning",
+  "piercing": "Piercing",
+  "slashing": "Slashing",
+  "sonic": "Sonic",
+  "cold": "Cold",
+  "corrosive": "Corrosive",
+  "heat": "Heat",
+  "shock": "Shock",
+  "radiant": "Radiant",
+  "aero": "Aero",
+  "arcane": "Arcane",
+  "cryo": "Cryo",
+  "geo": "Geo",
+  "electro": "Electro",
+  "pyro": "Pyro",
+  "hydro": "Hydro",
+  "psionic": "Psionic",
+  "psychic": "Psychic",
+  "disease": "Disease",
+  "necrotic": "Necrotic",
+  "poison": "Poison",
+  "radiation": "Radiation",
+  "void": "Void",
+  "soulfire": "Soulfire"
+};

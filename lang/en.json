@@ -22,5 +22,13 @@
   "AURAMANCY.EffectEdit": "Edit Effect",
   "AURAMANCY.EffectDelete": "Delete Effect",
 
-  "AURAMANCY.Add": "Add"
+  "AURAMANCY.Add": "Add",
+
+  "AURAMANCY.SizeMiniscule": "Miniscule",
+  "AURAMANCY.SizeTiny": "Tiny",
+  "AURAMANCY.SizeSmall": "Small",
+  "AURAMANCY.SizeMedium": "Medium",
+  "AURAMANCY.SizeLarge": "Large",
+  "AURAMANCY.SizeHuge": "Huge",
+  "AURAMANCY.SizeEnormous": "Enormous"
 }

@@ -7,9 +7,11 @@
   return loadTemplates([
 
     // Actor partials.
+    "systems/auramancy/templates/actor/parts/actor-overview.html",
+    "systems/auramancy/templates/actor/parts/actor-assets.html",
     "systems/auramancy/templates/actor/parts/actor-features.html",
-    "systems/auramancy/templates/actor/parts/actor-items.html",
-    "systems/auramancy/templates/actor/parts/actor-spells.html",
-    "systems/auramancy/templates/actor/parts/actor-effects.html",
+    "systems/auramancy/templates/actor/parts/actor-actions.html",
+    "systems/auramancy/templates/actor/parts/actor-attacks.html",
+    "systems/auramancy/templates/actor/parts/actor-reactions.html",
   ]);
 };
