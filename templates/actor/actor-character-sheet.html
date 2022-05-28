@@ -34,7 +34,7 @@
 				<div class="grid-container-three" style="border: 2px groove #eeede0;">
 
 					{{!-- Stats --}}
-					<div class="grid-container" style="width: 100px; border-right: 2px groove #eeede0;">
+					<div class="grid-container" style="width: 120px; border-right: 2px groove #eeede0;">
 						<div class="grid-container" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
 							<div class="grid-item-inline" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
 								<label>Armor Class</label>
@@ -123,7 +123,7 @@
 					</div>
 
 					{{!-- Aura Reserve --}}
-					<div class="grid-container" style="width: 100px; border-left: 2px groove #eeede0;">
+					<div class="grid-container" style="width: 120px; border-left: 2px groove #eeede0;">
 						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
 							<label>Aura Reserve</label>
 						</div>
@@ -165,7 +165,7 @@
 				{{!-- Resources --}}
 				<div class="grid-container-three">
 
-					<div class="grid-container" style="width: 175px; border: 2px groove #eeede0;">
+					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
 						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
 							<label style="font-size: 16px;">Movement</label>
 						</div>
@@ -185,14 +185,14 @@
 						<div class="grid-item" style="padding-top: 3px; height: 15px;">
 							<div class="grid-container" >
 								<svg>
-									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 170px;"/>
-									<rect height="5" style="fill: #666699; stroke-width: 1; stroke: gray; width: calc(({{data.stats.movement.value}} / {{data.stats.movement.max}}) * 170px);"/>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
+									<rect height="5" style="fill: #666699; stroke-width: 1; stroke: gray; width: calc(({{data.stats.movement.value}} / {{data.stats.movement.max}}) * 175px);"/>
 								</svg>
 							</div>
 						</div>
 					</div>
 
-					<div class="grid-container" style="width: 175px; border: 2px groove #eeede0;">
+					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
 						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
 							<label style="font-size: 16px;">Action Points</label>
 						</div>
@@ -213,14 +213,14 @@
 							<!-- <img class="miniscule-image" src="systems/auramancy/icons/free_use/items/I_GoldCoin.png"/> -->
 							<div class="grid-container">
 								<svg>
-									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 170px;"/>
-									<rect height="5" style="fill: #fcba03; stroke-width: 1; stroke: gray; width: calc(({{data.ap.value}} / {{data.ap.max}}) * 170px);"/>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
+									<rect height="5" style="fill: #fcba03; stroke-width: 1; stroke: gray; width: calc(({{data.ap.value}} / {{data.ap.max}}) * 175px);"/>
 								</svg>
 							</div>
 						</div>
 					</div>
 
-					<div class="grid-container" style="width: 175px; border: 2px groove #eeede0;">
+					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
 						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
 							<label style="font-size: 16px;">Aether Well</label>
 						</div>
@@ -240,8 +240,8 @@
 						<div class="grid-item" style="padding-top: 3px; height: 15px;">
 							<div class="grid-container">
 								<svg>
-									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 170px;"/>
-									<rect height="5" style="fill: {{data.auramancy.hex}}; stroke-width: 1; stroke: gray; width: calc(({{data.auramancy.charges.value}} / {{data.auramancy.charges.max}}) * 170px);"/>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
+									<rect height="5" style="fill: {{data.auramancy.hex}}; stroke-width: 1; stroke: gray; width: calc(({{data.auramancy.charges.value}} / {{data.auramancy.charges.max}}) * 175px);"/>
 								</svg>
 							</div>
 						</div>
@@ -314,49 +314,61 @@
 
 	<br>
 
-	{{!-- Sheet Tab Navigation --}}
-	<nav class="sheet-navigation tabs" data-group="primary">
-		{{!-- Default tab is specified in actor-sheet.mjs --}}
-		<a class="item active" data-tab="overview">Overview</a>
-		<a class="item" data-tab="assets">Assets</a>
-		<a class="item" data-tab="features">Features</a>
-		<a class="item" data-tab="actions">Actions</a>
-		<a class="item" data-tab="attacks">Attacks</a>
-		<a class="item" data-tab="reactions">Reactions</a>
-	</nav>
+	<div class="grid-container">
+		{{!-- Sheet Tab Navigation --}}
+		<nav class="sheet-navigation tabs" data-group="primary" style="width: 685px; height: 40px; border: 2px groove #eeede0;">
+			{{!-- Default tab is specified in actor-sheet.mjs --}}
+			<a class="item active" data-tab="overview">Overview</a>
+			<a class="item" data-tab="assets">Assets</a>
+			<a class="item" data-tab="features">Features</a>
+			<a class="item" data-tab="actions">Actions</a>
+			<a class="item" data-tab="attacks">Attacks</a>
+			<a class="item" data-tab="reactions">Reactions</a>
+			<a class="item" data-tab="levels">Levels</a>
+		</nav>
 
-	{{!-- Sheet Body --}}
-	<section class="sheet-body">
+		{{!-- Sheet Body --}}
+		<section class="sheet-body" style="min-height: 300px;">
 
-		{{!-- Overview Tab --}}
-		<div class="tab overview flexcol" data-group="primary" data-tab="overview">
-			{{> "systems/auramancy/templates/actor/parts/actor-overview.html"}}
-		</div>
+			{{!-- Overview Tab --}}
+			<div class="tab overview flexcol" data-group="primary" data-tab="overview">
+				{{> "systems/auramancy/templates/actor/parts/actor-overview.html"}}
+			</div>
 
-		{{!-- Assets Tab --}}
-		<div class="tab assets flexcol" data-group="primary" data-tab="assets">
+			{{!-- Assets Tab --}}
+			<div class="tab assets flexcol" data-group="primary" data-tab="assets">
 
-		</div>
+			</div>
 
-		{{!-- Features Tab --}}
-		<div class="tab flexcol" data-group="primary" data-tab="features">
+			{{!-- Features Tab --}}
+			<div class="tab features flexcol" data-group="primary" data-tab="features">
 
-		</div>
+			</div>
 
-		{{!-- Actions Tab --}}
-		<div class="tab flexcol" data-group="primary" data-tab="actions">
+			{{!-- Actions Tab --}}
+			<div class="tab actions flexcol" data-group="primary" data-tab="actions">
 
-		</div>
+			</div>
 
-		{{!-- Attacks Tab --}}
-		<div class="tab flexcol" data-group="primary" data-tab="attacks">
+			{{!-- Attacks Tab --}}
+			<div class="tab attacks flexcol" data-group="primary" data-tab="attacks">
 
-		</div>
+			</div>
 
-		{{!-- Reactions Tab --}}
-		<div class="tab flexcol" data-group="primary" data-tab="reactions">
+			{{!-- Reactions Tab --}}
+			<div class="tab reactions flexcol" data-group="primary" data-tab="reactions">
 
-		</div>
+			</div>
 
-	</section>
+			{{!-- Levels Tab --}}
+			<div class="tab levels flexcol" data-group="primary" data-tab="levels">
+				{{> "systems/auramancy/templates/actor/parts/actor-levels.html"}}
+			</div>
+
+		</section>
+	</div>
+
+
+
+
 </form>

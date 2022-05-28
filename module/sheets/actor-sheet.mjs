@@ -1,6 +1,10 @@
 import {onManageActiveEffect, prepareActiveEffectCategories} from "../helpers/effects.mjs";
 import ActorSensoriesConfig from "../apps/sensories-config.js";
 import ActorDamageStatsConfig from "../apps/damage-stats-config.js";
+import ActorMovementConfig from "../apps/movement-config.js";
+import ActorBoxSelectorConfig from "../apps/box-selector.js";
+import ActorCharacteristicsConfig from "../apps/characteristics.js";
+
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -64,6 +68,9 @@ export class AuramancyActorSheet extends ActorSheet {
 
     // sensories
     context.sensories = this._getSensories(actorData);
+
+    // movement
+    context.movement = this._getMovement(actorData);
 
     return context;
   }
@@ -156,6 +163,12 @@ export class AuramancyActorSheet extends ActorSheet {
 
     // Damage Selector
     html.find(".damage-selector").click(this._onDamageSelector.bind(this));
+
+    // Damage Selector
+    html.find(".box-selector").click(this._onBoxSelector.bind(this));
+
+    // Damage Selector
+    html.find(".characteristics-selector").click(this._onCharacteristicsSelector.bind(this));
 
     // Add Inventory Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -308,6 +321,24 @@ export class AuramancyActorSheet extends ActorSheet {
   }
 
   /**
+   * Prepare sensories object for display.
+   * @param {object} actorData  Copy of actor data being prepared for display.
+   * @returns {object}          sensories grouped by key with localized and formatted string.
+   * @protected
+   */
+  _getMovement(actorData) {
+    const movement = actorData.data.traveling.movement_options || {};
+    const tags = {};
+    for ( let [k, label] of Object.entries(CONFIG.AURAMANCY.movementOptions) ) {
+      const v = movement[k] ?? 0;
+      if ( v === 0 ) continue;
+      tags[k] = `${label}: ${v} ${movement.units}`;
+    }
+    if ( movement.special ) tags.special = movement.special;
+    return tags;
+  }
+
+  /**
    * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options.
    * @param {Event} event      The click event which originated the selection.
    * @returns {TraitSelector}  Newly displayed application.
@@ -331,13 +362,89 @@ export class AuramancyActorSheet extends ActorSheet {
   _onDamageSelector(event) {
     event.preventDefault();
     const name = event.currentTarget.name;
-    // const a = event.currentTarget;
-    // const label = a.parentElement.querySelector("label");
     const damage_types = CONFIG.AURAMANCY.damageTypes;
     const damage_subtypes = CONFIG.AURAMANCY.damageSubtypes;
     const options = { damage_types, damage_subtypes, name };
     console.log(options)
     return new ActorDamageStatsConfig(this.object, options).render(true);
+  }
+
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options.
+   * @param {Event} event      The click event which originated the selection.
+   * @returns {TraitSelector}  Newly displayed application.
+   * @private
+   */
+  _onBoxSelector(event) {
+    event.preventDefault();
+    const name = event.currentTarget.name;
+    let available_options = {};
+    let current_values = [];
+    let data_name = "";
+
+    if (name === "Tags") {
+      current_values = this.object.data.data.traits.tags;
+      available_options = CONFIG.AURAMANCY.entityTags;
+      data_name = "data.traits.tags";
+    } else if (name === "Favored Terrain") {
+      current_values = this.object.data.data.traveling.favored_terrain;
+      available_options = CONFIG.AURAMANCY.favoredTerrain;
+      data_name = "data.traveling.favored_terrain";
+    } else if (name === "Favored Enemies") {
+      current_values = this.object.data.data.traveling.favored_enemies;
+      available_options = CONFIG.AURAMANCY.favoredEnemies;
+      data_name = "data.traveling.favored_enemies";
+    } else if (name === "Comfortable Climates") {
+      current_values = this.object.data.data.traveling.climate;
+      available_options = CONFIG.AURAMANCY.comfortableClimates;
+      data_name = "data.traveling.climate";
+    } else if (name === "Sensitivities") {
+      current_values = this.object.data.data.traits.sensitivities;
+      available_options = CONFIG.AURAMANCY.sensitivities;
+      data_name = "data.traits.sensitivities";
+    } else {
+      console.log("Oopssieeeesss");
+      return;
+    }
+
+    console.log(current_values);
+    console.log(available_options);
+
+    const options = { current_values, available_options, name, data_name };
+    console.log(options)
+    return new ActorBoxSelectorConfig(this.object, options).render(true);
+  }
+
+  _onCharacteristicsSelector(event) {
+    event.preventDefault();
+    const name = event.currentTarget.name;
+    let available_options = {};
+    let current_values = [];
+    let data_name = "";
+
+    if (name === "Backgrounds") {
+      current_values = this.object.data.data.social.characteristics.backgrounds;
+      available_options = CONFIG.AURAMANCY.characteristicsBackgrounds;
+      data_name = "data.social.characteristics.backgrounds";
+    } else if (name === "Cultures") {
+      current_values = this.object.data.data.social.characteristics.cultures;
+      available_options = CONFIG.AURAMANCY.characteristicsCultures;
+      data_name = "data.social.characteristics.cultures";
+    } else if (name === "Traits") {
+      current_values = this.object.data.data.social.characteristics.traits;
+      available_options = CONFIG.AURAMANCY.characteristicsTraits;
+      data_name = "data.social.characteristics.traits";
+    } else {
+      console.log("Oopssieeeesss");
+      return;
+    }
+
+    console.log(current_values);
+    console.log(available_options);
+
+    const options = { current_values, available_options, name, data_name };
+    console.log(options)
+    return new ActorCharacteristicsConfig(this.object, options).render(true);
   }
 
   /**
@@ -353,8 +460,9 @@ export class AuramancyActorSheet extends ActorSheet {
       case "sensories":
         app = new ActorSensoriesConfig(this.object);
         break;
-      case "damagestats":
-        app = new ActorDamageStatsConfig(this.object);
+      case "movement":
+        console.log("movement!");
+        app = new ActorMovementConfig(this.object);
         break;
     }
     app?.render(true);

@@ -1,6 +1,6 @@
 <form autocomplete="off">
 
-  <p class="notes">Select which Damage {{name}} your character has. You may leave the Subtype or Amount blank if necessary.</p>
+  <p class="notes">Select which Damage {{name}} your character has. You may leave the Amount blank if necessary.</p>
 
   <div class="grid-container">
     <div class="grid-item" style="border: 2px groove #eeede0;">
@@ -12,7 +12,7 @@
           <label style="font-size: 12px;">Damage Type</label>
         </div>
         <div class="grid-item">
-          <select name="" style="font-size: 10px; width: 80px;">
+          <select name="choiceType" style="font-size: 10px; width: 80px;">
             {{selectOptions damage_types}}
           </select>
         </div>
@@ -22,7 +22,7 @@
           <label style="font-size: 12px;">Damage Subtype</label>
         </div>
         <div class="grid-item">
-          <select name="" style="font-size: 10px; width: 100px;">
+          <select name="choiceSubtype" style="font-size: 10px; width: 100px;">
             {{selectOptions damage_subtypes}}
           </select>
         </div>
@@ -32,9 +32,27 @@
           <label style="font-size: 12px;">Amount</label>
         </div>
         <div class="grid-item">
-          <input class="input-medium" type="text" data-dtype="Number"/>
+          <input class="input-medium" name="choiceAmount" type="text"/>
         </div>
       </div>
+    </div>
+    <div class="grid-item" style="height: 5px;">
+
+    </div>
+    <div class="grid-container" style="padding-top: 5px; border: 2px groove #eeede0;">
+      <div class="grid-item">
+        <label style="font-size: 14px;">Current Values:</label>
+      </div>
+      <div class="grid-item">
+        <p class="notes">You may uncheck any of the following if you wish to delete it.</p>
+      </div>
+    </div>
+    <div class="grid-container" style="float: left; text-align: left;">
+      {{#each current_values}}
+      <label class="checkbox">
+        <input type="checkbox" name="{{this}}" data-dtype="Boolean" checked/>{{this}}
+      </label>
+      {{/each}}
     </div>
     <div class="grid-item" style="height: 15px;">
 

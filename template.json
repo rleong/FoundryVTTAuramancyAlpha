@@ -36,6 +36,28 @@
             "temp": 0
           }
         },
+        "traveling": {
+          "movement_options": {
+            "burrowing": 0,
+            "climbing": 0,
+            "crawling": 0,
+            "flying": 0,
+            "freeform": 0,
+            "gliding": 0,
+            "special": "",
+            "swimming": 0,
+            "units": "ft",
+            "walking": 0
+          },
+          "climate": [],
+          "temperature": {
+            "cold": 0,
+            "normal": 0,
+            "hot": 0
+          },
+          "favored_terrain": [],
+          "favored_enemies": []
+        },
         "ap": {
           "value": 3,
           "max": 3,
@@ -98,18 +120,14 @@
           "size": "med",
           "pronouns": "",
           "ancestry": "",
-          "damage_immunities": {
-            "value": [],
-            "custom": ""
+          "carrying_capacity": {
+            "value": 1,
+            "mod": 0
           },
-          "damage_resistances": {
-            "value": [],
-            "custom": ""
-          },
-          "damage_vulnerabilities": {
-            "value": [],
-            "custom": ""
-          },
+          "damage_immunities": [],
+          "damage_resistances": [],
+          "damage_vulnerabilities": [],
+          "damage_threshold": 0,
           "conditions": {
             "value": [],
             "custom": ""
@@ -121,11 +139,13 @@
             "greaterdarkvision": 0,
             "infravision": 0,
             "nightvision": 0,
-            "truesight": 0,
             "seismicsense": 0,
-            "units": "ft",
-            "special": ""
-          }
+            "special": "",
+            "truesight": 0,
+            "units": "ft"
+          },
+          "sensitivities": [],
+          "tags": []
         },
         "proficiencies": {
           "weapons": [],
@@ -138,7 +158,11 @@
         },
         "social": {
           "strings": [],
-          "characteristics": [],
+          "characteristics": {
+            "backgrounds": [],
+            "cultures": [],
+            "traits": []
+          },
           "biography": ""
         }
       }

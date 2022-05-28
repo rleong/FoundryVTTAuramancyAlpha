@@ -1,0 +1,29 @@
+<form autocomplete="off">
+
+  <p class="notes">Select which Characteristics your character has.</p>
+
+  <div class="grid-container">
+    <div class="grid-item" style="border: 2px groove #eeede0;">
+      <label style="font-size: 16px;">Characteristic - {{name}}</label>
+    </div>
+    <div class="grid-container" style="float: left; text-align: left; max-height: 250px; overflow-x: hidden; overflow-y: scroll;">
+      {{#each ordered as |v k|}}
+      <label class="checkbox">
+        <input type="checkbox" name="{{k}}" data-dtype="Boolean" {{v}}/>{{k}}
+      </label>
+      {{/each}}
+    </div>
+    <p class="notes">You may put in custom Characteristics, seperate each by a comma.</p>
+    <div class="form-group">
+        <label style="font-size: 12px;">Custom: </label>
+        <input type="text" name="customCharacteristics"/>
+    </div>
+    <div class="grid-item" style="height: 15px;">
+
+    </div>
+  </div>
+
+
+  <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+
+</form>

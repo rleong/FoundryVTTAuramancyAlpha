@@ -1,0 +1,20 @@
+<form autocomplete="off">
+    <p class="notes">Check which Movement Options your character has. Leave the unit blank if there is no distance limit.</p>
+    {{#each movement as |move name|}}
+    <div class="form-group">
+        <label style="font-size: 12px;">{{move.label}}</label>
+        <input name="data.traveling.movement_options.{{name}}" type="number" step="0.1" value="{{move.value}}"/>
+    </div>
+    {{/each}}
+    <div class="form-group">
+        <label style="font-size: 12px;">Units: </label>
+        <select name="data.traveling.movement_options.units" style="font-size: 12px;">
+            {{selectOptions movementUnits selected=units}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label style="font-size: 12px;">Special: </label>
+        <input type="text" name="data.traveling.movement_options.special" value="{{special}}"/>
+    </div>
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+</form>

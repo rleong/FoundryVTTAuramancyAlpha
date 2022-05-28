@@ -79,9 +79,23 @@
   text-align: left;
   float: left;
 }
+.grid-item-left-inline {
+  text-align: left;
+  float: left;
+  white-space: nowrap;
+}
 .grid-item-inline {
   text-align: center;
   white-space: nowrap;
+}
+.grid-item-inline-right {
+  text-align: center;
+  white-space: nowrap;
+  float: right;
+}
+.grid-item-inline-right input[type="text"] {
+  height: 20px;
+  width: 40px;
 }
 .grid-item-padded {
   text-align: center;
@@ -95,6 +109,10 @@
   text-align: center;
   border: 2px groove #eeede0;
   width: 85px;
+}
+.grid-row-squish {
+  grid-template-rows: 1fr;
+  align-self: start;
 }
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
@@ -141,7 +159,8 @@
 .tab.features,
 .tab.actions,
 .tab.attacks,
-.tab.reactions {
+.tab.reactions,
+.tab.levels {
   overflow-y: hidden;
 }
 /* ----------------------------------------- */
@@ -153,6 +172,15 @@
 .profile-picture {
   width: 150px;
   height: 150px;
+}
+.small-icon {
+  flex: 0 0 16px;
+  padding: 2px 0;
+  color: #999;
+  font-size: 10px;
+}
+.fancy-font {
+  font-family: "Modesto Condensed", "Palatino Linotype", serif;
 }
 .glow:hover {
   color: #000;
@@ -291,6 +319,29 @@ input.input-long {
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.05);
 }
+input[type="text"]:not([disabled]):hover,
+input[type="number"]:not([disabled]):hover,
+input[type="checkbox"]:not([disabled]):hover,
+input[type="text"]:not([disabled]):focus,
+input[type="number"]:not([disabled]):focus,
+input[type="checkbox"]:not([disabled]):focus {
+  border: 1px solid #111;
+  box-shadow: 0 0 8px red;
+}
+.form-group.stacked label.checkbox,
+.form-group.stacked label.radio {
+  flex: auto;
+  text-align: left;
+}
+.mini-header {
+  background-color: rgba(38, 26, 13, 0.07);
+}
+.center-pane {
+  height: 100%;
+  padding: 0 5px 0 3px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
 /* ----------------------------------------- */
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
@@ -352,4 +403,3 @@ input.input-long {
 .trait-selector input[type="text"] {
   height: 24px;
   margin: 2px;
-  
