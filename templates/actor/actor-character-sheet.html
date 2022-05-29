@@ -21,6 +21,21 @@
 					<input type="text" name="data.auramancy.color" value="{{data.auramancy.color}}" placeholder="Aura Color"></input>
 					<input type="color" name="data.auramancy.hex" value="{{data.auramancy.hex}}" style="width: 30px;">
 				</div>
+				<div class="grid-container-three" style="border: 2px groove #eeede0;">
+					<div class="grid-item mini-header" style="border-right: 2px groove #eeede0;">
+						<label style="font-size: 12px;">Rest:</label>
+					</div>
+					<div class="grid-item" style="border-right: 2px groove #eeede0;">
+						<a class="" data-action="tags" title="Rest">
+							<i class="fas fa-bed small-icon-alt"></i>
+						</a>
+					</div>
+					<div class="grid-item">
+						<a class="turn-reset" data-action="tags" title="Refresh Turn">
+							<i class="fas fa-undo small-icon-alt"></i>
+						</a>
+					</div>
+				</div>
 			</div>
 
 			<div class="grid-container">
@@ -36,7 +51,7 @@
 					{{!-- Stats --}}
 					<div class="grid-container" style="width: 120px; border-right: 2px groove #eeede0;">
 						<div class="grid-container" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
-							<div class="grid-item-inline" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline mini-header" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
 								<label>Armor Class</label>
 							</div>
 							<div class="grid-container" style="padding-top: 3px;">
@@ -50,7 +65,7 @@
 							</div>
 						</div>
 						<div class="grid-container">
-							<div class="grid-item-inline" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline mini-header" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
 								<label>Proficiency</label>
 							</div>
 							<div class="grid-container" style="padding-top: 3px;">
@@ -80,7 +95,7 @@
 						<div class="grid-container-two" style="width: 300px; border-top: 2px groove #eeede0;">
 
 							<div class="grid-container" style="width: 150px; border-right: 2px groove #eeede0;">
-								<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+								<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
 									<label style="font-size: 16px;">Hit Points</label>
 								</div>
 								<div class="grid-container-two">
@@ -100,7 +115,7 @@
 							</div>
 
 							<div class="grid-container" style="width: 150px;">
-								<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+								<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
 									<label style="font-size: 16px;">Buffer</label>
 								</div>
 								<div class="grid-container-two">
@@ -124,7 +139,7 @@
 
 					{{!-- Aura Reserve --}}
 					<div class="grid-container" style="width: 120px; border-left: 2px groove #eeede0;">
-						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
 							<label>Aura Reserve</label>
 						</div>
 						<div class="grid-item" style="padding-top: 3px;">
@@ -166,7 +181,7 @@
 				<div class="grid-container-three">
 
 					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
-						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
 							<label style="font-size: 16px;">Movement</label>
 						</div>
 						<div class="grid-item" style="padding-top: 3px;">
@@ -193,11 +208,11 @@
 					</div>
 
 					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
-						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
 							<label style="font-size: 16px;">Action Points</label>
 						</div>
 						<div class="grid-item" style="padding-top: 3px;">
-							<input class="input-large" type="text" name="data.ap.value" value="{{data.ap.value}}" placeholder="{{data.ap.value}}" data-dtype="Number"/>
+							<input class="input-large action-points" type="text" name="data.ap.value" value="{{data.ap.value}}" placeholder="{{data.ap.value}}" data-dtype="Number"/>
 						</div>
 						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
 							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
@@ -209,19 +224,20 @@
 								<input type="text" class="input-small-inline-borderless-hover" name="data.ap.temp" value="{{data.ap.temp}}" placeholder="0" data-dtype="Number"/>
 							</div>
 						</div>
-						<div class="grid-item" style="padding-top: 3px; height: 15px;">
-							<!-- <img class="miniscule-image" src="systems/auramancy/icons/free_use/items/I_GoldCoin.png"/> -->
-							<div class="grid-container">
+						<!-- <div class="grid-item action-points" style="padding-top: 3px; height: 15px;"> -->
+						<div class="grid-item action-points-div" style="height: 15px;">
+							<img class="miniscule-image" src="systems/auramancy/icons/free_use/items/I_GoldCoin.png"/>
+							<!-- <div class="grid-container">
 								<svg>
 									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
 									<rect height="5" style="fill: #fcba03; stroke-width: 1; stroke: gray; width: calc(({{data.ap.value}} / {{data.ap.max}}) * 175px);"/>
 								</svg>
-							</div>
+							</div> -->
 						</div>
 					</div>
 
 					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
-						<div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
 							<label style="font-size: 16px;">Aether Well</label>
 						</div>
 						<div class="grid-item" style="padding-top: 3px;">

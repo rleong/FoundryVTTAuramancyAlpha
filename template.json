@@ -15,7 +15,7 @@
           },
           "reserve": {
             "die": 6,
-            "value": 1,
+            "value": 2,
             "max": 2,
             "temp": 0
           },
@@ -24,7 +24,10 @@
         "stats": {
           "ac": {
             "value": 8,
-            "temp": 0
+            "temp": 0,
+            "mod": 0,
+            "armor": 0,
+            "cap": 0
           },
           "proficiency": {
             "value": 2,
@@ -33,7 +36,9 @@
           "movement": {
             "value": 30,
             "max": 30,
-            "temp": 0
+            "temp": 0,
+            "ancestry_mod": 0,
+            "mod": 0
           }
         },
         "traveling": {
@@ -121,7 +126,7 @@
           "pronouns": "",
           "ancestry": "",
           "carrying_capacity": {
-            "value": 1,
+            "value": 5,
             "mod": 0
           },
           "damage_immunities": [],

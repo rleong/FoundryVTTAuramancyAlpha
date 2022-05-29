@@ -34,6 +34,14 @@ AURAMANCY.reserveDice = {
   12: "d12"
 };
 
+AURAMANCY.minHp = {
+  4: 10,
+  6: 15,
+  8: 20,
+  10: 25,
+  12: 30
+};
+
 AURAMANCY.sizeCategories = {
   "mni": "Miniscule",
   "tny": "Tiny",
@@ -42,6 +50,16 @@ AURAMANCY.sizeCategories = {
   "lrg": "Large",
   "hge": "Huge",
   "enm": "Enormous"
+};
+
+AURAMANCY.sizeCategoryMovement = {
+  "mni": 15,
+  "tny": 20,
+  "sml": 25,
+  "med": 30,
+  "lrg": 35,
+  "hge": 40,
+  "enm": 45
 };
 
 AURAMANCY.sensories = {

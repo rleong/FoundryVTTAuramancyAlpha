@@ -76,6 +76,9 @@ export class AuramancyActorSheet extends ActorSheet {
     // proficiencies
     context.proficiencies = this._getProficiencies(actorData);
 
+    // calculations
+    context.data = this._calculateAllData(actorData);
+
     return context;
   }
 
@@ -159,6 +162,17 @@ export class AuramancyActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
 
+    // -------------------------------------------------------------
+    //
+    // Configure Turn Reset
+    html.find(".turn-reset").click(this._restTurn.bind(this));
+
+    // AP Change
+    html.find(".action-points").click(this._changeAP.bind(this));
+
+
+    // -------------------------------------------------------------
+    //
     // Configure Special Flags
     html.find(".config-button").click(this._onConfigMenu.bind(this));
 
@@ -305,8 +319,50 @@ export class AuramancyActorSheet extends ActorSheet {
     // }
   }
 
-  _getDamageStats(actorData) {
+  _changeAP(actorData) {
+    // var ap_elem = document.getElementById("action-points");
+    // ap_elem.parentNode.removeChild(elem);
+    console.log(actorData);
 
+  }
+
+  _calculateAllData(actorData) {
+    console.log("Calculating Data");
+    let data = actorData.data;
+
+    // Carrying Capacity
+    data.traits.carrying_capacity.value = 5 + data.traits.carrying_capacity.mod + data.attributes.str.value;
+
+    // Movement Speed
+    data.stats.movement.max = CONFIG.AURAMANCY.sizeCategoryMovement[data.traits.size] + data.stats.movement.temp + data.stats.movement.ancestry_mod + data.stats.movement.mod;
+    data.stats.movement.value = Math.max(0, Math.min(data.stats.movement.value, data.stats.movement.max));
+
+    // Armor class
+    data.stats.ac.value = 8 + data.stats.ac.temp + data.stats.ac.mod + Math.min(data.attributes.agi.value, data.stats.ac.cap) + data.stats.ac.armor;
+
+    // Proficiency
+    data.stats.proficiency.value = Math.max(1, 2 + Math.floor(data.auramancy.level/4));
+    data.stats.proficiency.save = 10 + data.stats.proficiency.value;
+
+    // AP
+    data.ap.max = 3 + data.ap.temp;
+
+    // Aether well
+    data.auramancy.charges.max = Math.max(0, 3 + (data.auramancy.level * 3)) + data.auramancy.charges.temp;
+
+    // HP
+    data.health.hp.max = CONFIG.AURAMANCY.minHp[data.health.reserve.die] + data.attributes.con.value + ((data.auramancy.level-1) * data.health.reserve.die);
+
+    return data;
+  }
+
+  _restTurn(actorData) {
+    console.log("Refresh Turn");
+    const update_data = {};
+    update_data['data.stats.movement.value'] = this.object.data.data.stats.movement.max;
+    update_data['data.ap.value'] = this.object.data.data.ap.max;
+    update_data['data.health.buffer.value'] = this.object.data.data.health.buffer.min;
+    this.object.update(update_data);
   }
 
   /**
