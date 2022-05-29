@@ -4,6 +4,7 @@ import ActorDamageStatsConfig from "../apps/damage-stats-config.js";
 import ActorMovementConfig from "../apps/movement-config.js";
 import ActorBoxSelectorConfig from "../apps/box-selector.js";
 import ActorCharacteristicsConfig from "../apps/characteristics.js";
+import ActorProficienciesConfig from "../apps/proficiencies-selector.js";
 
 
 /**
@@ -71,6 +72,9 @@ export class AuramancyActorSheet extends ActorSheet {
 
     // movement
     context.movement = this._getMovement(actorData);
+
+    // proficiencies
+    context.proficiencies = this._getProficiencies(actorData);
 
     return context;
   }
@@ -169,6 +173,9 @@ export class AuramancyActorSheet extends ActorSheet {
 
     // Damage Selector
     html.find(".characteristics-selector").click(this._onCharacteristicsSelector.bind(this));
+
+    // Damage Selector
+    html.find(".proficiencies-selector").click(this._onProficienciesSelector.bind(this));
 
     // Add Inventory Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
@@ -434,6 +441,10 @@ export class AuramancyActorSheet extends ActorSheet {
       current_values = this.object.data.data.social.characteristics.traits;
       available_options = CONFIG.AURAMANCY.characteristicsTraits;
       data_name = "data.social.characteristics.traits";
+    } else if (name === "Strings") {
+      current_values = this.object.data.data.social.strings;
+      available_options = {};
+      data_name = "data.social.strings";
     } else {
       console.log("Oopssieeeesss");
       return;
@@ -445,6 +456,179 @@ export class AuramancyActorSheet extends ActorSheet {
     const options = { current_values, available_options, name, data_name };
     console.log(options)
     return new ActorCharacteristicsConfig(this.object, options).render(true);
+  }
+
+  _onProficienciesSelector(event) {
+    event.preventDefault();
+    const name = event.currentTarget.name;
+    let available_options = "";
+    let data_name = "";
+    let expertise_separate = false;
+    let extra_proficiencies = false;
+
+    if (name === "Weapons") {
+      available_options = "proficiencyWeapons";
+      data_name = "data.proficiencies.weapons";
+      expertise_separate = true;
+      extra_proficiencies = true;
+    } else if (name === "Tools") {
+      available_options = "proficiencyTools";
+      data_name = "data.proficiencies.tools";
+    } else if (name === "Instruments") {
+      available_options = "proficiencyInstruments";
+      data_name = "data.proficiencies.instruments";
+      expertise_separate = true;
+    } else if (name === "Languages") {
+      available_options = "proficiencyLanguages";
+      data_name = "data.proficiencies.languages";
+    } else if (name === "Vehicles") {
+      available_options = "proficiencyVehicles";
+      data_name = "data.proficiencies.vehicles";
+      expertise_separate = true;
+    } else {
+      console.log("Oopssieeeesss");
+      return;
+    }
+
+    const options = { available_options, name, data_name, expertise_separate, extra_proficiencies };
+    return new ActorProficienciesConfig(this.object, options).render(true);
+  }
+
+  /**
+   * Prepare sensories object for display.
+   * @param {object} actorData  Copy of actor data being prepared for display.
+   * @returns {object}          sensories grouped by key with localized and formatted string.
+   * @protected
+   */
+  _getProficiencies(actorData) {
+    const weapons = actorData.data.proficiencies.weapons || {};
+    const tools = actorData.data.proficiencies.tools || {};
+    const instruments = actorData.data.proficiencies.instruments || {};
+    const languages = actorData.data.proficiencies.languages || {};
+    const vehicles = actorData.data.proficiencies.vehicles || {};
+    const proficiencies = {};
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- WEAPONS ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let weapons_list = {};
+    for(let [key, value] of Object.entries(weapons)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        weapons_list[key] = asterisk;
+      }
+    }
+    for(const element of weapons["expertise"]){
+      weapons_list[element] = "*";
+    }
+    const ordered_weapons = Object.keys(weapons_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = weapons_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["weapons"] = ordered_weapons;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- TOOLS ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let tools_list = {};
+    for(let [key, value] of Object.entries(tools)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        tools_list[key] = asterisk;
+      }
+    }
+    const ordered_tools = Object.keys(tools_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = tools_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["tools"] = ordered_tools;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- INSTRUMENTS ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let instruments_list = {};
+    for(let [key, value] of Object.entries(instruments)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        instruments_list[key] = asterisk;
+      }
+    }
+    for(const element of instruments["expertise"]){
+      instruments_list[element] = "*";
+    }
+    const ordered_instruments = Object.keys(instruments_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = instruments_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["instruments"] = ordered_instruments;
+
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- LANGUAGES ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let languages_list = {};
+    for(let [key, value] of Object.entries(languages)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        languages_list[key] = asterisk;
+      }
+    }
+    const ordered_languages = Object.keys(languages_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = languages_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["languages"] = ordered_languages;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- VEHICLES ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let vehicles_list = {};
+    for(let [key, value] of Object.entries(vehicles)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        vehicles_list[key] = asterisk;
+      }
+    }
+    for(const element of vehicles["expertise"]){
+      vehicles_list[element] = "*";
+    }
+    const ordered_vehicles = Object.keys(vehicles_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = vehicles_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["vehicles"] = ordered_vehicles;
+
+    return proficiencies;
   }
 
   /**

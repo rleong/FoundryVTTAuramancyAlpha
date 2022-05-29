@@ -314,3 +314,112 @@ AURAMANCY.characteristicsTraits = {
   "tough": "Tough",
   "wimp": "Wimp"
 };
+
+AURAMANCY.proficiencyLevel = {
+  0: "None",
+  1: "Proficient",
+  2: "Expertise"
+};
+
+AURAMANCY.proficiencyWeapons = {
+  "mbalanced": "(Melee) Balanced",
+  "mdualwield": "(Melee) Dual-Wield",
+  "mheavy": "(Melee) Heavy",
+  "moffhand": "(Melee) Offhand",
+  "mreach": "(Melee) Reach",
+  "mrthrown": "(Melee & Ranged) Thrown",
+  "mtwohand": "(Melee) Two-Hand",
+  "mvariant": "(Melee) Variant",
+  "mversatile": "(Melee) Versatile",
+  "oexplosives": "(Other) Explosives",
+  "oimprovised": "(Other) Improvised Weapon",
+  "otraps": "(Other) Traps",
+  "rarrow": "(Ranged) Ammunition (Arrow)",
+  "rbolt": "(Ranged) Ammunition (Bolt)",
+  "rbullet": "(Ranged) Ammunition (Bullet)"
+};
+
+AURAMANCY.proficiencyTools = {
+  "alchemy": "Alchemy Kit",
+  "apothecary": "Apothecary Kit",
+  "art": "Art Supplies",
+  "brewing": "Brewing Kit",
+  "carpenters": "Carpenter’s Tools",
+  "cartographers": "Cartographer’s Tools",
+  "cobblers": "Cobbler’s Tools",
+  "cooks": "Cook’s Utensils",
+  "cosmetics": "Cosmetics Kit",
+  "enchantment": "Enchantment Kit",
+  "glassblowers": "Glassblower’s Tools",
+  "herbalism": "Herbalism Kit",
+  "jewelers": "Jeweler’s Tools",
+  "leatherworkers": "Leatherworker’s Tools",
+  "masons": "Mason’s Tools",
+  "navigators": "Navigator’s Tools",
+  "poisoners": "Poisoner’s Kit",
+  "terminal": "Portable Terminal",
+  "potters": "Potter’s Tools",
+  "scribes": "Scribe’s Kit",
+  "sculptors": "Sculptor’s Tools",
+  "smiths": "Smith’s Tools",
+  "thieves": "Thieves’ Tools",
+  "tinkers": "Tinker’s Tools",
+  "weavers": "Weaver’s Tools",
+  "woodcarvers": "Woodcarver’s Tools"
+};
+
+AURAMANCY.proficiencyInstruments = {
+  "brass": "Brass",
+  "electronic": "Electronic",
+  "keyboard": "Keyboard",
+  "percussion": "Percussion",
+  "strings": "Strings",
+  "vocals": "Vocals",
+  "woodwind": "Woodwind"
+};
+
+AURAMANCY.proficiencyVehicles = {
+  "advancedair": "Advanced Air",
+  "advancedland": "Advanced Land",
+  "advancedwater": "Advanced Water",
+  "basicair": "Basic Air",
+  "basicland": "Basic Land",
+  "basicwater": "Basic Water"
+};
+
+AURAMANCY.proficiencyInstruments = {
+  "brass": "Brass",
+  "electronic": "Electronic",
+  "keyboard": "Keyboard",
+  "percussion": "Percussion",
+  "strings": "Strings",
+  "vocals": "Vocals",
+  "woodwind": "Woodwind"
+};
+
+AURAMANCY.proficiencyLanguages = {
+  "ancientaztan": "Ancient Aztan (Meritonese)",
+  "aztan": "Aztan (Meritonese)",
+  "bakhwa": "Ba’khwa (Serenese)",
+  "chianhwa": "Chianhwa (Serenese)",
+  "common": "Common (Elorish)",
+  "durskarian": "Durskarian (Durskarian)",
+  "elorish": "Elorish (Elorish)",
+  "etferum": "Etferum (Iferosii)",
+  "geonhwa": "Geonhwa (Serenese)",
+  "goyohwa": "Goyohwa (Serenese)",
+  "highelorean": "High Elorean (Elorish)",
+  "jinhwa": "Jinhwa (Serenese)",
+  "kharic": "Kharic (Alkherrech)",
+  "kolkharic": "Kolkharic (Alkherrech)",
+  "lowelorean": "Low Elorean (Elorish)",
+  "neweldskarish": "New Eldksarish (Eldskarish)",
+  "oldeldskarish": "Old Eldskarish (Eldskarish)",
+  "oldspeak": "Oldspeak (Aosithe)",
+  "orlandish": "Orlandish (Ourdellian)",
+  "sedarian": "Sedarian (Sedari)",
+  "telmarian": "Telmarian (Telmarian)",
+  "ulkgharish": "Ulkgharish (Merexian)",
+  "viertryz": "Viertryz (Vertrullian)",
+  "yamakhwa": "Yama’khwa (Serenese)"
+};

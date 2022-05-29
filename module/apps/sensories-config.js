@@ -25,7 +25,8 @@ export default class ActorSensoriesConfig extends DocumentSheet {
     const data = {
       sensories: {},
       special: sensories.special ?? "",
-      units: sensories.units, movementUnits: CONFIG.AURAMANCY.movementUnits
+      units: sensories.units,
+      movementUnits: CONFIG.AURAMANCY.movementUnits
     };
     for ( let [name, label] of Object.entries(CONFIG.AURAMANCY.sensories) ) {
       const v = sensories[name];

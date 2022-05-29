@@ -1,0 +1,75 @@
+<form autocomplete="off">
+
+  <p class="notes">Select which Proficiencies your character has.</p>
+
+  <div class="grid-container">
+    <div class="grid-item" style="border: 2px groove #eeede0;">
+      <label style="font-size: 16px;">{{name}}</label>
+    </div>
+    <div class="grid-item" style="height: 15px;">
+
+    </div>
+    <div class="grid-container-two" style="float: left; text-align: left; max-height: 250px; overflow-x: hidden; overflow-y: scroll;">
+      <div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+        <label style="font-size: 14px;">Subject</label>
+      </div>
+      <div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+        <label style="font-size: 14px;">Proficiency</label>
+      </div>
+      {{#each available_options_array as |v k|}}
+        {{#if (lookup ../proficiency_names k)}}
+          <div class="grid-item-left">
+            <label style="font-size: 12px;">{{lookup ../proficiency_names k}}</label>
+          </div>
+        {{else}}
+          <div class="grid-item-left">
+            <label style="font-size: 12px;">{{k}}</label>
+          </div>
+        {{/if}}
+        <div class="grid-item-inline-right">
+          <select name={{k}} style="font-size: 10px; width: 80px;">
+            {{selectOptions ../proficiency_array selected=v}}
+          </select>
+        </div>
+      {{/each}}
+      {{#if extra_proficiencies}}
+        {{#each extra_proficiencies_array as |v k|}}
+          <div class="grid-item-left">
+            <label style="font-size: 12px;">{{k}}</label>
+          </div>
+          <div class="grid-item-inline-right">
+            <select name={{k}} style="font-size: 10px; width: 80px;">
+              {{selectOptions ../proficiency_level selected=v}}
+            </select>
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+    {{#if extra_proficiencies}}
+      <p class="notes">Enter any Special Proficiencies not listed above that you have, separated by a comma. You may uncheck options below to unlist them as your Proficiencies.</p>
+      <div class="form-group">
+          <label style="font-size: 10px;">Special Proficiencies: </label>
+          <input type="text" name="specOptions"/>
+      </div>
+    {{/if}}
+    {{#if expertise}}
+      <p class="notes">Enter any individual Expertise you have below, separated by a comma. You may uncheck options below to unlist them as your Expertise.</p>
+      <div class="form-group">
+          <label style="font-size: 12px;">Expertise: </label>
+          <input type="text" name="expertiseOptions"/>
+      </div>
+      <div class="grid-container" style="float: left; text-align: left;">
+        {{#each current_values}}
+        <label class="checkbox">
+          <input type="checkbox" name="expertise_{{this}}" data-dtype="Boolean" checked/>{{this}}
+        </label>
+        {{/each}}
+      </div>
+    {{/if}}
+    <div class="grid-item" style="height: 15px;"/>
+  </div>
+
+
+  <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+
+</form>

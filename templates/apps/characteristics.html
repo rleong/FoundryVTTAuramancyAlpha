@@ -1,10 +1,10 @@
 <form autocomplete="off">
 
-  <p class="notes">Select which Characteristics your character has.</p>
+  <p class="notes">Select which {{name}} your character has.</p>
 
   <div class="grid-container">
     <div class="grid-item" style="border: 2px groove #eeede0;">
-      <label style="font-size: 16px;">Characteristic - {{name}}</label>
+      <label style="font-size: 16px;">{{name}}</label>
     </div>
     <div class="grid-container" style="float: left; text-align: left; max-height: 250px; overflow-x: hidden; overflow-y: scroll;">
       {{#each ordered as |v k|}}
@@ -13,7 +13,7 @@
       </label>
       {{/each}}
     </div>
-    <p class="notes">You may put in custom Characteristics, seperate each by a comma.</p>
+    <p class="notes">You may put in a custom option, seperate each by a comma.</p>
     <div class="form-group">
         <label style="font-size: 12px;">Custom: </label>
         <input type="text" name="customCharacteristics"/>

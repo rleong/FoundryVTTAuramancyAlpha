@@ -2,10 +2,9 @@
   <div class="overview grid-item grid-container" style="align-content: flex-start;">
 
     <div class="grid-container">
-
       <div class="grid-container-three grid-row-squish">
-        <div class="grid-container" style="width: 227px; border: 2px groove #eeede0;">
-          <div class="grid-container grid-row-squish" style="border-bottom: 2px groove #eeede0;">
+        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
+          <div class="grid-container grid-row-squish">
             <div class="grid-container" style="height: 100px; border-bottom: 2px groove #eeede0;">
               <div class="grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
                 <label class="fancy-font" style="font-size: 26px;">Traits</label>
@@ -51,8 +50,199 @@
               </ul>
             </div>
           </div>
+        </div>
+        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
           <div class="grid-container grid-row-squish">
-            <div class="grid-container grid-item mini-header" style="height: 35px; border-top: 2px groove #eeede0; border-bottom: 2px groove #eeede0;">
+            <div class="grid-container" style="height: 100px; border-bottom: 2px groove #eeede0;">
+              <div class="grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+                <label class="fancy-font" style="font-size: 26px;">Damage</label>
+              </div>
+              <div class="grid-item" style="height: 20px;">
+                <label>Damage Threshold</label>
+              </div>
+              <div class="grid-item" style="font-size: 12px;">
+                <input type="text" class="input-medium" name="data.traits.damage_threshold" value="{{data.traits.damage_threshold}}" placeholder="{{data.traits.damage_threshold}}" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container">
+              <div class="grid-item-left">
+                <label>Damage Resistance: </label>
+                <a class="damage-selector small-icon" data-options="damagestats" title="Damage Resistance" name="Resistance">
+                  <i class="fas fa-edit grid-item-inline-right"></i>
+                </a>
+                <ul class="traits-list">
+                {{#each data.traits.damage_resistances}}
+                  <li class="tag">{{this}}</li>
+                {{/each}}
+                </ul>
+              </div>
+              <div class="grid-item-left">
+                <label>Damage Immunity: </label>
+                <a class="damage-selector small-icon" data-options="damagestats" title="Damage Immunity" name="Immunity">
+                  <i class="fas fa-edit grid-item-inline-right"></i>
+                </a>
+                <ul class="traits-list">
+                {{#each data.traits.damage_immunities}}
+                  <li class="tag">{{this}}</li>
+                {{/each}}
+                </ul>
+              </div>
+              <div class="grid-item-left">
+                <label>Damage Vulnerability: </label>
+                <a class="damage-selector small-icon" data-options="damagestats" title="Damage Vulnerability" name="Vulnerability">
+                  <i class="fas fa-edit grid-item-inline-right"></i>
+                </a>
+                <ul class="traits-list">
+                {{#each data.traits.damage_vulnerabilities}}
+                  <li class="tag">{{this}}</li>
+                {{/each}}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
+          <div class="grid-container grid-row-squish">
+            <div class="grid-container" style="height: 100px;">
+              <div class="grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+                <label class="fancy-font" style="font-size: 26px;">Traveling</label>
+              </div>
+              <div class="grid-container" style="padding-bottom: 3px; border-bottom: 2px groove #eeede0;">
+                <div class="grid-item">
+                  <label>Comfortable Temperatures</label>
+                </div>
+                <div class="grid-container-three">
+                  <div class="grid-container" style="">
+                    <div class="grid-item">
+                      <label style="font-size: 10px; color: gray;">Cold</label>
+                    </div>
+                    <div class="grid-item">
+                      <input type="text" class="input-small" name="data.traveling.temperature.cold" value="{{data.traveling.temperature.cold}}" placeholder="{{data.traveling.temperature.cold}}" data-dtype="Number"/>
+                    </div>
+                  </div>
+                  <div class="grid-container" style="">
+                    <div class="grid-item">
+                      <label style="font-size: 10px; color: gray;">Normal</label>
+                    </div>
+                    <div class="grid-item">
+                      <input type="text" class="input-small" name="data.traveling.temperature.normal" value="{{data.traveling.temperature.normal}}" placeholder="{{data.traveling.temperature.normal}}" data-dtype="Number"/>
+                    </div>
+                  </div>
+                  <div class="grid-container" style="">
+                    <div class="grid-item">
+                      <label style="font-size: 10px; color: gray;">Hot</label>
+                    </div>
+                    <div class="grid-item">
+                      <input type="text" class="input-small" name="data.traveling.temperature.hot" value="{{data.traveling.temperature.hot}}" placeholder="{{data.traveling.temperature.hot}}" data-dtype="Number"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-item-left"">
+              <label>Comfortable Climates: </label>
+              <a class="box-selector small-icon" data-action="comfortableclimates" title="Comfortable Climates" name="Comfortable Climates">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.traveling.climate}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left">
+              <label>Movement Options: </label>
+              <a class="config-button small-icon" data-action="movement" title="Movement">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each movement as |v k|}}
+                <li class="tag {{k}}">{{v}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left"">
+              <label>Favored Terrain: </label>
+              <a class="box-selector small-icon" data-action="favoredterrain" title="Favored Terrain" name="Favored Terrain">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.traveling.favored_terrain}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left"">
+              <label>Favored Enemies: </label>
+              <a class="box-selector small-icon" data-action="favoredenemies" title="Favored Enemies" name="Favored Enemies">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.traveling.favored_enemies}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-container-three grid-row-squish">
+        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
+          <div class="grid-container grid-row-squish">
+            <div class="grid-container grid-item mini-header" style="height: 35px; border-bottom: 2px groove #eeede0;">
+              <label class="fancy-font" style="font-size: 26px;">Social</label>
+            </div>
+            <div class="grid-item-left">
+              <label>Backgrounds: </label>
+              <a class="characteristics-selector small-icon" data-action="backgrounds" title="Backgrounds" name="Backgrounds">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.social.characteristics.backgrounds}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left">
+              <label>Cultures: </label>
+              <a class="characteristics-selector small-icon" data-action="cultures" title="Cultures" name="Cultures">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.social.characteristics.cultures}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left">
+              <label>Traits: </label>
+              <a class="characteristics-selector small-icon" data-action="traits" title="Traits" name="Traits">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.social.characteristics.traits}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left">
+              <label>Strings: </label>
+              <a class="characteristics-selector small-icon" data-action="strings" title="Strings" name="Strings">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.social.strings}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
+          <div class="grid-container grid-row-squish">
+            <div class="grid-container grid-item mini-header" style="height: 35px; border-bottom: 2px groove #eeede0;">
               <label class="fancy-font" style="font-size: 26px;">Senses</label>
             </div>
             <div class="grid-item-left">
@@ -79,188 +269,93 @@
             </div>
           </div>
         </div>
-        <div class="grid-container grid-row-squish" style="width: 227px; border: 2px groove #eeede0;">
-          <div class="grid-container" style="height: 100px; border-bottom: 2px groove #eeede0;">
-            <div class="grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
-              <label class="fancy-font" style="font-size: 26px;">Damage</label>
+
+        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
+          <div class="grid-container grid-row-squish">
+            <div class="grid-container grid-item mini-header" style="height: 35px; border-bottom: 2px groove #eeede0;">
+              <label class="fancy-font" style="font-size: 26px;">Proficiencies</label>
             </div>
-            <div class="grid-item" style="height: 20px;">
-              <label>Damage Threshold</label>
+            <div class="grid-item" style="border-bottom: 2px groove #eeede0;">
+              <p style="font-size: 10px;">An asterisk (*) denotes Expertise.</p>
             </div>
-            <div class="grid-item" style="font-size: 12px;">
-              <input type="text" class="input-medium" name="data.traits.damage_threshold" value="{{data.traits.damage_threshold}}" placeholder="{{data.traits.damage_threshold}}" data-dtype="Number"/>
-            </div>
-          </div>
-          <div class="grid-container">
             <div class="grid-item-left">
-              <label>Damage Resistance: </label>
-              <a class="damage-selector small-icon" data-options="damagestats" title="Damage Resistance" name="Resistance">
-                <i class="fas fa-edit grid-item-inline-right"></i>
+              <label>Weapons: </label>
+              <a class="proficiencies-selector small-icon" data-action="weapons" title="Weapons" name="Weapons">
+                <i class="fas fa-cog grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-              {{#each data.traits.damage_resistances}}
-                <li class="tag">{{this}}</li>
-              {{/each}}
+                {{#each proficiencies.weapons as |v k|}}
+                  {{#if (lookup ../config.proficiencyWeapons k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyWeapons k}}{{v}}</li>
+                  {{else}}
+                    <li class="tag {{k}}">{{k}}{{v}}</li>
+                  {{/if}}
+                {{/each}}
               </ul>
             </div>
             <div class="grid-item-left">
-              <label>Damage Immunity: </label>
-              <a class="damage-selector small-icon" data-options="damagestats" title="Damage Immunity" name="Immunity">
-                <i class="fas fa-edit grid-item-inline-right"></i>
+              <label>Tools: </label>
+              <a class="proficiencies-selector small-icon" data-action="tools" title="Tools" name="Tools">
+                <i class="fas fa-cog grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-              {{#each data.traits.damage_immunities}}
-                <li class="tag">{{this}}</li>
-              {{/each}}
+                {{#each proficiencies.tools as |v k|}}
+                  {{#if (lookup ../config.proficiencyTools k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyTools k}}{{v}}</li>
+                  {{else}}
+                    <li class="tag {{k}}">{{k}}{{v}}</li>
+                  {{/if}}
+                {{/each}}
               </ul>
             </div>
             <div class="grid-item-left">
-              <label>Damage Vulnerability: </label>
-              <a class="damage-selector small-icon" data-options="damagestats" title="Damage Vulnerability" name="Vulnerability">
-                <i class="fas fa-edit grid-item-inline-right"></i>
+              <label>Instruments: </label>
+              <a class="proficiencies-selector small-icon" data-action="instruments" title="Instruments" name="Instruments">
+                <i class="fas fa-cog grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-              {{#each data.traits.damage_vulnerabilities}}
-                <li class="tag">{{this}}</li>
-              {{/each}}
+                {{#each proficiencies.instruments as |v k|}}
+                  {{#if (lookup ../config.proficiencyInstruments k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyInstruments k}}{{v}}</li>
+                  {{else}}
+                    <li class="tag {{k}}">{{k}}{{v}}</li>
+                  {{/if}}
+                {{/each}}
               </ul>
             </div>
-          </div>
-        </div>
-        <div class="grid-container grid-row-squish" style="width: 227px; border: 2px groove #eeede0;">
-          <div class="grid-container" style="height: 100px;">
-            <div class="grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
-              <label class="fancy-font" style="font-size: 26px;">Traveling</label>
+            <div class="grid-item-left">
+              <label>Languages: </label>
+              <a class="proficiencies-selector small-icon" data-action="languages" title="Languages" name="Languages">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+                {{#each proficiencies.languages as |v k|}}
+                  {{#if (lookup ../config.proficiencyLanguages k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyLanguages k}}{{v}}</li>
+                  {{else}}
+                    <li class="tag {{k}}">{{k}}{{v}}</li>
+                  {{/if}}
+                {{/each}}
+              </ul>
             </div>
-            <div class="grid-container" style="padding-bottom: 3px; border-bottom: 2px groove #eeede0;">
-              <div class="grid-item">
-                <label>Comfortable Temperatures</label>
-              </div>
-              <div class="grid-container-three">
-                <div class="grid-container" style="">
-                  <div class="grid-item">
-                    <label style="font-size: 10px; color: gray;">Cold</label>
-                  </div>
-                  <div class="grid-item">
-                    <input type="text" class="input-small" name="data.traveling.temperature.cold" value="{{data.traveling.temperature.cold}}" placeholder="{{data.traveling.temperature.cold}}" data-dtype="Number"/>
-                  </div>
-                </div>
-                <div class="grid-container" style="">
-                  <div class="grid-item">
-                    <label style="font-size: 10px; color: gray;">Normal</label>
-                  </div>
-                  <div class="grid-item">
-                    <input type="text" class="input-small" name="data.traveling.temperature.normal" value="{{data.traveling.temperature.normal}}" placeholder="{{data.traveling.temperature.normal}}" data-dtype="Number"/>
-                  </div>
-                </div>
-                <div class="grid-container" style="">
-                  <div class="grid-item">
-                    <label style="font-size: 10px; color: gray;">Hot</label>
-                  </div>
-                  <div class="grid-item">
-                    <input type="text" class="input-small" name="data.traveling.temperature.hot" value="{{data.traveling.temperature.hot}}" placeholder="{{data.traveling.temperature.hot}}" data-dtype="Number"/>
-                  </div>
-                </div>
-              </div>
+            <div class="grid-item-left">
+              <label>Vehicles: </label>
+              <a class="proficiencies-selector small-icon" data-action="vehicles" title="Vehicles" name="Vehicles">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+                {{#each proficiencies.vehicles as |v k|}}
+                  {{#if (lookup ../config.proficiencyVehicles k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyVehicles k}}{{v}}</li>
+                  {{else}}
+                    <li class="tag {{k}}">{{k}}{{v}}</li>
+                  {{/if}}
+                {{/each}}
+              </ul>
             </div>
-          </div>
-          <div class="grid-item-left"">
-            <label>Comfortable Climates: </label>
-            <a class="box-selector small-icon" data-action="comfortableclimates" title="Comfortable Climates" name="Comfortable Climates">
-              <i class="fas fa-cog grid-item-inline-right"></i>
-            </a>
-            <ul class="traits-list">
-            {{#each data.traveling.climate}}
-              <li class="tag">{{this}}</li>
-            {{/each}}
-            </ul>
-          </div>
-          <div class="grid-item-left">
-            <label>Movement Options: </label>
-            <a class="config-button small-icon" data-action="movement" title="Movement">
-              <i class="fas fa-cog grid-item-inline-right"></i>
-            </a>
-            <ul class="traits-list">
-            {{#each movement as |v k|}}
-              <li class="tag {{k}}">{{v}}</li>
-            {{/each}}
-            </ul>
-          </div>
-          <div class="grid-item-left"">
-            <label>Favored Terrain: </label>
-            <a class="box-selector small-icon" data-action="favoredterrain" title="Favored Terrain" name="Favored Terrain">
-              <i class="fas fa-cog grid-item-inline-right"></i>
-            </a>
-            <ul class="traits-list">
-            {{#each data.traveling.favored_terrain}}
-              <li class="tag">{{this}}</li>
-            {{/each}}
-            </ul>
-          </div>
-          <div class="grid-item-left"">
-            <label>Favored Enemies: </label>
-            <a class="box-selector small-icon" data-action="favoredenemies" title="Favored Enemies" name="Favored Enemies">
-              <i class="fas fa-cog grid-item-inline-right"></i>
-            </a>
-            <ul class="traits-list">
-            {{#each data.traveling.favored_enemies}}
-              <li class="tag">{{this}}</li>
-            {{/each}}
-            </ul>
           </div>
         </div>
       </div>
-
-      <div class="grid-container-two grid-row-squish">
-
-        <div class="grid-container" style="width: 340px; border: 2px groove #eeede0;">
-          <div class="grid-container grid-item mini-header" style="height: 35px; border-top: 2px groove #eeede0; border-bottom: 2px groove #eeede0;">
-            <label class="fancy-font" style="font-size: 26px;">Social</label>
-          </div>
-          <div class="grid-item-left">
-            <label>Backgrounds: </label>
-            <a class="characteristics-selector small-icon" data-action="backgrounds" title="Backgrounds" name="Backgrounds">
-              <i class="fas fa-cog grid-item-inline-right"></i>
-            </a>
-            <ul class="traits-list">
-            {{#each data.social.characteristics.backgrounds}}
-              <li class="tag">{{this}}</li>
-            {{/each}}
-            </ul>
-          </div>
-          <div class="grid-item-left">
-            <label>Cultures: </label>
-            <a class="characteristics-selector small-icon" data-action="cultures" title="Cultures" name="Cultures">
-              <i class="fas fa-cog grid-item-inline-right"></i>
-            </a>
-            <ul class="traits-list">
-            {{#each data.social.characteristics.cultures}}
-              <li class="tag">{{this}}</li>
-            {{/each}}
-            </ul>
-          </div>
-          <div class="grid-item-left">
-            <label>Traits: </label>
-            <a class="characteristics-selector small-icon" data-action="traits" title="Traits" name="Traits">
-              <i class="fas fa-cog grid-item-inline-right"></i>
-            </a>
-            <ul class="traits-list">
-            {{#each data.social.characteristics.traits}}
-              <li class="tag">{{this}}</li>
-            {{/each}}
-            </ul>
-          </div>
-        </div>
-
-        <div class="grid-container" style="width: 340px; border: 2px groove #eeede0;">
-          <div class="grid-container grid-item mini-header" style="height: 35px; border-top: 2px groove #eeede0; border-bottom: 2px groove #eeede0;">
-            <label class="fancy-font" style="font-size: 26px;">Proficiencies</label>
-          </div>
-        </div>
-
-      </div>
-
     </div>
-
   </div>
 </section>
