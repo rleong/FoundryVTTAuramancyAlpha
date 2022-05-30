@@ -37,6 +37,75 @@ export class AuramancyActor extends Actor {
     // things organized.
     this._prepareCharacterData(actorData);
     this._prepareNpcData(actorData);
+
+    // Data check
+    //
+
+    // Carrying Capacity
+    data.traits.carrying_capacity.value = Math.min(1, (5 + data.traits.carrying_capacity.mod + data.attributes.str.value));
+    data.traits.carrying_capacity.max = 10 + data.attributes.str.value;
+
+    // Movement Speed
+    data.stats.movement.max = CONFIG.AURAMANCY.sizeCategoryMovement[data.traits.size] + data.stats.movement.temp + data.stats.movement.ancestry_mod + data.stats.movement.mod;
+    data.stats.movement.value = Math.max(0, Math.min(data.stats.movement.value, data.stats.movement.max));
+
+    // Armor class
+    data.stats.ac.value = 8 + data.stats.ac.temp + data.stats.ac.mod + Math.min(data.attributes.agi.value, data.stats.ac.cap) + data.stats.ac.armor;
+
+    // Proficiency
+    data.stats.proficiency.value = 1 + Math.ceil(data.auramancy.level/4);
+    data.stats.proficiency.save = 10 + data.stats.proficiency.value;
+
+    // AP
+    data.ap.max = 3 + data.ap.temp;
+
+    // Aether well
+    data.auramancy.charges.max = Math.max(0, 3 + (data.auramancy.level * 3)) + data.auramancy.charges.temp;
+
+    // HP
+    data.health.hp.max = CONFIG.AURAMANCY.minHp[data.health.reserve.die] + ((data.auramancy.level) * data.attributes.con.value) + ((data.auramancy.level-1) * data.health.reserve.die);
+    data.health.reserve.max = Math.max(0, data.auramancy.level * 2);
+
+    // Attributes
+    data.attributes.str.min = -5 + data.attributes.str.min_mod;
+    data.attributes.str.max = 5 + data.attributes.str.max_mod;
+    data.attributes.str.value = Math.min(data.attributes.str.max, Math.max(data.attributes.str.min, data.attributes.str.value));
+    data.attributes.str.passive = 10 + data.attributes.str.value + data.attributes.str.passive_mod;
+
+    data.attributes.agi.min = -5 + data.attributes.agi.min_mod;
+    data.attributes.agi.max = 5 + data.attributes.agi.max_mod;
+    data.attributes.agi.value = Math.min(data.attributes.agi.max, Math.max(data.attributes.agi.min, data.attributes.agi.value));
+    data.attributes.agi.passive = 10 + data.attributes.agi.value + data.attributes.agi.passive_mod;
+
+    data.attributes.dex.min = -5 + data.attributes.dex.min_mod;
+    data.attributes.dex.max = 5 + data.attributes.dex.max_mod;
+    data.attributes.dex.value = Math.min(data.attributes.dex.max, Math.max(data.attributes.dex.min, data.attributes.dex.value));
+    data.attributes.dex.passive = 10 + data.attributes.dex.value + data.attributes.dex.passive_mod;
+
+    data.attributes.con.min = -5 + data.attributes.con.min_mod;
+    data.attributes.con.max = 5 + data.attributes.con.max_mod;
+    data.attributes.con.value = Math.min(data.attributes.con.max, Math.max(data.attributes.con.min, data.attributes.con.value));
+    data.attributes.con.passive = 10 + data.attributes.con.value + data.attributes.con.passive_mod;
+
+    data.attributes.int.min = -5 + data.attributes.int.min_mod;
+    data.attributes.int.max = 5 + data.attributes.int.max_mod;
+    data.attributes.int.value = Math.min(data.attributes.int.max, Math.max(data.attributes.int.min, data.attributes.int.value));
+    data.attributes.int.passive = 10 + data.attributes.int.value + data.attributes.int.passive_mod;
+
+    data.attributes.wil.min = -5 + data.attributes.wil.min_mod;
+    data.attributes.wil.max = 5 + data.attributes.wil.max_mod;
+    data.attributes.wil.value = Math.min(data.attributes.wil.max, Math.max(data.attributes.wil.min, data.attributes.wil.value));
+    data.attributes.wil.passive = 10 + data.attributes.wil.value + data.attributes.wil.passive_mod;
+
+    data.attributes.per.min = -5 + data.attributes.per.min_mod;
+    data.attributes.per.max = 5 + data.attributes.per.max_mod;
+    data.attributes.per.value = Math.min(data.attributes.per.max, Math.max(data.attributes.per.min, data.attributes.per.value));
+    data.attributes.per.passive = 10 + data.attributes.per.value + data.attributes.per.passive_mod;
+
+    data.attributes.cha.min = -5 + data.attributes.cha.min_mod;
+    data.attributes.cha.max = 5 + data.attributes.cha.max_mod;
+    data.attributes.cha.value = Math.min(data.attributes.cha.max, Math.max(data.attributes.cha.min, data.attributes.cha.value));
+    data.attributes.cha.passive = 10 + data.attributes.cha.value + data.attributes.cha.passive_mod;
   }
 
   /**

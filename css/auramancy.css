@@ -351,6 +351,26 @@ input[type="checkbox"]:not([disabled]):focus {
 /*  Sheet Styles                             */
 /* ----------------------------------------- */
 /* ----------------------------------------- */
+/*  AP DOTS                              */
+/* ----------------------------------------- */
+.ap {
+  font-size: 8px;
+}
+.ap.active {
+  color: green;
+  text-shadow: 0 0 10px darkgreen;
+}
+.ap.inactive {
+  color: gray;
+}
+.ap.temp {
+  color: yellow;
+  text-shadow: 0 0 10px orange;
+}
+/* ----------------------------------------- */
+/*  Sheet Styles                             */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
 /*  Form Group                               */
 /* ----------------------------------------- */
 .form-group label {

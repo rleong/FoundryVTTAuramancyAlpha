@@ -14,5 +14,7 @@
     "systems/auramancy/templates/actor/parts/actor-attacks.html",
     "systems/auramancy/templates/actor/parts/actor-reactions.html",
     "systems/auramancy/templates/actor/parts/actor-levels.html",
+    "systems/auramancy/templates/actor/parts/actor-abilities.html",
+    "systems/auramancy/templates/actor/parts/actor-misc.html",
   ]);
 };

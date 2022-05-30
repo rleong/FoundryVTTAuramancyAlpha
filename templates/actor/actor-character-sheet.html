@@ -39,10 +39,23 @@
 			</div>
 
 			<div class="grid-container">
-				<div class="grid-item name-header">
-					<h1 class="" style="border-bottom: 0;">
-						<input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-					</h1>
+				<div class="grid-container">
+					<div class="grid-item name-header" style="min-width: 470px;">
+						<h1 class="" style="border-bottom: 0;">
+							<input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+						</h1>
+					</div>
+					<!-- <div class="grid-item" style="width: 5px;">
+
+					</div>
+					<div class="grid-container" style="width: 70px; border: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="align-self: center; border-bottom: 2px groove #eeede0;">
+							<label class="fancy-font" style="">Level</label>
+						</div>
+						<div class="grid-item">
+							<label class="fancy-font" style="">{{data.auramancy.level}}</label>
+						</div>
+					</div> -->
 				</div>
 
 				{{!-- Stats --}}
@@ -95,7 +108,7 @@
 						<div class="grid-container-two" style="width: 300px; border-top: 2px groove #eeede0;">
 
 							<div class="grid-container" style="width: 150px; border-right: 2px groove #eeede0;">
-								<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
+								<div class="grid-item mini-header" style="height: 25px; border-bottom: 2px groove #eeede0;">
 									<label style="font-size: 16px;">Hit Points</label>
 								</div>
 								<div class="grid-container-two">
@@ -115,7 +128,7 @@
 							</div>
 
 							<div class="grid-container" style="width: 150px;">
-								<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
+								<div class="grid-item mini-header" style="height: 25px; border-bottom: 2px groove #eeede0;">
 									<label style="font-size: 16px;">Buffer</label>
 								</div>
 								<div class="grid-container-two">
@@ -211,8 +224,18 @@
 						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
 							<label style="font-size: 16px;">Action Points</label>
 						</div>
-						<div class="grid-item" style="padding-top: 3px;">
-							<input class="input-large action-points" type="text" name="data.ap.value" value="{{data.ap.value}}" placeholder="{{data.ap.value}}" data-dtype="Number"/>
+						<div class="grid-container" style="padding-top: 3px;">
+							<div class="grid-item-inline">
+								<a class="decrease-ap" data-action="tags" title="Decrease AP">
+			            <label class="glow" style="font-size: 26px;">-</label>
+				        </a>
+								<label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
+								<input class="input-large action-points" type="text" name="data.ap.value" value="{{data.ap.value}}" placeholder="{{data.ap.value}}" data-dtype="Number"/>
+								<label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
+								<a class="increase-ap" data-action="tags" title="Increase AP">
+			            <label class="fancy-font glow" style="font-size: 26px;">+</label>
+				        </a>
+							</div>
 						</div>
 						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
 							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
@@ -226,13 +249,19 @@
 						</div>
 						<!-- <div class="grid-item action-points" style="padding-top: 3px; height: 15px;"> -->
 						<div class="grid-item action-points-div" style="height: 15px;">
-							<img class="miniscule-image" src="systems/auramancy/icons/free_use/items/I_GoldCoin.png"/>
+							{{#each data.ap.dots}}
+								<i class="fas fa-circle ap {{this}}"></i>
+								<!-- <img class="miniscule-image" src="systems/auramancy/icons/free_use/items/I_GoldCoin.png"/> -->
+							{{/each}}
 							<!-- <div class="grid-container">
 								<svg>
 									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
 									<rect height="5" style="fill: #fcba03; stroke-width: 1; stroke: gray; width: calc(({{data.ap.value}} / {{data.ap.max}}) * 175px);"/>
 								</svg>
 							</div> -->
+						</div>
+						<div style="height: 3px;">
+
 						</div>
 					</div>
 
@@ -335,12 +364,14 @@
 		<nav class="sheet-navigation tabs" data-group="primary" style="width: 685px; height: 40px; border: 2px groove #eeede0;">
 			{{!-- Default tab is specified in actor-sheet.mjs --}}
 			<a class="item active" data-tab="overview">Overview</a>
+			<a class="item" data-tab="abilities">Abilities</a>
 			<a class="item" data-tab="assets">Assets</a>
-			<a class="item" data-tab="features">Features</a>
+			<!-- <a class="item" data-tab="features">Features</a>
 			<a class="item" data-tab="actions">Actions</a>
 			<a class="item" data-tab="attacks">Attacks</a>
-			<a class="item" data-tab="reactions">Reactions</a>
+			<a class="item" data-tab="reactions">Reactions</a> -->
 			<a class="item" data-tab="levels">Levels</a>
+			<a class="item" data-tab="misc">Misc</a>
 		</nav>
 
 		{{!-- Sheet Body --}}
@@ -351,34 +382,44 @@
 				{{> "systems/auramancy/templates/actor/parts/actor-overview.html"}}
 			</div>
 
+			{{!-- Abilities Tab --}}
+			<div class="tab abilities flexcol" data-group="primary" data-tab="abilities">
+				{{> "systems/auramancy/templates/actor/parts/actor-abilities.html"}}
+			</div>
+
 			{{!-- Assets Tab --}}
 			<div class="tab assets flexcol" data-group="primary" data-tab="assets">
 
 			</div>
 
 			{{!-- Features Tab --}}
-			<div class="tab features flexcol" data-group="primary" data-tab="features">
+			<!-- <div class="tab features flexcol" data-group="primary" data-tab="features">
 
-			</div>
+			</div> -->
 
 			{{!-- Actions Tab --}}
-			<div class="tab actions flexcol" data-group="primary" data-tab="actions">
+			<!-- <div class="tab actions flexcol" data-group="primary" data-tab="actions">
 
-			</div>
+			</div> -->
 
 			{{!-- Attacks Tab --}}
-			<div class="tab attacks flexcol" data-group="primary" data-tab="attacks">
+			<!-- <div class="tab attacks flexcol" data-group="primary" data-tab="attacks">
 
-			</div>
+			</div> -->
 
 			{{!-- Reactions Tab --}}
-			<div class="tab reactions flexcol" data-group="primary" data-tab="reactions">
+			<!-- <div class="tab reactions flexcol" data-group="primary" data-tab="reactions">
 
-			</div>
+			</div> -->
 
 			{{!-- Levels Tab --}}
 			<div class="tab levels flexcol" data-group="primary" data-tab="levels">
 				{{> "systems/auramancy/templates/actor/parts/actor-levels.html"}}
+			</div>
+
+			{{!-- Misc Tab --}}
+			<div class="tab misc flexcol" data-group="primary" data-tab="misc">
+
 			</div>
 
 		</section>

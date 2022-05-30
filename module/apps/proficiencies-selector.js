@@ -36,15 +36,12 @@ export default class ActorProficienciesConfig extends DocumentSheet {
       if(extra_proficiencies === true){
         for(let [key, value] of Object.entries(proficiency_names)){
           // console.log(`${key}: ${value}`);
-          if(key === "expertise"){
-            current_values = proficiencies[key];
-          } else {
-            available_options_array[key] = proficiencies[key];
-          }
+          available_options_array[key] = proficiencies[key];
         }
+        current_values = proficiencies["expertise"];
         for(let [key, value] of Object.entries(proficiencies)){
           if(key !== "expertise" && !proficiency_names[key]){
-            console.log(`Key: ${key}`);
+            // console.log(`Key: ${key}`);
             extra_proficiencies_array[key] = value;
           }
         }
@@ -82,6 +79,7 @@ export default class ActorProficienciesConfig extends DocumentSheet {
       proficiency_level
     };
 
+    // console.log(data);
     return data;
   }
 
@@ -138,10 +136,9 @@ export default class ActorProficienciesConfig extends DocumentSheet {
       regular_proficiencies["expertise"] = expertise_list;
     }
 
-    console.log(regular_proficiencies);
-
     const update_data = {};
     update_data[`${this.options.data_name}`] = regular_proficiencies;
+    // console.log(update_data);
     this.object.update(update_data);
   }
 }

@@ -167,8 +167,13 @@ export class AuramancyActorSheet extends ActorSheet {
     // Configure Turn Reset
     html.find(".turn-reset").click(this._restTurn.bind(this));
 
-    // AP Change
-    html.find(".action-points").click(this._changeAP.bind(this));
+    html.find(".increase-level").click(this._increaseLevel.bind(this));
+
+    html.find(".decrease-level").click(this._decreaseLevel.bind(this));
+
+    html.find(".increase-ap").click(this._increaseAP.bind(this));
+
+    html.find(".decrease-ap").click(this._decreaseAP.bind(this));
 
 
     // -------------------------------------------------------------
@@ -320,48 +325,69 @@ export class AuramancyActorSheet extends ActorSheet {
   }
 
   _changeAP(actorData) {
-    // var ap_elem = document.getElementById("action-points");
-    // ap_elem.parentNode.removeChild(elem);
-    console.log(actorData);
-
+    // const update_data = {};
+    //
+    // let ap_dots = [];
+    // for(let i = 0; i < this.object.data.data.ap.value; i++){
+    //   ap_dots.push("dot");
+    // }
+    //
+    // update_data['data.ap.dots'] = ap_dots;
+    // this.object.update(update_data);
   }
 
   _calculateAllData(actorData) {
-    console.log("Calculating Data");
     let data = actorData.data;
 
-    // Carrying Capacity
-    data.traits.carrying_capacity.value = 5 + data.traits.carrying_capacity.mod + data.attributes.str.value;
-
-    // Movement Speed
-    data.stats.movement.max = CONFIG.AURAMANCY.sizeCategoryMovement[data.traits.size] + data.stats.movement.temp + data.stats.movement.ancestry_mod + data.stats.movement.mod;
-    data.stats.movement.value = Math.max(0, Math.min(data.stats.movement.value, data.stats.movement.max));
-
-    // Armor class
-    data.stats.ac.value = 8 + data.stats.ac.temp + data.stats.ac.mod + Math.min(data.attributes.agi.value, data.stats.ac.cap) + data.stats.ac.armor;
-
-    // Proficiency
-    data.stats.proficiency.value = Math.max(1, 2 + Math.floor(data.auramancy.level/4));
-    data.stats.proficiency.save = 10 + data.stats.proficiency.value;
-
-    // AP
-    data.ap.max = 3 + data.ap.temp;
-
-    // Aether well
-    data.auramancy.charges.max = Math.max(0, 3 + (data.auramancy.level * 3)) + data.auramancy.charges.temp;
-
-    // HP
-    data.health.hp.max = CONFIG.AURAMANCY.minHp[data.health.reserve.die] + data.attributes.con.value + ((data.auramancy.level-1) * data.health.reserve.die);
+    let ap_dots = [];
+    for(let i = 0; i < data.ap.value; i++){
+      ap_dots.push("active");
+    }
+    for(let i = 0; i < 3-data.ap.value; i++){
+      ap_dots.push("inactive");
+    }
+    for(let i = 0; i < data.ap.temp; i++){
+      ap_dots.push("temp");
+    }
+    data.ap.dots = ap_dots;
 
     return data;
   }
 
   _restTurn(actorData) {
-    console.log("Refresh Turn");
     const update_data = {};
     update_data['data.stats.movement.value'] = this.object.data.data.stats.movement.max;
+    // update_data['data.stats.movement.value'] = CONFIG.AURAMANCY.sizeCategoryMovement[this.object.data.data.traits.size] + this.object.data.data.stats.movement.temp + this.object.data.data.stats.movement.ancestry_mod + this.object.data.data.stats.movement.mod;
     update_data['data.ap.value'] = this.object.data.data.ap.max;
-    update_data['data.health.buffer.value'] = this.object.data.data.health.buffer.min;
+    update_data['data.health.buffer.value'] = Math.max(this.object.data.data.health.buffer.value, this.object.data.data.health.buffer.min);
+    this.object.update(update_data);
+  }
+
+  _increaseLevel(actorData) {
+    const update_data = {};
+    let new_level = this.object.data.data.auramancy.level + 1;
+    update_data['data.auramancy.level'] = new_level;
+    this.object.update(update_data);
+  }
+
+  _decreaseLevel(actorData) {
+    const update_data = {};
+    let new_level = Math.max(1, this.object.data.data.auramancy.level - 1);
+    update_data['data.auramancy.level'] = new_level;
+    this.object.update(update_data);
+  }
+
+  _increaseAP(actorData) {
+    const update_data = {};
+    let new_ap = Math.min(this.object.data.data.ap.max, this.object.data.data.ap.value + 1);
+    update_data['data.ap.value'] = new_ap;
+    this.object.update(update_data);
+  }
+
+  _decreaseAP(actorData) {
+    const update_data = {};
+    let new_ap = Math.max(0, this.object.data.data.ap.value - 1);
+    update_data['data.ap.value'] = new_ap;
     this.object.update(update_data);
   }
 
@@ -428,7 +454,6 @@ export class AuramancyActorSheet extends ActorSheet {
     const damage_types = CONFIG.AURAMANCY.damageTypes;
     const damage_subtypes = CONFIG.AURAMANCY.damageSubtypes;
     const options = { damage_types, damage_subtypes, name };
-    console.log(options)
     return new ActorDamageStatsConfig(this.object, options).render(true);
   }
 
@@ -470,11 +495,7 @@ export class AuramancyActorSheet extends ActorSheet {
       return;
     }
 
-    console.log(current_values);
-    console.log(available_options);
-
     const options = { current_values, available_options, name, data_name };
-    console.log(options)
     return new ActorBoxSelectorConfig(this.object, options).render(true);
   }
 
@@ -506,11 +527,7 @@ export class AuramancyActorSheet extends ActorSheet {
       return;
     }
 
-    console.log(current_values);
-    console.log(available_options);
-
     const options = { current_values, available_options, name, data_name };
-    console.log(options)
     return new ActorCharacteristicsConfig(this.object, options).render(true);
   }
 
@@ -701,7 +718,6 @@ export class AuramancyActorSheet extends ActorSheet {
         app = new ActorSensoriesConfig(this.object);
         break;
       case "movement":
-        console.log("movement!");
         app = new ActorMovementConfig(this.object);
         break;
     }

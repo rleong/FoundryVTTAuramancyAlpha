@@ -31,7 +31,8 @@
           },
           "proficiency": {
             "value": 2,
-            "save": 12
+            "save": 12,
+            "mod": 0
           },
           "movement": {
             "value": 30,
@@ -66,7 +67,8 @@
         "ap": {
           "value": 3,
           "max": 3,
-          "temp": 0
+          "temp": 0,
+          "dots": []
         },
         "auramancy": {
           "color": "",
@@ -83,42 +85,82 @@
     			"str": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			},
     			"agi": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			},
     			"dex": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			},
     			"con": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			},
     			"int": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			},
     			"wil": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			},
     			"per": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			},
     			"cha": {
     			  "value": 0,
             "passive": 10,
-            "mod": 0
+            "mod": 0,
+            "passive_mod": 0,
+            "max": 5,
+            "max_mod": 0,
+            "min": -5,
+            "min_mod": 0
     			}
     		},
         "traits": {
@@ -127,7 +169,8 @@
           "ancestry": "",
           "carrying_capacity": {
             "value": 5,
-            "mod": 0
+            "mod": 0,
+            "max": 10
           },
           "damage_immunities": [],
           "damage_resistances": [],

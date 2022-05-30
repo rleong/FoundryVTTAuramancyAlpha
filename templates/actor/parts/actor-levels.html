@@ -1,8 +1,18 @@
-<div class="overview grid-item grid-container">
-  <div class="grid-container">
-    <div class="grid-item" style="height: 30px; border-bottom: 2px groove #eeede0;">
-      <label class="fancy-font" style="font-size: 26px;">Level: {{data.auramancy.level}}</label>
+<section class="center-pane flexcol">
+  <div class="overview grid-item grid-container">
+    <div class="grid-container" style="border: 2px groove #eeede0;">
+      <div class="grid-item-inline mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+        <a class="decrease-level" data-action="tags" title="Decrease Level">
+          <label class="glow" style="font-size: 26px;">-</label>
+        </a>
+        <label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
+        <label class="fancy-font" style="font-size: 26px;">Level: {{data.auramancy.level}}</label>
+        <label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
+        <a class="increase-level" data-action="tags" title="Increase Level">
+          <label class="fancy-font glow" style="font-size: 26px;">+</label>
+        </a>
+      </div>
+      <div class="grid-item-left" style="border-bottom: 2px groove #eeede0;"/>
     </div>
-    <div class="grid-item-left" style="border-bottom: 2px groove #eeede0;"/>
   </div>
-</div>
+</section>
