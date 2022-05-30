@@ -1,76 +1,431 @@
-<form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
+<form class="{{cssClass}} flexcol" autocomplete="off">
+	{{!-- Sheet Header --}}
+  <header class="">
 
-  {{!-- Sheet Header --}}
-  <header class="sheet-header">
-    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="100" width="100"/>
-    <div class="header-fields">
-      <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-      {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-      use both the "grid" and "grid-Ncol" class where "N" can be any number
-      from 1 to 12 and will create that number of columns.  --}}
-      <div class="resources grid grid-3col">
+		<div class="grid-container-two">
 
-        {{!-- "flex-group-center" is also defined in the _grid.scss file
-        and it will add a small amount of padding, a border, and will
-        center all of its child elements content and text. --}}
-        <div class="resource flex-group-center">
-          <label for="data.health.value" class="resource-label">Health</label>
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
-            <span> / </span>
-            <input type="text" name="data.health.max" value="{{data.health.max}}" data-dtype="Number"/>
-          </div>
-        </div>
+			<div class="grid-container" style="padding-right: 5px;">
+				<div class="grid-item">
+					<img class="profile-picture" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
+				</div>
+				<div class="grid-item-padded">
+					<input type="text" name="data.traits.pronouns" value="{{data.traits.pronouns}}" placeholder="Pronouns"></input>
+				</div>
+				<div class="grid-item-padded">
+					<input type="text" name="data.traits.ancestry" value="{{data.traits.ancestry}}" placeholder="Ancestry"></input>
+				</div>
+				<div class="grid-item-padded">
+					<input type="text" name="data.auramancy.scent" value="{{data.auramancy.scent}}" placeholder="Aura Scent"></input>
+				</div>
+				<div class="grid-item-padded grid-item-inline" style="width: 80%;">
+					<input type="text" name="data.auramancy.color" value="{{data.auramancy.color}}" placeholder="Aura Color"></input>
+					<input type="color" name="data.auramancy.hex" value="{{data.auramancy.hex}}" style="width: 30px;">
+				</div>
+				<div class="grid-container-three" style="border: 2px groove #eeede0;">
+					<div class="grid-item mini-header" style="border-right: 2px groove #eeede0;">
+						<label style="font-size: 12px;">Rest:</label>
+					</div>
+					<div class="grid-item" style="border-right: 2px groove #eeede0;">
+						<a class="" data-action="tags" title="Rest">
+							<i class="fas fa-bed small-icon-alt"></i>
+						</a>
+					</div>
+					<div class="grid-item">
+						<a class="turn-reset" data-action="tags" title="Refresh Turn">
+							<i class="fas fa-undo small-icon-alt"></i>
+						</a>
+					</div>
+				</div>
+			</div>
 
-        <div class="resource flex-group-center">
-          <label for="data.power.value" class="resource-label">Power</label>
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="data.power.value" value="{{data.power.value}}" data-dtype="Number"/>
-            <span> / </span>
-            <input type="text" name="data.power.max" value="{{data.power.max}}" data-dtype="Number"/>
-          </div>
-        </div>
+			<div class="grid-container">
+				<div class="grid-container">
+					<div class="grid-item name-header" style="min-width: 470px;">
+						<h1 class="" style="border-bottom: 0;">
+							<input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
+						</h1>
+					</div>
+					<!-- <div class="grid-item" style="width: 5px;">
 
-        <div class="resource flex-group-center">
-          <label for="data.cr" class="resource-label">CR / XP</label>
-          <div class="resource-content flexrow flex-center flex-between">
-            <input type="text" name="data.cr" value="{{data.cr}}" data-dtype="Number"/>
-            <span> / </span>
-            <input type="text" disabled="true" name="data.xp" value="{{data.xp}}" data-dtype="Number"/>
-          </div>
-        </div>
+					</div>
+					<div class="grid-container" style="width: 70px; border: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="align-self: center; border-bottom: 2px groove #eeede0;">
+							<label class="fancy-font" style="">Level</label>
+						</div>
+						<div class="grid-item">
+							<label class="fancy-font" style="">{{data.auramancy.level}}</label>
+						</div>
+					</div> -->
+				</div>
 
-      </div>
-    </div>
+				{{!-- Stats --}}
+				<div class="grid-container-three" style="border: 2px groove #eeede0;">
+
+					{{!-- Stats --}}
+					<div class="grid-container" style="width: 120px; border-right: 2px groove #eeede0;">
+						<div class="grid-container" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline mini-header" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+								<label>Armor Class</label>
+							</div>
+							<div class="grid-container" style="padding-top: 3px;">
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.stats.ac.value" value="{{data.stats.ac.value}}" placeholder="8" data-dtype="Number" disabled="disabled"/>
+								</div>
+								<div class="grid-item-inline">
+									<label class="small-gray-text">AC Mod:</label>
+									<input type="text" class="input-small-inline" name="data.stats.ac.temp" value="{{data.stats.ac.temp}}" placeholder="0" data-dtype="Number"/>
+								</div>
+							</div>
+						</div>
+						<div class="grid-container">
+							<div class="grid-item-inline mini-header" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
+								<label>Proficiency</label>
+							</div>
+							<div class="grid-container" style="padding-top: 3px;">
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.stats.proficiency.value" value="{{data.stats.proficiency.value}}" placeholder="{{data.stats.proficiency.value}}" data-dtype="Number" disabled="disabled"/>
+								</div>
+								<div class="grid-item-inline">
+									<label class="medium-gray-text" style="color: black;">Save DC: </label>
+									<input type="text" class="input-small-inline" style="color: black; font-size: 10px;" name="data.stats.proficiency.save" value="{{data.stats.proficiency.save}}" placeholder="{{data.stats.proficiency.save}}" data-dtype="Number" disabled="disabled"/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					{{!-- Hit Points --}}
+					<div class="grid-container" style="width: 300px;">
+						<div class="grid-container" style="padding-top: 3px; height: 20px;">
+							<svg>
+								<rect height="5" style="fill: #6eb1ba; stroke-width: 1; stroke: gray; width: calc(({{data.health.buffer.value}} / max(1, {{data.health.buffer.min}})) * 300px);"/>
+							</svg>
+							<svg>
+								<rect height="15" style="fill: transparent; stroke-width: 2; stroke: gray; width: 300px;"/>
+								<rect height="15" style="fill: {{data.auramancy.hex}}; stroke-width: 1; stroke: gray; width: calc(({{data.health.hp.value}} / {{data.health.hp.max}}) * 300px);"/>
+							</svg>
+						</div>
+
+						<div class="grid-container-two" style="width: 300px; border-top: 2px groove #eeede0;">
+
+							<div class="grid-container" style="width: 150px; border-right: 2px groove #eeede0;">
+								<div class="grid-item mini-header" style="height: 25px; border-bottom: 2px groove #eeede0;">
+									<label style="font-size: 16px;">Hit Points</label>
+								</div>
+								<div class="grid-container-two">
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Current</label>
+										<input class="input-medium" type="text" name="data.health.hp.value" value="{{data.health.hp.value}}" placeholder="{{data.health.hp.max}}" data-dtype="Number"/>
+									</div>
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Maximum</label>
+										<input class="input-medium" type="text" name="data.health.hp.max" value="{{data.health.hp.max}}" placeholder="{{data.health.hp.max}}" data-dtype="Number" disabled="disabled"/>
+									</div>
+								</div>
+								<div class="grid-item-inline">
+									<label class="small-gray-text">HP Max Mod:</label>
+									<input type="text" class="input-small-inline" name="data.health.hp.mod" value="{{data.health.hp.mod}}" placeholder="0" data-dtype="Number"/>
+								</div>
+							</div>
+
+							<div class="grid-container" style="width: 150px;">
+								<div class="grid-item mini-header" style="height: 25px; border-bottom: 2px groove #eeede0;">
+									<label style="font-size: 16px;">Buffer</label>
+								</div>
+								<div class="grid-container-two">
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Current</label>
+										<input class="input-medium" type="text" name="data.health.buffer.value" value="{{data.health.buffer.value}}" placeholder="{{data.health.buffer.min}}" data-dtype="Number" min="0"/>
+									</div>
+									<div class="grid-item" style="width: 75px;">
+										<label style="font-size: 12px;">Minimum</label>
+										<input class="input-medium" type="text" name="data.health.buffer.min" value="{{data.health.buffer.min}}" placeholder="{{data.health.buffer.min}}" data-dtype="Number" min="0"/>
+									</div>
+								</div>
+								<div class="grid-item-inline" style="border-top: 2px groove #eeede0;">
+									<label style="font-size: 12px;">Impairment Level: </label>
+									<input type="text" class="input-medium-inline" name="data.health.impairment" value="{{data.health.impairment}}" placeholder="{{data.health.impairment}}" data-dtype="Number"/>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					{{!-- Aura Reserve --}}
+					<div class="grid-container" style="width: 120px; border-left: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
+							<label>Aura Reserve</label>
+						</div>
+						<div class="grid-item" style="padding-top: 3px;">
+							<img class="small-image" src="systems/auramancy/icons/stats/d{{data.health.reserve.die}}.png"/>
+						</div>
+						<div class="grid-item-inline" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 10px;">Hit Die: </label>
+							<select name="data.health.reserve.die" style="font-size: 10px; width: 50px;">
+								{{selectOptions config.reserveDice selected=data.health.reserve.die}}
+							</select>
+						</div>
+						<div class="grid-container-two">
+							<div class="grid-container" style="width: 50px;">
+								<div class="grid-item">
+									<label class="medium-gray-text">Current</label>
+								</div>
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.health.reserve.value" value="{{data.health.reserve.value}}" placeholder="{{data.health.reserve.value}}" data-dtype="Number"/>
+								</div>
+							</div>
+							<div class="grid-container" style="width: 50px;">
+								<div class="grid-item">
+									<label class="medium-gray-text">Maximum</label>
+								</div>
+								<div class="grid-item">
+									<input class="input-small" type="text" name="data.health.reserve.max" value="{{data.health.reserve.max}}" placeholder="{{data.health.reserve.max}}" data-dtype="Number" disabled="disabled"/>
+								</div>
+							</div>
+						</div>
+						<div class="grid-item-inline">
+							<label class="small-gray-text">Temporary: </label>
+							<input type="text" class="input-small-inline" name="data.health.reserve.temp" value="{{data.health.reserve.temp}}" placeholder="0" data-dtype="Number"/>
+						</div>
+					</div>
+
+				</div>
+
+				{{!-- Resources --}}
+				<div class="grid-container-three">
+
+					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 16px;">Movement</label>
+						</div>
+						<div class="grid-item" style="padding-top: 3px;">
+							<input class="input-large" type="text" name="data.stats.movement.value" value="{{data.stats.movement.value}}" placeholder="{{data.stats.movement.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
+								<label class="small-gray-text">Maximum:</label>
+								<input type="text" class="input-small-inline-borderless" name="data.stats.movement.max" value="{{data.stats.movement.max}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+							</div>
+							<div class="grid-item-inline">
+								<label class="small-gray-text">Temporary:</label>
+								<input type="text" class="input-small-inline-borderless-hover" name="data.stats.movement.temp" value="{{data.stats.movement.temp}}" placeholder="0" data-dtype="Number"/>
+							</div>
+						</div>
+						<div class="grid-item" style="padding-top: 3px; height: 15px;">
+							<div class="grid-container" >
+								<svg>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
+									<rect height="5" style="fill: #666699; stroke-width: 1; stroke: gray; width: calc(({{data.stats.movement.value}} / {{data.stats.movement.max}}) * 175px);"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 16px;">Action Points</label>
+						</div>
+						<div class="grid-container" style="padding-top: 3px;">
+							<div class="grid-item-inline">
+								<a class="decrease-ap" data-action="tags" title="Decrease AP">
+			            <label class="glow" style="font-size: 26px;">-</label>
+				        </a>
+								<label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
+								<input class="input-large action-points" type="text" name="data.ap.value" value="{{data.ap.value}}" placeholder="{{data.ap.value}}" data-dtype="Number"/>
+								<label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
+								<a class="increase-ap" data-action="tags" title="Increase AP">
+			            <label class="fancy-font glow" style="font-size: 26px;">+</label>
+				        </a>
+							</div>
+						</div>
+						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
+								<label class="small-gray-text">Maximum:</label>
+								<input type="text" class="input-small-inline-borderless" name="data.ap.max" value="{{data.ap.max}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+							</div>
+							<div class="grid-item-inline">
+								<label class="small-gray-text">Temporary:</label>
+								<input type="text" class="input-small-inline-borderless-hover" name="data.ap.temp" value="{{data.ap.temp}}" placeholder="0" data-dtype="Number"/>
+							</div>
+						</div>
+						<!-- <div class="grid-item action-points" style="padding-top: 3px; height: 15px;"> -->
+						<div class="grid-item action-points-div" style="height: 15px;">
+							{{#each data.ap.dots}}
+								<i class="fas fa-circle ap {{this}}"></i>
+								<!-- <img class="miniscule-image" src="systems/auramancy/icons/free_use/items/I_GoldCoin.png"/> -->
+							{{/each}}
+							<!-- <div class="grid-container">
+								<svg>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
+									<rect height="5" style="fill: #fcba03; stroke-width: 1; stroke: gray; width: calc(({{data.ap.value}} / {{data.ap.max}}) * 175px);"/>
+								</svg>
+							</div> -->
+						</div>
+						<div style="height: 3px;">
+
+						</div>
+					</div>
+
+					<div class="grid-container" style="width: 180px; border: 2px groove #eeede0;">
+						<div class="grid-item mini-header" style="border-bottom: 2px groove #eeede0;">
+							<label style="font-size: 16px;">Aether Well</label>
+						</div>
+						<div class="grid-item" style="padding-top: 3px;">
+							<input class="input-large" type="text" name="data.auramancy.charges.value" value="{{data.auramancy.charges.value}}" placeholder="{{data.auramancy.charges.value}}" data-dtype="Number"/>
+						</div>
+						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
+							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
+								<label class="small-gray-text">Maximum:</label>
+								<input type="text" class="input-small-inline-borderless" name="data.auramancy.charges.max" value="{{data.auramancy.charges.max}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+							</div>
+							<div class="grid-item-inline">
+								<label class="small-gray-text">Temporary:</label>
+								<input type="text" class="input-small-inline-borderless-hover" name="data.auramancy.charges.temp" value="{{data.auramancy.charges.temp}}" placeholder="0" data-dtype="Number"/>
+							</div>
+						</div>
+						<div class="grid-item" style="padding-top: 3px; height: 15px;">
+							<div class="grid-container">
+								<svg>
+									<rect height="5" style="fill: transparent; stroke-width: 2; stroke: gray; width: 175px;"/>
+									<rect height="5" style="fill: {{data.auramancy.hex}}; stroke-width: 1; stroke: gray; width: calc(({{data.auramancy.charges.value}} / {{data.auramancy.charges.max}}) * 175px);"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<br>
+
+		<div class="">
+
+			<div class="grid-container-eight">
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.str.value" class="rollable" data-roll="d20+@attributes.str.value">Strength</label>
+					<input type="text" name="data.attributes.str.value" value="{{data.attributes.str.value}}" data-dtype="Number"/>
+					<label for="data.attributes.str.passive" class="medium-gray-text">Passive: {{data.attributes.str.passive}}</label>
+				</div>
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.agi.value" class="rollable" data-roll="d20+@attributes.agi.value">Agility</label>
+					<input type="text" name="data.attributes.agi.value" value="{{data.attributes.agi.value}}" data-dtype="Number"/>
+					<label for="data.attributes.agi.passive" class="medium-gray-text">Passive: {{data.attributes.agi.passive}}</label>
+				</div>
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.dex.value" class="rollable" data-roll="d20+@attributes.dex.value">Dexterity</label>
+					<input type="text" name="data.attributes.dex.value" value="{{data.attributes.dex.value}}" data-dtype="Number"/>
+					<label for="data.attributes.dex.passive" class="medium-gray-text">Passive: {{data.attributes.dex.passive}}</label>
+				</div>
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.con.value" class="rollable" data-roll="d20+@attributes.con.value">Constitution</label>
+					<input type="text" name="data.attributes.con.value" value="{{data.attributes.con.value}}" data-dtype="Number"/>
+					<label for="data.attributes.con.passive" class="medium-gray-text">Passive: {{data.attributes.con.passive}}</label>
+				</div>
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.int.value" class="rollable" data-roll="d20+@attributes.int.value">Intellect</label>
+					<input type="text" name="data.attributes.int.value" value="{{data.attributes.int.value}}" data-dtype="Number"/>
+					<label for="data.attributes.int.passive" class="medium-gray-text">Passive: {{data.attributes.int.passive}}</label>
+				</div>
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.wil.value" class="rollable" data-roll="d20+@attributes.wil.value">Willpower</label>
+					<input type="text" name="data.attributes.wil.value" value="{{data.attributes.wil.value}}" data-dtype="Number"/>
+					<label for="data.attributes.wil.passive" class="medium-gray-text">Passive: {{data.attributes.wil.passive}}</label>
+				</div>
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.per.value" class="rollable" data-roll="d20+@attributes.per.value">Perception</label>
+					<input type="text" name="data.attributes.per.value" value="{{data.attributes.per.value}}" data-dtype="Number"/>
+					<label for="data.attributes.per.passive" class="medium-gray-text">Passive: {{data.attributes.per.passive}}</label>
+				</div>
+
+				<div class="grid-item-attributes">
+					<label for="data.attributes.cha.value" class="rollable" data-roll="d20+@attributes.cha.value">Charisma</label>
+					<input type="text" name="data.attributes.cha.value" value="{{data.attributes.cha.value}}" data-dtype="Number"/>
+					<label for="data.attributes.cha.passive" class="medium-gray-text">Passive: {{data.attributes.cha.passive}}</label>
+				</div>
+
+			</div>
+
+		</div>
+
   </header>
 
-  {{!-- Sheet Tab Navigation --}}
-  <nav class="sheet-tabs tabs" data-group="primary">
-    {{!-- Default tab is specified in actor-sheet.mjs --}}
-    <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="items">Items</a>
-    <a class="item" data-tab="effects">Effects</a>
-  </nav>
+	<br>
 
-  {{!-- Sheet Body --}}
-  <section class="sheet-body">
+	<div class="grid-container">
+		{{!-- Sheet Tab Navigation --}}
+		<nav class="sheet-navigation tabs" data-group="primary" style="width: 685px; height: 40px; border: 2px groove #eeede0;">
+			{{!-- Default tab is specified in actor-sheet.mjs --}}
+			<a class="item active" data-tab="overview">Overview</a>
+			<a class="item" data-tab="abilities">Abilities</a>
+			<a class="item" data-tab="assets">Assets</a>
+			<!-- <a class="item" data-tab="features">Features</a>
+			<a class="item" data-tab="actions">Actions</a>
+			<a class="item" data-tab="attacks">Attacks</a>
+			<a class="item" data-tab="reactions">Reactions</a> -->
+			<a class="item" data-tab="levels">Levels</a>
+			<a class="item" data-tab="misc">Misc</a>
+		</nav>
 
-    {{!-- Biography Tab --}}
-    <div class="tab biography" data-group="primary" data-tab="description">
-      {{!-- If you want TinyMCE editors to output inline rolls when rendered, you need to pass the actor's roll data to the rollData property. --}}
-      {{editor content=data.biography target="data.biography" rollData=rollData button=true owner=owner editable=editable}}
-    </div>
+		{{!-- Sheet Body --}}
+		<section class="sheet-body" style="min-height: 300px;">
 
-    {{!-- Owned Items Tab --}}
-    <div class="tab items" data-group="primary" data-tab="items">
-       {{> "systems/auramancy/templates/actor/parts/actor-items.html"}}
-    </div>
+			{{!-- Overview Tab --}}
+			<div class="tab overview flexcol" data-group="primary" data-tab="overview">
+				{{> "systems/auramancy/templates/actor/parts/actor-overview.html"}}
+			</div>
 
-    {{!-- Active Effects Tab --}}
-    <div class="tab effects flexcol" data-group="primary" data-tab="effects">
-      {{> "systems/auramancy/templates/actor/parts/actor-effects.html"}}
-    </div>
+			{{!-- Abilities Tab --}}
+			<div class="tab abilities flexcol" data-group="primary" data-tab="abilities">
+				{{> "systems/auramancy/templates/actor/parts/actor-abilities.html"}}
+			</div>
 
-  </section>
+			{{!-- Assets Tab --}}
+			<div class="tab assets flexcol" data-group="primary" data-tab="assets">
+
+			</div>
+
+			{{!-- Features Tab --}}
+			<!-- <div class="tab features flexcol" data-group="primary" data-tab="features">
+
+			</div> -->
+
+			{{!-- Actions Tab --}}
+			<!-- <div class="tab actions flexcol" data-group="primary" data-tab="actions">
+
+			</div> -->
+
+			{{!-- Attacks Tab --}}
+			<!-- <div class="tab attacks flexcol" data-group="primary" data-tab="attacks">
+
+			</div> -->
+
+			{{!-- Reactions Tab --}}
+			<!-- <div class="tab reactions flexcol" data-group="primary" data-tab="reactions">
+
+			</div> -->
+
+			{{!-- Levels Tab --}}
+			<div class="tab levels flexcol" data-group="primary" data-tab="levels">
+				{{> "systems/auramancy/templates/actor/parts/actor-levels.html"}}
+			</div>
+
+			{{!-- Misc Tab --}}
+			<div class="tab misc flexcol" data-group="primary" data-tab="misc">
+
+			</div>
+
+		</section>
+	</div>
+
+
+
+
 </form>
-

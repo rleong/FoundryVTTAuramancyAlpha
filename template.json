@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "entity", "object"],
+    "types": ["character", "npc"],
     "templates": {
       "base": {
         "health": {
@@ -300,43 +300,83 @@
       }
     },
     "character": {
-      "templates": ["base"],
-      "properties": {
-        "test": 0
-      }
+      "templates": ["base"]
     },
-    "entity": {
-      "templates": ["base"],
-      "properties": {
-        "test": 0
-      }
-    },
-    "object": {
-      "templates": ["base"],
-      "properties": {
-        "test": 0
-      }
+    "npc": {
+      "templates": ["base"]
     }
   },
   "Item": {
-    "types": ["item", "feature", "spell"],
+    "types": ["object", "ability"],
     "templates": {
       "base": {
         "description": ""
       }
     },
-    "item": {
+    "object": {
       "templates": ["base"],
       "quantity": 1,
       "weight": 0,
       "formula": "d20 + @str.mod + ceil(@lvl / 2)"
     },
-    "feature": {
-      "templates": ["base"]
-    },
-    "spell": {
+    "ability": {
       "templates": ["base"],
-      "spellLevel": 1
+      "prerequisites": {
+        "level": 0,
+        "other": ""
+      },
+      "category": {
+        "prefix": "",
+        "category": "",
+        "source": "",
+        "other": ""
+      },
+      "trigger": "",
+      "magical": {
+        "magical": "",
+        "tier": "",
+        "school": "",
+        "components": ""
+      },
+      "duration": {
+        "time": "",
+        "dismiss": 0
+      },
+      "concentration": false,
+      "usages": 0,
+      "recharge": "",
+      "cost": {
+        "ap": 0,
+        "charges": 0,
+        "usages": 0,
+        "other": "",
+        "ritual": false
+      },
+      "attack_type": {
+        "type": "",
+        "source": ""
+      },
+      "damage": {
+        "amount": 0,
+        "die": 4,
+        "type": "",
+        "subtype": "",
+        "other": "",
+        "parsed": [],
+        "proficiency": false
+      },
+      "range": {
+        "distance": "",
+        "unit": ""
+      },
+      "area": {
+        "dimensions": "",
+        "shape": ""
+      },
+      "sub_abilities": {
+        "string": "",
+        "list": []
+      }
     }
   }
 }

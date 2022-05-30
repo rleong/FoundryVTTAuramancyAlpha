@@ -34,6 +34,15 @@ AURAMANCY.reserveDice = {
   12: "d12"
 };
 
+AURAMANCY.damageDice = {
+  4: "d4",
+  6: "d6",
+  8: "d8",
+  10: "d10",
+  12: "d12",
+  20: "d20"
+};
+
 AURAMANCY.minHp = {
   4: 10,
   6: 15,
@@ -440,4 +449,124 @@ AURAMANCY.proficiencyLanguages = {
   "ulkgharish": "Ulkgharish (Merexian)",
   "viertryz": "Viertryz (Vertrullian)",
   "yamakhwa": "Yama’khwa (Serenese)"
+};
+
+AURAMANCY.ancestries = {
+  "arisen": "Arisen",
+  "azori": "Azori",
+  "cyborg": "Cyborg",
+  "dedari": "Dedari",
+  "dryad": "Dryad",
+  "dwarf": "Dwarf",
+  "elf": "Elf",
+  "esterian": "Esterian",
+  "fairy": "Fairy",
+  "geruta": "Geruta",
+  "gnome": "Gnome",
+  "goblin": "Goblin",
+  "guiyen": "Guiyen",
+  "halfling": "Halfling",
+  "ikairi": "Ikairi",
+  "ishtal": "Ishtal",
+  "jotunn": "Jotunn",
+  "moribi": "Moribi",
+  "mutant": "Mutant",
+  "mycota": "Mycota",
+  "noros": "Noros",
+  "orc": "Orc",
+  "sidhe": "Sidhe",
+  "soulforged": "Soulforged",
+  "succubusincubus": "Succubus / Incubus",
+  "torlahng": "Torlahng",
+  "vishaar": "Vishaar",
+  "xyphid": "Xyphid",
+  "yojin": "Yojin"
+};
+
+AURAMANCY.abilityCategories = {
+  "feature": "Feature",
+  "action": "Action",
+  "attack": "Attack",
+  "reaction": "Reaction"
+};
+
+AURAMANCY.abilityPrefixes = {
+  "none": "None",
+  "exalted": "Exalted",
+  "legendary": "Legendary",
+  "mythic": "Mythic"
+};
+
+AURAMANCY.abilitySources = {
+  "default": "Default",
+  "ancestry": "Ancestry",
+  "composition": "Composition",
+  "cultivation": "Cultivation",
+  "invocation": "Invocation",
+  "path": "Path",
+  "perk": "Perk",
+  "psionic": "Psionic Power",
+  "release": "Release",
+  "scheme": "Scheme",
+  "spell": "Spell",
+  "other": "Other"
+};
+
+AURAMANCY.magicSchools = {
+  "none": "None",
+  "abjuration": "Abjuration",
+  "alteration": "Alteration",
+  "chronomancy": "Chronomancy",
+  "conjuration": "Conjuration",
+  "divination": "Divination",
+  "enchantment": "Enchantment",
+  "evocation": "Evocation",
+  "illusion": "Illusion",
+  "necromancy": "Necromancy",
+  "restoration": "Restoration"
+};
+
+AURAMANCY.spellTiers = {
+  "": "None",
+  0: "0",
+  1: "1",
+  2: "2",
+  3: "3",
+  4: "4",
+  5: "5",
+  6: "6",
+  7: "7",
+  8: "8",
+  9: "9",
+  10: "10"
+};
+
+AURAMANCY.magicComponents = {
+  "verbal": "Verbal",
+  "somatic": "Somatic",
+  "material": "Material"
+};
+
+AURAMANCY.attackTypes = {
+  "melee": "Melee",
+  "ranged": "Ranged"
+};
+
+AURAMANCY.shapes = {
+  "circle": "Circle",
+  "cone": "Cone",
+  "cube": "Cube",
+  "cylinder": "Cylinder",
+  "dome": "Dome",
+  "line": "Line",
+  "prism": "Prism",
+  "rectangle": "Rectangle",
+  "sphere": "Sphere",
+  "square": "Square"
+};
+
+AURAMANCY.magicalOptions = {
+  "no": "No",
+  "yes": "Yes",
+  "varies": "Varies"
 };

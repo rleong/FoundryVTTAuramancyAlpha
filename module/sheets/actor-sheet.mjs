@@ -105,44 +105,25 @@ export class AuramancyActorSheet extends ActorSheet {
    */
   _prepareItems(context) {
     // Initialize containers.
-    const gear = [];
-    const features = [];
-    const spells = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-      9: []
-    };
+    const abilities = [];
+    const inventory = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
       i.img = i.img || DEFAULT_TOKEN;
-      // Append to gear.
-      if (i.type === 'item') {
+      // Append to abilities.
+      if (i.type === 'ability') {
         gear.push(i);
       }
-      // Append to features.
-      else if (i.type === 'feature') {
+      // Append to inventory.
+      else if (i.type === 'object') {
         features.push(i);
-      }
-      // Append to spells.
-      else if (i.type === 'spell') {
-        if (i.data.spellLevel != undefined) {
-          spells[i.data.spellLevel].push(i);
-        }
       }
     }
 
     // Assign and return
-    context.gear = gear;
-    context.features = features;
-    context.spells = spells;
+    context.abilities = abilities;
+    context.inventory = inventory;
   }
 
   /* -------------------------------------------- */
@@ -150,6 +131,11 @@ export class AuramancyActorSheet extends ActorSheet {
   /** @override */
   activateListeners(html) {
     super.activateListeners(html);
+
+    // Activate Item Filters
+    const filterLists = html.find(".filter-list");
+    filterLists.each(this._initializeFilterItemList.bind(this));
+    filterLists.on("click", ".filter-item", this._onToggleFilter.bind(this));
 
     // Render the item sheet for viewing/editing prior to the editable check.
     html.find('.item-edit').click(ev => {
@@ -283,6 +269,40 @@ export class AuramancyActorSheet extends ActorSheet {
     }
   }
 
+  /* -------------------------------------------- */
+
+  /**
+   * Initialize Item list filters by activating the set of filters which are currently applied
+   * @param {number} i  Index of the filter in the list.
+   * @param {HTML} ul   HTML object for the list item surrounding the filter.
+   * @private
+   */
+  _initializeFilterItemList(i, ul) {
+    const set = this._filters[ul.dataset.filter];
+    const filters = ul.querySelectorAll(".filter-item");
+    for ( let li of filters ) {
+      if ( set.has(li.dataset.filter) ) li.classList.add("active");
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle toggling of filters to display a different set of owned items.
+   * @param {Event} event     The click event which triggered the toggle.
+   * @returns {ActorSheet5e}  This actor sheet with toggled filters.
+   * @private
+   */
+  _onToggleFilter(event) {
+    event.preventDefault();
+    const li = event.currentTarget;
+    const set = this._filters[li.parentElement.dataset.filter];
+    const filter = li.dataset.filter;
+    if ( set.has(filter) ) set.delete(filter);
+    else set.add(filter);
+    return this.render();
+  }
+
   /**
    * Prepare the data structure for traits data like languages, resistances & vulnerabilities, and proficiencies.
    * @param {object} traits   The raw traits data object from the actor data. *Will be mutated.*
@@ -314,26 +334,6 @@ export class AuramancyActorSheet extends ActorSheet {
       }
       trait.cssClass = !isObjectEmpty(trait.selected) ? "" : "inactive";
     }
-
-    // Populate and localize proficiencies
-    // for ( const t of ["armor", "weapon", "tool"] ) {
-    //   const trait = traits[`${t}Prof`];
-    //   if ( !trait ) continue;
-    //   Actor5e.prepareProficiencies(trait, t);
-    //   trait.cssClass = !isObjectEmpty(trait.selected) ? "" : "inactive";
-    // }
-  }
-
-  _changeAP(actorData) {
-    // const update_data = {};
-    //
-    // let ap_dots = [];
-    // for(let i = 0; i < this.object.data.data.ap.value; i++){
-    //   ap_dots.push("dot");
-    // }
-    //
-    // update_data['data.ap.dots'] = ap_dots;
-    // this.object.update(update_data);
   }
 
   _calculateAllData(actorData) {
@@ -357,7 +357,6 @@ export class AuramancyActorSheet extends ActorSheet {
   _restTurn(actorData) {
     const update_data = {};
     update_data['data.stats.movement.value'] = this.object.data.data.stats.movement.max;
-    // update_data['data.stats.movement.value'] = CONFIG.AURAMANCY.sizeCategoryMovement[this.object.data.data.traits.size] + this.object.data.data.stats.movement.temp + this.object.data.data.stats.movement.ancestry_mod + this.object.data.data.stats.movement.mod;
     update_data['data.ap.value'] = this.object.data.data.ap.max;
     update_data['data.health.buffer.value'] = Math.max(this.object.data.data.health.buffer.value, this.object.data.data.health.buffer.min);
     this.object.update(update_data);

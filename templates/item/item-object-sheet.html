@@ -1,0 +1,33 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname fancy-font"><input name="name" type="text" value="{{item.name}}" placeholder="Name" style="font-size: 32px; text-align: center;" /></h1>
+    </div>
+  </header>
+
+  <br>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    <div class="grid-container groove">
+      <div class="grid-item groove-bottom mini-header">
+        <label class="fancy-font" style="font-size: 26px; text-align: center;">Object</label>
+      </div>
+
+      
+
+      <div class="grid-item" style="height: 15px;"/>
+    </div>
+
+    {{!-- Description Tab --}}
+    <div class="tab groove" style="height: 100px;">
+      <div class="groove-bottom mini-header">
+        <label>Description:</label>
+      </div>
+      {{editor content=data.description target="data.description" rollData=rollData button=true owner=owner editable=editable}}
+    </div>
+
+  </section>
+</form>

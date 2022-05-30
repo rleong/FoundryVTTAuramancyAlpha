@@ -45,6 +45,7 @@ export class AuramancyItemSheet extends ItemSheet {
     // Add the actor's data to context.data for easier access, as well as flags.
     context.data = itemData.data;
     context.flags = itemData.flags;
+    context.config = CONFIG.AURAMANCY;
 
     return context;
   }
@@ -60,4 +61,5 @@ export class AuramancyItemSheet extends ItemSheet {
 
     // Roll handlers, click handlers, etc. would go here.
   }
+
 }

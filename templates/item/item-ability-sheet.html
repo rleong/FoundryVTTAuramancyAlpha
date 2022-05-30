@@ -1,0 +1,424 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname fancy-font"><input name="name" type="text" value="{{item.name}}" placeholder="Name" style="font-size: 32px; text-align: center;" /></h1>
+    </div>
+  </header>
+
+  <br>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    <div class="grid-container groove">
+      <div class="grid-item groove-bottom mini-header">
+        <label class="fancy-font" style="font-size: 26px; text-align: center;">Ability</label>
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Prerequisites</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Level: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.prerequisites.level" value="{{data.prerequisites.level}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Other: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.prerequisites.other" value="{{data.prerequisites.other}}" placeholder="Separate by commas."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Category</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Prefix: </label>
+              </div>
+              <div class="grid-item-left">
+                <select name="data.category.prefix" style="font-size: 8px; width: 80px; height: 20px;">
+  								{{selectOptions config.abilityPrefixes selected=data.category.prefix}}
+  							</select>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Category: </label>
+              </div>
+              <div class="grid-item-left">
+                <select name="data.category.category" style="font-size: 8px; width: 80px; height: 20px;">
+  								{{selectOptions config.abilityCategories selected=data.category.category}}
+  							</select>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Source: </label>
+              </div>
+              <div class="grid-item-left">
+                <select name="data.category.source" style="font-size: 8px; width: 80px; height: 20px;">
+                  {{selectOptions config.abilitySources selected=data.category.source}}
+                </select>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Other: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.category.other" value="{{data.category.other}}" placeholder="Separate by commas."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Trigger</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Trigger: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.trigger" value="{{data.trigger}}" placeholder="Only for Reactions."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Magical</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Magical: </label>
+              </div>
+              <select name="data.magical.magical" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.magicalOptions selected=data.magical.magical}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Spell Tier: </label>
+              </div>
+              <select name="data.magical.tier" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.spellTiers selected=data.magical.tier}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>School: </label>
+              </div>
+              <select name="data.magical.school" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.magicSchools selected=data.magical.school}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Components: </label>
+              </div>
+              <select name="data.magical.components" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.magicComponents selected=data.magical.components}}
+              </select>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Duration</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Time: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.duration.time" value="{{data.duration.time}}" placeholder="ex. Until Dismissed."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Dismiss: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.duration.dismiss" value="{{data.duration.dismiss}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Concentration</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Concentration: </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="data.concentration" data-dtype="Boolean"
+                 {{checked data.concentration}}/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Usages</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Usages: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.usages" value="{{data.usages}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Recharge</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Condition(s): </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.recharge" value="{{data.recharge}}" placeholder="Separate by commas."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Cost</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>AP: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.cost.ap" value="{{data.cost.ap}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Charges: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.cost.charges" value="{{data.cost.charges}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Usages: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.cost.usages" value="{{data.cost.usages}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Other: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.cost.other" value="{{data.cost.other}}" placeholder="Separate by commas."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Ritual: </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="data.cost.ritual" data-dtype="Boolean"
+                 {{checked data.cost.ritual}}/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Attack Type</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Type: </label>
+              </div>
+              <select name="data.attack_type.type" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.attackTypes selected=data.attack_type.type}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Source: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.attack_type.source" value="{{data.attack_type.source}}" placeholder="ex. Longsword."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Damage</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Amount: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.damage.amount" value="{{data.damage.amount}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Die: </label>
+              </div>
+              <select name="data.damage.die" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.damageDice selected=data.damage.die}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Type: </label>
+              </div>
+              <select name="data.damage.type" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.damageTypes selected=data.damage.type}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Subtype: </label>
+              </div>
+              <select name="data.damage.subtype" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.damageSubtypes selected=data.damage.subtype}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Other: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.damage.other" value="{{data.damage.other}}" placeholder="Separate by commas."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Proficiency: </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="data.damage.proficiency" data-dtype="Boolean"
+                 {{checked data.cost.ritual}}/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Range</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Distance: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.range.distance" value="{{data.range.distance}}" placeholder="ex. Self, or 20."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Unit: </label>
+              </div>
+              <select name="data.range.unit" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.movementUnits selected=data.range.unit}}
+              </select>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Area</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Dimensions: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.area.dimensions" value="{{data.area.dimensions}}" placeholder="ex. 1x1."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Shape: </label>
+              </div>
+              <select name="data.area.shape" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.shapes selected=data.area.shape}}
+              </select>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Options / Included Abilities</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Available: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.sub_abilities.string" value="{{data.sub_abilities.string}}" placeholder="Seprate by commas."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item" style="height: 15px;"/>
+    </div>
+
+    {{!-- Description Tab --}}
+    <div class="tab groove" style="height: 100px;">
+      <div class="groove-bottom mini-header">
+        <label class="fancy-font" style="font-size: 16px;">Description:</label>
+      </div>
+      {{editor content=data.description target="data.description" rollData=rollData button=true owner=owner editable=editable}}
+    </div>
+
+  </section>
+</form>
