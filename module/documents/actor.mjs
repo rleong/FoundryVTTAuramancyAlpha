@@ -163,8 +163,8 @@ export class AuramancyActor extends Actor {
     }
 
     // Add level for easier access, or fall back to 0.
-    if (data.properties.level) {
-      data.lvl = data.properties.level.value ?? 0;
+    if (data.auramancy.level) {
+      data.lvl = data.auramancy.level ?? 0;
     }
   }
 

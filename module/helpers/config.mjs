@@ -570,3 +570,166 @@ AURAMANCY.magicalOptions = {
   "yes": "Yes",
   "varies": "Varies"
 };
+
+AURAMANCY.objectTagsRobustness = {
+  "fragile": "Fragile",
+  "standard": "Standard",
+  "sturdy": "Sturdy"
+};
+
+AURAMANCY.objectTagsSubstance = {
+  "adamantine": "Adamantine",
+  "bone": "Bone",
+  "cloth": "Cloth",
+  "crystal": "Crystal",
+  "fiber": "Fiber",
+  "glass": "Glass",
+  "ice": "Ice",
+  "mithril": "Mithril",
+  "orichalcum": "Orichalcum",
+  "rope": "Rope",
+  "stone": "Stone",
+  "wood": "Wood",
+  "hardmetals": "Hard Metals",
+  "hardplastic": "Hard Plastic",
+  "paper": "Paper",
+  "softmetals": "Soft Metals",
+  "softplastic": "Soft Plastic"
+};
+
+AURAMANCY.objectTagsSpecial = {
+  "controllable": "Controllable",
+  "illusion": "Illusion",
+  "indestructible": "Indestructible",
+  "intangible": "Intangible",
+  "item": "Item",
+  "magical": "Magical",
+  "sentient": "Sentient",
+  "structure": "Structure",
+  "vehicle": "Vehicle"
+};
+
+AURAMANCY.objectTagsTraits = {
+  "ammunition": "Ammunition",
+  "arcanefocus": "Arcane Focus",
+  "automatic": "Automatic",
+  "balanced": "Balanced",
+  "bulwark": "Bulwark",
+  "comfortable": "Comfortable",
+  "dualwield": "Dual Wield",
+  "finesse": "Finesse",
+  "flexible": "Flexible",
+  "heavy": "Heavy",
+  "loud": "Loud",
+  "misfire": "Misfire",
+  "offhand": "Offhand",
+  "reach": "Reach",
+  "reload": "Reload",
+  "scatter Fire": "Scatter Fire",
+  "silvered": "Silvered",
+  "special": "Special",
+  "thrown": "Thrown",
+  "twohanded": "Two-Handed",
+  "variant": "Variant",
+  "versatile": "Versatile",
+};
+
+AURAMANCY.objectTagsMisc = {
+  "ammo": "Ammo",
+  "armor": "Armor",
+  "attunement": "Attunement",
+  "binding": "Binding",
+  "comfort": "Comfort",
+  "consumable": "Consumable",
+  "electronic": "Electronic",
+  "equipment": "Equipment",
+  "explosive": "Explosive",
+  "gourmet": "Gourmet",
+  "ingested": "Ingested",
+  "mundane": "Mundane",
+  "shield": "Shield",
+  "sustenance": "Sustenance",
+  "telephony": "Telephony",
+  "tool": "Tool",
+  "trap": "Trap",
+  "weapon": "Weapon",
+  "instrument": "Musical Instrument"
+};
+
+AURAMANCY.objectTags = {
+  ...AURAMANCY.objectTagsRobustness,
+  ...AURAMANCY.objectTagsSubstance,
+  ...AURAMANCY.objectTagsSpecial,
+  ...AURAMANCY.objectTagsTraits,
+  ...AURAMANCY.objectTagsMisc
+};
+
+AURAMANCY.releases = {
+  "artifice": "Artifice",
+  "augmentation": "Augmentation",
+  "causal_manipulation": "Causal Manipulation",
+  "martial_techniques": "Martial Techniques",
+  "psionics": "Psionics",
+  "spellcasting": "Spellcasting",
+  "thoughtscape": "Thoughtscape",
+  "weapon_art": "Weapon Art"
+};
+
+AURAMANCY.cultivation = {
+  "meridian_core": "Meridian Core",
+  "affinity": "Affinity",
+  "devotion": "Devotion",
+  "phenomenon": "Phenomenon",
+  "patronage": "Patronage",
+  "symbiosis": "Symbiosis"
+};
+
+AURAMANCY.cultivationAll = {
+  ...AURAMANCY.cultivation,
+  "artificial_biocore": "Artificial Biocore"
+};
+
+AURAMANCY.paths = {
+  "assassin": "Assassin",
+  "barbarian": "Barbarian",
+  "clairvoyant": "Clairvoyant",
+  "displacer": "Displacer",
+  "doppelfighter": "Doppel Fighter",
+  "fablewright": "Fablewright",
+  "gourmand": "Gourmand",
+  "hemomancer": "Hemomancer",
+  "inquisitor": "Inquisitor",
+  "kabukon": "Kabukon",
+  "mesmer": "Mesmer",
+  "necromancer": "Necromancer",
+  "ranger": "Ranger",
+  "sawbones": "Sawbones",
+  "senterian": "Senterian",
+  "songstriker": "Songstriker",
+  "soulbinder": "Soulbinder",
+  "spellsword": "Spellsword",
+  "stargazer": "Stargazer",
+  "thearsenal": "The Arsenal",
+  "thekeeper": "The Keeper",
+  "timekeeper": "Timekeeper",
+  "tinkerer": "Tinkerer",
+  "vates": "Vates"
+};
+
+AURAMANCY.rarity = {
+  "trivial": "Trivial",
+  "common": "Common",
+  "uncommon": "Uncommon",
+  "rare": "Rare",
+  "veryrare": "Very Rare",
+  "legendary": "Legendary"
+};
+
+AURAMANCY.quality = {
+  "poor": "Poor",
+  "standard": "Standard",
+  "fine": "Fine",
+  "high": "High",
+  "superb": "Superb",
+  "flawless": "Flawless"
+};

@@ -290,10 +290,10 @@
   cursor: pointer;
 }
 .inventory-list .item .item-name.rollable:hover .item-image {
-  background-image: url("../../icons/svg/d20-grey.svg") !important;
+  background-image: url("../../../icons/svg/d20-grey.svg") !important;
 }
 .inventory-list .item .item-name.rollable .item-image:hover {
-  background-image: url("../../icons/svg/d20-black.svg") !important;
+  background-image: url("../../../icons/svg/d20-black.svg") !important;
 }
 .inventory-list .item .item-name i.attuned {
   color: #7a7971;
@@ -334,6 +334,11 @@
 }
 .inventory-list .item-detail.attunement {
   flex: 0 0 24px;
+}
+.item-detail.player-class {
+  flex: 0 0 180px;
+  text-align: right;
+  padding-right: 10px;
 }
 .inventory-list .item-weight {
   flex: 0 0 60px;
@@ -387,6 +392,27 @@
 /* ----------------------------------------- */
 /*  Others                                   */
 /* ----------------------------------------- */
+.spell-comps {
+  flex: none;
+  padding: 0 5px;
+  font-size: 12px;
+  color: #7a7971;
+  border-right: 1px solid #c9c7b8;
+}
+.spell-component {
+  line-height: 14px;
+}
+.spell-component.C,
+.spell-component.R {
+  display: inline-block;
+  text-align: center;
+  padding-top: 1px;
+  width: 16px;
+  color: #c9c7b8;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
 .profile-picture {
   width: 150px;
   height: 150px;
@@ -462,6 +488,14 @@ input.input-small-inline {
   height: 10px;
   width: 20px;
 }
+input.input-item {
+  border-color: gray;
+  font-size: 11px;
+  background-color: transparent;
+  color: gray;
+  height: 15px;
+  width: 20px;
+}
 input.input-small-inline-borderless {
   border-color: gray;
   font-size: 8px;
@@ -490,6 +524,14 @@ input.input-medium-inline {
   color: gray;
   height: 15px;
   width: 25px;
+}
+input.input-tags-inline {
+  border-color: gray;
+  font-size: 10px;
+  background-color: transparent;
+  color: gray;
+  height: 15px;
+  width: 15px;
 }
 input.input-medium-inline-long {
   border-color: gray;

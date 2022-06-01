@@ -12,7 +12,10 @@
 					<input type="text" name="data.traits.pronouns" value="{{data.traits.pronouns}}" placeholder="Pronouns"></input>
 				</div>
 				<div class="grid-item-padded">
-					<input type="text" name="data.traits.ancestry" value="{{data.traits.ancestry}}" placeholder="Ancestry"></input>
+					<!-- <input type="text" name="data.traits.ancestry" value="{{data.traits.ancestry}}" placeholder="Ancestry"></input> -->
+					<select name="data.traits.ancestry" style="font-size: 10px;">
+						{{selectOptions config.ancestries selected=data.traits.ancestry}}
+					</select>
 				</div>
 				<div class="grid-item-padded">
 					<input type="text" name="data.auramancy.scent" value="{{data.auramancy.scent}}" placeholder="Aura Scent"></input>
@@ -45,17 +48,6 @@
 							<input name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
 						</h1>
 					</div>
-					<!-- <div class="grid-item" style="width: 5px;">
-
-					</div>
-					<div class="grid-container" style="width: 70px; border: 2px groove #eeede0;">
-						<div class="grid-item mini-header" style="align-self: center; border-bottom: 2px groove #eeede0;">
-							<label class="fancy-font" style="">Level</label>
-						</div>
-						<div class="grid-item">
-							<label class="fancy-font" style="">{{data.auramancy.level}}</label>
-						</div>
-					</div> -->
 				</div>
 
 				{{!-- Stats --}}
@@ -366,11 +358,7 @@
 			<a class="item active" data-tab="overview">Overview</a>
 			<a class="item" data-tab="abilities">Abilities</a>
 			<a class="item" data-tab="assets">Assets</a>
-			<!-- <a class="item" data-tab="features">Features</a>
-			<a class="item" data-tab="actions">Actions</a>
-			<a class="item" data-tab="attacks">Attacks</a>
-			<a class="item" data-tab="reactions">Reactions</a> -->
-			<a class="item" data-tab="levels">Levels</a>
+			<a class="item" data-tab="levels">Auramancy</a>
 			<a class="item" data-tab="misc">Misc</a>
 		</nav>
 
@@ -389,28 +377,8 @@
 
 			{{!-- Assets Tab --}}
 			<div class="tab assets flexcol" data-group="primary" data-tab="assets">
-
+				{{> "systems/auramancy/templates/actor/parts/actor-assets.html"}}
 			</div>
-
-			{{!-- Features Tab --}}
-			<!-- <div class="tab features flexcol" data-group="primary" data-tab="features">
-
-			</div> -->
-
-			{{!-- Actions Tab --}}
-			<!-- <div class="tab actions flexcol" data-group="primary" data-tab="actions">
-
-			</div> -->
-
-			{{!-- Attacks Tab --}}
-			<!-- <div class="tab attacks flexcol" data-group="primary" data-tab="attacks">
-
-			</div> -->
-
-			{{!-- Reactions Tab --}}
-			<!-- <div class="tab reactions flexcol" data-group="primary" data-tab="reactions">
-
-			</div> -->
 
 			{{!-- Levels Tab --}}
 			<div class="tab levels flexcol" data-group="primary" data-tab="levels">

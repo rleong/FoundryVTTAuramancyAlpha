@@ -125,3 +125,7 @@ function rollItemMacro(itemName) {
   // Trigger the item roll
   return item.roll();
 }
+
+Handlebars.registerHelper("getProperty", function(data, property) {
+  return getProperty(data, property);
+});

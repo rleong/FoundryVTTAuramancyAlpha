@@ -16,7 +16,272 @@
         <label class="fancy-font" style="font-size: 26px; text-align: center;">Object</label>
       </div>
 
-      
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Attunement</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Required: </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="data.attunement.required" data-dtype="Boolean"
+                 {{checked data.attunement.required}}/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Details</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Quantity: </label>
+              </div>
+              <div class="grid-item-left">
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline" name="data.details.quantity" value="{{data.details.quantity}}" placeholder="0" data-dtype="Number"/>
+                </div>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Quality: </label>
+              </div>
+              <div class="grid-item-left">
+                <select name="data.details.quality" style="font-size: 8px; width: 80px; height: 20px;">
+                  {{selectOptions config.quality selected=data.details.quality}}
+                </select>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Rarity: </label>
+              </div>
+              <div class="grid-item-left">
+                <select name="data.details.rarity" style="font-size: 8px; width: 80px; height: 20px;">
+  								{{selectOptions config.rarity selected=data.details.rarity}}
+  							</select>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Standard Value: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.details.value" value="{{data.details.value}}" placeholder="0" data-dtype="Number"/> Credits
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Bulk: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.details.bulk" value="{{data.details.bulk}}" placeholder="ex. -, L, or a number."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Usages: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.details.usages.max" value="{{data.details.usages.max}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Recharge: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.details.usages.recharge" value="{{data.details.usages.recharge}}" placeholder="ex. Long Rest."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Combat</summary>
+          <div class="grid-container">
+            <div class="grid-container">
+              <div class="grid-item mini-header" style="font-size: 13px; text-align: left;">
+                <label class="fancy-font">Damage</label>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Amount: </label>
+                </div>
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline" name="data.combat.damage.amount" value="{{data.combat.damage.amount}}" placeholder="0" data-dtype="Number"/>
+                </div>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Die: </label>
+                </div>
+                <select name="data.combat.damage.die" style="font-size: 8px; width: 80px; height: 20px;">
+                  {{selectOptions config.damageDice selected=data.combat.damage.die}}
+                </select>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Type: </label>
+                </div>
+                <select name="data.combat.damage.type" style="font-size: 8px; width: 80px; height: 20px;">
+                  {{selectOptions config.damageTypes selected=data.combat.damage.type}}
+                </select>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Subtype: </label>
+                </div>
+                <select name="data.combat.damage.subtype" style="font-size: 8px; width: 80px; height: 20px;">
+                  {{selectOptions config.damageSubtypes selected=data.combat.damage.subtype}}
+                </select>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Other: </label>
+                </div>
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline-long" name="data.combat.damage.other" value="{{data.combat.damage.other}}" placeholder="Separate by commas."/>
+                </div>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Proficiency: </label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" name="data.combat.damage.proficiency" data-dtype="Boolean"
+                   {{checked data.combat.damage.proficiency}}/>
+                </div>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Subtype: </label>
+              </div>
+              <select name="data.combat.subtype" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.attackTypes selected=data.combat.subtype}}
+              </select>
+            </div>
+            <div class="grid-container">
+              <div class="grid-item mini-header" style="font-size: 13px; text-align: left;">
+                <label class="fancy-font">Range</label>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Distance: </label>
+                </div>
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline-long" name="data.combat.range.distance" value="{{data.combat.range.distance}}" placeholder="ex. Self, or 20."/>
+                </div>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Unit: </label>
+                </div>
+                <select name="data.combat.range.unit" style="font-size: 8px; width: 80px; height: 20px;">
+                  {{selectOptions config.movementUnits selected=data.combat.range.unit}}
+                </select>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Stats</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>AC: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.stats.ac.value" value="{{data.stats.ac.value}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>HP: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.stats.hp.max" value="{{data.stats.hp.max}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Damage Threshold: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.stats.threshold" value="{{data.stats.threshold}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Size: </label>
+              </div>
+              <select name="data.stats.size" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.sizeCategories selected=data.stats.size}}
+              </select>
+            </div>
+            <div class="grid-container">
+              <div class="grid-item mini-header" style="font-size: 13px; text-align: left;">
+                <label class="fancy-font">Movement</label>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Maximum: </label>
+                </div>
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline" name="data.stats.movement.max" value="{{data.stats.movement.max}}" placeholder="0" data-dtype="Number"/>
+                </div>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Options: </label>
+                </div>
+                <div class="grid-item">
+                  <a class="object-movement-config small-icon" data-action="tags" title="Tags" name="Tags">
+                    <i class="fas fa-cog grid-item-inline-right"></i>
+                  </a>
+                  <ul class="traits-list grid-item-left">
+                  {{#each movement}}
+                    <li class="tag {{this}}">{{this}}</li>
+                  {{/each}}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Tags</summary>
+          <div class="grid-container-two-item">
+            <div class="grid-item-left">
+              <label>Tags: </label>
+            </div>
+            <div class="grid-item">
+              <a class="object-tag-config small-icon" data-action="tags" title="Tags" name="Tags">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list grid-item-left">
+              {{#each tags}}
+                <li class="tag {{this}}">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
 
       <div class="grid-item" style="height: 15px;"/>
     </div>
@@ -24,7 +289,7 @@
     {{!-- Description Tab --}}
     <div class="tab groove" style="height: 100px;">
       <div class="groove-bottom mini-header">
-        <label>Description:</label>
+        <label class="fancy-font" style="font-size: 16px;">Description:</label>
       </div>
       {{editor content=data.description target="data.description" rollData=rollData button=true owner=owner editable=editable}}
     </div>

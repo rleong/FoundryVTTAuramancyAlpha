@@ -296,6 +296,74 @@
             "traits": []
           },
           "biography": ""
+        },
+        "progression": {
+          "cultivations": [],
+          "releases": {
+            "artifice": {
+              "value": 0,
+              "max": 5,
+              "restriction": 4,
+              "additional_attunement": 1,
+              "artifice_die": 4
+            },
+            "augmentation": {
+              "value": 0,
+              "max": 10,
+              "restriction": 2,
+              "stress": {
+                "value": 0,
+                "max": 5
+              },
+              "augmentation_die": 4
+            },
+            "causal_manipulation": {
+              "value": 0,
+              "max": 5,
+              "restriction": 4,
+              "tactical_die": 4
+            },
+            "martial_techniques": {
+              "value": 0,
+              "max": 5,
+              "restriction": 4,
+              "max_surge": 2
+            },
+            "psionics": {
+              "value": 0,
+              "max": 5,
+              "restriction": 4,
+              "strain": {
+                "value": 0,
+                "max": 98
+              }
+            },
+            "spellcasting": {
+              "value": 0,
+              "max": 10,
+              "restriction": 2,
+              "spell_tier": 1
+            },
+            "thoughtscape": {
+              "value": 0,
+              "max": 10,
+              "restriction": 2,
+              "max_thoughtscape": 22
+            },
+            "weapon_art": {
+              "value": 0,
+              "max": 10,
+              "restriction": 2,
+              "maneuver_dice:": {
+                "value": 6,
+                "max": 6,
+                "size": 4
+              }
+            }
+          },
+          "paths": {
+
+          }
         }
       }
     },
@@ -315,9 +383,362 @@
     },
     "object": {
       "templates": ["base"],
-      "quantity": 1,
-      "weight": 0,
-      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+      "equipped": false,
+      "attunement": {
+        "required": false,
+        "attuned": false
+      },
+      "details": {
+        "quantity": 1,
+        "quality": "",
+        "rarity": "",
+        "value": "",
+        "bulk": "",
+        "usages": {
+          "value": 0,
+          "max": 0
+        },
+        "recharge": ""
+      },
+      "combat": {
+        "damage": {
+          "amount": 0,
+          "die": 4,
+          "type": "",
+          "subtype": "",
+          "other": "",
+          "parsed": [],
+          "proficiency": false
+        },
+        "subtype": "",
+        "range": {
+          "distance": "",
+          "unit": ""
+        }
+      },
+      "stats": {
+        "ac": {
+          "value": 0,
+          "mod": 0
+        },
+        "hp": {
+          "value": 0,
+          "max": 0,
+          "mod": 0,
+          "buffer": 0,
+          "min_buffer": 0
+        },
+        "threshold": 0,
+        "size": "",
+        "movement": {
+          "value": 0,
+          "max": 0,
+          "options": {
+            "burrowing": 0,
+            "climbing": 0,
+            "crawling": 0,
+            "flying": 0,
+            "freeform": 0,
+            "gliding": 0,
+            "special": "",
+            "swimming": 0,
+            "units": "ft",
+            "walking": 0
+          }
+        }
+      },
+      "tags": {
+        "robustness": {
+          "fragile": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "standard": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "sturdy": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "substance": {
+          "adamantine": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "bone": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "cloth": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "crystal": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "fiber": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "glass": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "ice": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "mithril": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "orichalcum": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "rope": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "stone": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "wood": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "hardmetals": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "hardplastic": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "paper": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "softmetals": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "softplastic": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "special": {
+          "controllable": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "illusion": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "indestructible": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "intangible": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "item": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "magical": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "sentient": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "structure": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "vehicle": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "traits": {
+          "ammunition": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "arcanefocus": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "automatic": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "balanced": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "bulwark": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "comfortable": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "dualwield": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "finesse": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "flexible": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "heavy": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "loud": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "misfire": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "offhand": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "reach": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "reload": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "scatter Fire": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "silvered": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "special": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "thrown": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "twohanded": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "variant": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "versatile": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "misc": {
+          "ammo": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "armor": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "attunement": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "binding": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "comfort": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "consumable": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "electronic": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "equipment": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "explosive": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "gourmet": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "ingested": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "mundane": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "shield": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "sustenance": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "telephony": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "tool": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "trap": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "weapon": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "instrument": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        }
+      }
     },
     "ability": {
       "templates": ["base"],
@@ -343,7 +764,10 @@
         "dismiss": 0
       },
       "concentration": false,
-      "usages": 0,
+      "usages": {
+        "value": 0,
+        "max": 0
+      },
       "recharge": "",
       "cost": {
         "ap": 0,

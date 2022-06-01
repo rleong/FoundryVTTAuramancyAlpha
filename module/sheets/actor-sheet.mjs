@@ -12,6 +12,19 @@ import ActorProficienciesConfig from "../apps/proficiencies-selector.js";
  * @extends {ActorSheet}
  */
 export class AuramancyActorSheet extends ActorSheet {
+  constructor(...args) {
+    super(...args);
+
+    /**
+     * Track the set of item filters which are applied
+     * @type {Set}
+     */
+    this._filters = {
+      inventory: new Set(),
+      abilities: new Set(),
+      effects: new Set()
+    };
+  }
 
   /** @override */
   static get defaultOptions() {
@@ -79,6 +92,9 @@ export class AuramancyActorSheet extends ActorSheet {
     // calculations
     context.data = this._calculateAllData(actorData);
 
+    // Filters
+    context.filters = this._filters;
+
     return context;
   }
 
@@ -113,17 +129,19 @@ export class AuramancyActorSheet extends ActorSheet {
       i.img = i.img || DEFAULT_TOKEN;
       // Append to abilities.
       if (i.type === 'ability') {
-        gear.push(i);
+        abilities.push(i);
       }
       // Append to inventory.
       else if (i.type === 'object') {
-        features.push(i);
+        inventory.push(i);
       }
     }
 
     // Assign and return
-    context.abilities = abilities;
+    context.abilities = abilities
+    context.filtered_abilities = this._filterItems(abilities, this._filters.abilities, "abilities");
     context.inventory = inventory;
+    context.filtered_inventory = this._filterItems(inventory, this._filters.inventory, "inventory");
   }
 
   /* -------------------------------------------- */
@@ -143,6 +161,9 @@ export class AuramancyActorSheet extends ActorSheet {
       const item = this.actor.items.get(li.data("itemId"));
       item.sheet.render(true);
     });
+
+    // Item summaries
+    html.find(".item .item-name.rollable h4").click(event => this._onItemSummary(event));
 
     // -------------------------------------------------------------
     // Everything below here is only needed if the sheet is editable
@@ -297,10 +318,137 @@ export class AuramancyActorSheet extends ActorSheet {
     event.preventDefault();
     const li = event.currentTarget;
     const set = this._filters[li.parentElement.dataset.filter];
+    // console.log(set);
     const filter = li.dataset.filter;
+    // console.log(filter);
     if ( set.has(filter) ) set.delete(filter);
     else set.add(filter);
     return this.render();
+  }
+
+  _filterItems(data, filters, type) {
+
+    if(filters.size !== 0){
+      let filtered_data = [];
+
+      for (const element of data){
+        // console.log(element);
+        if(type === "abilities"){
+          if (filters.has(element.data.category.category)) {
+            // console.log("Yes");
+            filtered_data.push(element);
+          }
+        } else if (type === "inventory"){
+
+        } else {
+
+        }
+
+      }
+
+      return filtered_data;
+
+    } else {
+
+      return data;
+    }
+  }
+
+  /* -------------------------------------------- */
+
+  /**
+   * Handle toggling and items expanded description.
+   * @param {Event} event   Triggering event.
+   * @private
+   */
+  _onItemSummary(event) {
+    event.preventDefault();
+    const li = $(event.currentTarget).parents(".item");
+    const item = this.actor.items.get(li.data("item-id"));
+
+    // Toggle summary
+    if ( li.hasClass("expanded") ) {
+      let summary = li.children(".item-summary");
+      summary.slideUp(200, () => summary.remove());
+    } else {
+      let div = $(`<div class="item-summary" style="text-align: left;">${item.data.data.description}</div>`);
+      if(item.data.data.tags !== undefined){
+        // console.log("tags");
+        let props = $('<div class="item-properties"></div>');
+        let item_tags = this._getItemTags(item.data.data);
+        item_tags.forEach(p => props.append(`<span class="tag">${p}</span>`));
+        div.append(props);
+      }
+      li.append(div.hide());
+      div.slideDown(200);
+    }
+    li.toggleClass("expanded");
+  }
+
+  _getItemTags(data){
+    const robustness = data.tags.robustness || {};
+    const substance = data.tags.substance || {};
+    const special = data.tags.special || {};
+    const traits = data.tags.traits || {};
+    const misc = data.tags.misc || {};
+    const object_tags = CONFIG.AURAMANCY.objectTags;
+    const tags = [];
+
+    // console.log(robustness);
+
+    for ( let [k, v] of Object.entries(robustness) ) {
+      if (v.enabled === true) {
+        let tag = `${object_tags[k]}`;
+        if (v.descriptor !== ""){
+          tag += ` ${v.descriptor}`;
+        }
+        tags.push(tag);
+      }
+    }
+
+    for ( let [k, v] of Object.entries(substance) ) {
+      if (v.enabled === true) {
+        let tag = `${object_tags[k]}`;
+        if (v.descriptor !== ""){
+          tag += ` ${v.descriptor}`;
+        }
+        tags.push(tag);
+      }
+    }
+
+    for ( let [k, v] of Object.entries(special) ) {
+      if (v.enabled === true) {
+        let tag = `${object_tags[k]}`;
+        if (v.descriptor !== ""){
+          tag += ` ${v.descriptor}`;
+        }
+        tags.push(tag);
+      }
+    }
+
+    for ( let [k, v] of Object.entries(traits) ) {
+      if (v.enabled === true) {
+        let tag = `${object_tags[k]}`;
+        if (v.descriptor !== ""){
+          tag += ` ${v.descriptor}`;
+        }
+        tags.push(tag);
+      }
+    }
+
+    for ( let [k, v] of Object.entries(misc) ) {
+      if (v.enabled === true) {
+        let tag = `${object_tags[k]}`;
+        if (v.descriptor !== ""){
+          tag += ` ${v.descriptor}`;
+        }
+        tags.push(tag);
+      }
+    }
+
+    // console.log(tags);
+
+    return tags;
   }
 
   /**
@@ -340,15 +488,18 @@ export class AuramancyActorSheet extends ActorSheet {
     let data = actorData.data;
 
     let ap_dots = [];
-    for(let i = 0; i < data.ap.value; i++){
+    for(let i = 0; i < Math.min(3, data.ap.value); i++){
       ap_dots.push("active");
     }
     for(let i = 0; i < 3-data.ap.value; i++){
       ap_dots.push("inactive");
     }
-    for(let i = 0; i < data.ap.temp; i++){
-      ap_dots.push("temp");
+    if(data.ap.temp > 0){
+      for(let i = 0; i < Math.min(data.ap.temp, data.ap.value - 3); i++){
+        ap_dots.push("temp");
+      }
     }
+
     data.ap.dots = ap_dots;
 
     return data;

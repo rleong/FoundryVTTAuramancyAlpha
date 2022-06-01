@@ -2,23 +2,115 @@
   <div class="overview grid-item grid-container">
     <div class="grid-container grid-row-squish" style="border: 2px groove #eeede0;">
       <div class="grid-item-inline mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
-        <label class="fancy-font" style="font-size: 26px;">Character Abilities</label>
+        <label class="fancy-font" style="font-size: 26px;">Abilities</label>
       </div>
       <div class="grid-item">
         <div class="inventory-filters flexrow">
-            <!-- <ul class="filter-list flexrow" data-filter="abilities">
+            <ul class="filter-list flexrow" data-filter="abilities">
                 <li class="filter-item" data-filter="feature">Feature</li>
                 <li class="filter-item" data-filter="action">Action</li>
                 <li class="filter-item" data-filter="attack">Attack</li>
                 <li class="filter-item" data-filter="reaction">Reaction</li>
-            </ul> -->
+            </ul>
         </div>
 
         <ol class="items-list inventory-list">
+          <li class="items-header flexrow">
+            <h3 class="item-name flexrow">Character Abilities</h3>
 
+            <div class="item-detail">Category</div>
+            <div class="item-detail">AP Cost</div>
+            <div class="item-detail">Charge Cost</div>
+            <div class="item-detail">Usages</div>
+            <div class="item-detail">Magical</div>
+
+            <div class="item-controls flexrow">
+              <a class="item-control item-create" title="Add" data-type="ability">
+                <i class="fas fa-plus"></i> Add
+              </a>
+            </div>
+          </li>
+
+          <ol class="item-list">
+          {{#each filtered_abilities as |ability id|}}
+            <li class="item flexrow" data-item-id="{{ability._id}}">
+              <div class="item-name flexrow rollable">
+                <div class="item-image" tabindex="0" role="button" aria-label="{{ability.name}}" style="background-image: url('{{ability.img}}')"></div>
+                <h4>
+                  {{ability.name}}
+                </h4>
+              </div>
+
+              <div class="item-detail">
+                {{lookup ../config.abilityCategories ability.data.category.category}}
+              </div>
+              <div class="item-detail">
+                {{ability.data.cost.ap}}
+              </div>
+              <div class="item-detail">
+                {{ability.data.cost.charges}}
+              </div>
+              <div class="item-detail">
+                {{ability.data.usages.value}}/{{ability.data.usages.max}}
+              </div>
+              <div class="item-detail">
+                {{lookup ../config.magicalOptions ability.data.magical.magical}}
+              </div>
+
+              <div class="item-controls flexrow">
+                <a class="item-control item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+              </div>
+            </li>
+          {{/each}}
+          </ol>
+        </ol>
+
+        <ol class="items-list inventory-list">
+          <li class="items-header flexrow">
+            <h3 class="item-name flexrow">Default Abilities</h3>
+
+            <div class="item-detail">Category</div>
+            <div class="item-detail">AP Cost</div>
+            <div class="item-detail">Charge Cost</div>
+            <div class="item-detail">Usages</div>
+            <div class="item-detail">Magical</div>
+
+          </li>
+
+          <ol class="item-list">
+          {{#each filtered_default_abilities as |ability id|}}
+            <li class="item flexrow" data-item-id="{{ability._id}}">
+              <div class="item-name flexrow rollable">
+                <div class="item-image" tabindex="0" role="button" aria-label="{{ability.name}}" style="background-image: url('{{ability.img}}')"></div>
+                <h4>
+                  {{ability.name}}
+                </h4>
+              </div>
+
+              <div class="item-detail">
+                {{lookup ../config.abilityCategories ability.data.category.category}}
+              </div>
+              <div class="item-detail">
+                {{ability.data.cost.ap}}
+              </div>
+              <div class="item-detail">
+                {{ability.data.cost.charges}}
+              </div>
+              <div class="item-detail">
+                {{ability.data.usages.value}}/{{ability.data.usages.max}}
+              </div>
+              <div class="item-detail">
+                {{lookup ../config.magicalOptions ability.data.magical.magical}}
+              </div>
+            </li>
+          {{/each}}
+          </ol>
         </ol>
 
       </div>
+
+      <div class="grid-item" style="height: 15px;"/>
 
     </div>
 

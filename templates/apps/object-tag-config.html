@@ -1,0 +1,82 @@
+<form autocomplete="off">
+    <p class="notes">Check which Tags this Object has. Leave the text field blank if there is no descriptor for the Tag involved.</p>
+    <div class="grid-container">
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Robustness</div>
+        {{#each robustness as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.robustness.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../object_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline" name="data.tags.robustness.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Substance</div>
+        {{#each substance as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.substance.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../object_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline" name="data.tags.substance.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Special</div>
+        {{#each special as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.special.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../object_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline" name="data.tags.special.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Traits</div>
+        {{#each traits as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.traits.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../object_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline" name="data.tags.traits.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Miscellaneous</div>
+        {{#each misc as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.misc.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../object_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline" name="data.tags.misc.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+</form>
