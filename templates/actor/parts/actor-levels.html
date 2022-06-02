@@ -1,5 +1,25 @@
 <section class="center-pane flexcol">
-  <div class="overview grid-item grid-container">
+  <div class="overview grid-item grid-container" style="align-content: flex-start;">
+
+    <div class="grid-container groove" style="height: 70px;">
+      <div class="grid-item-inline mini-header groove-bottom" style="height: 30px;">
+        <label class="fancy-font" style="font-size: 26px;">Aura</label>
+      </div>
+      <div class="grid-container-three">
+        <div class="grid-item">
+          <input type="text" name="data.auramancy.scent" value="{{data.auramancy.scent}}" placeholder="Aura Scent" style="width: 150px;"></input>
+        </div>
+        <div class="grid-item">
+          <input type="text" name="data.auramancy.color" value="{{data.auramancy.color}}" placeholder="Aura Color" style="width: 150px;"></input>
+        </div>
+        <div class="grid-item">
+          <input type="color" name="data.auramancy.hex" value="{{data.auramancy.hex}}" style="width: 150px;">
+        </div>
+      </div>
+    </div>
+
+    <br>
+
     <div class="grid-container" style="border: 2px groove #eeede0;">
       <div class="grid-item-inline mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
         <a class="decrease-level" data-action="tags" title="Decrease Level">

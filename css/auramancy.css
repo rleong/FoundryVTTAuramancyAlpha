@@ -727,15 +727,6 @@ details[open] summary ~ * {
         transform: translateY(1);
     }
 }
-
-/* summary::after {
-  content: '  ◀';
-  font-size: 10px;
-}
-details[open] summary:after {
-  content: '  ▼';
-  font-size: 10px;
-} */
 /* ----------------------------------------- */
 /* Trait Selector
 /* ----------------------------------------- */
@@ -750,3 +741,27 @@ details[open] summary:after {
 .trait-selector input[type="text"] {
   height: 24px;
   margin: 2px;
+}
+/* ----------------------------------------- */
+/* Item
+/* ----------------------------------------- */
+.item-controls,
+.item-controls {
+  flex: 0 0 68px;
+}
+.item-toggle,
+.item-controls .item-toggle {
+  color: #b5b3a4;
+}
+.item-controls .item-toggle.active,
+.item-controls .item-toggle.active {
+  color: #4b4a44;
+}
+.item-controls .item-toggle.fixed,
+.item-controls .item-toggle.fixed {
+  color: #44191A;
+}
+.item-controls .item-toggle.fixed:hover,
+.item-controls .item-toggle.fixed:hover {
+  text-shadow: none;
+}

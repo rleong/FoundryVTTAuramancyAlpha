@@ -19,9 +19,163 @@
             "max": 2,
             "temp": 0
           },
-          "impairment": 0
+          "impairment": 0,
+          "conditions": {
+            "bleeding": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "blinded": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "bloodthirsty": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "charmed": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "concentrated": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "confused": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "cursed": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "dazed": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "depleted": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "deafened": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "encumbered": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "enlarged": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "fatigued": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "frightened": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "grappled": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "hasted": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "hidden": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "incapacitated": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "inebriated": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "insane": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "inspired": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "invisible": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "lethargic": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "muted": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "nullified": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "paralyzed": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "petrified": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "prone": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "restrained": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "shrunken": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "staggered": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "stunned": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "surprised": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "taunted": {
+              "enabled": false,
+              "descriptor": ""
+            },
+            "unconscious": {
+              "enabled": false,
+              "descriptor": ""
+            }
+          }
+        },
+        "currency": {
+          "credits": 0,
+          "tokens": {
+            "value": 2,
+            "min": 2
+          }
         },
         "stats": {
+          "attunement": {
+            "value": 0,
+            "max": 3,
+            "mod": 0
+          },
           "ac": {
             "value": 8,
             "temp": 0,
@@ -167,7 +321,9 @@
           "size": "med",
           "pronouns": "",
           "ancestry": "",
+          "ancestry_other": "",
           "carrying_capacity": {
+            "current": 0,
             "value": 5,
             "mod": 0,
             "max": 10
@@ -393,7 +549,7 @@
         "quality": "",
         "rarity": "",
         "value": "",
-        "bulk": "",
+        "bulk": "-",
         "usages": {
           "value": 0,
           "max": 0

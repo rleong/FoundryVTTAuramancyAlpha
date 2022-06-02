@@ -133,6 +133,7 @@ export class AuramancyActorSheet extends ActorSheet {
       }
       // Append to inventory.
       else if (i.type === 'object') {
+        this._prepareItemToggleState(i);
         inventory.push(i);
       }
     }
@@ -164,6 +165,9 @@ export class AuramancyActorSheet extends ActorSheet {
 
     // Item summaries
     html.find(".item .item-name.rollable h4").click(event => this._onItemSummary(event));
+
+    // Item State Toggling
+    html.find(".item-toggle").click(this._onToggleItem.bind(this));
 
     // -------------------------------------------------------------
     // Everything below here is only needed if the sheet is editable
@@ -228,6 +232,48 @@ export class AuramancyActorSheet extends ActorSheet {
         li.setAttribute("draggable", true);
         li.addEventListener("dragstart", handler, false);
       });
+    }
+  }
+
+  _prepareItemToggleState(item) {
+    if (item.type === "object") {
+      const isAttuned = item.data.attunement.attuned;
+      const isEquipped = item.data.equipped;
+      item.toggleAttune = isAttuned ? "active" : "";
+      item.toggleAttuneTitle = isAttuned ? "Attuned" : "Not Attuned";
+      item.toggleEquip = isEquipped ? "active" : "";
+      item.toggleEquipTitle = isEquipped ? "Equipped" : "Not Equipped";
+    }
+  }
+
+  _onToggleItem(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.closest(".item").dataset.itemId;
+    const name = event.currentTarget.name;
+    const item = this.actor.items.get(itemId);
+    const actor = this.actor.data.data
+
+    if(name==="attune"){
+
+      const value = !item.data.data.attunement.attuned;
+      if(value === false){
+        let attunement_value = actor.stats.attunement.value - 1  >= 0 ? actor.stats.attunement.value - 1 : 0;
+        this.actor.update({["data.stats.attunement.value"]: attunement_value});
+        return item.update({["data.attunement.attuned"]: value});
+      } else {
+        let attunement_value = actor.stats.attunement.value;
+        if(attunement_value < actor.stats.attunement.max){
+          attunement_value += 1;
+          this.actor.update({["data.stats.attunement.value"]: attunement_value});
+          return item.update({["data.attunement.attuned"]: value});
+        } else {
+          ui.notifications.warn("You cannot attune to anymore items.");
+          console.log("Limit!");
+        }
+      }
+    }else if (name==="equip"){
+      const value = !item.data.data.equipped;
+      return item.update({["data.equipped"]: value});
     }
   }
 
@@ -336,10 +382,27 @@ export class AuramancyActorSheet extends ActorSheet {
         if(type === "abilities"){
           if (filters.has(element.data.category.category)) {
             // console.log("Yes");
-            filtered_data.push(element);
+            if (!filtered_data.includes(element)) filtered_data.push(element);
           }
         } else if (type === "inventory"){
-
+          if (filters.has("attunement") && element.data.attunement.required === true) {
+            if (!filtered_data.includes(element)) filtered_data.push(element);
+          }
+          if (filters.has("equipped") && element.data.equipped === true) {
+            if (!filtered_data.includes(element)) filtered_data.push(element);
+          }
+          if (filters.has("inventory") && element.data.equipped === false) {
+            if (!filtered_data.includes(element)) filtered_data.push(element);
+          }
+          if (filters.has("weapon") && element.data.tags.misc.weapon.enabled === true) {
+            if (!filtered_data.includes(element)) filtered_data.push(element);
+          }
+          if (filters.has("equipment") && element.data.tags.misc.equipment.enabled === true) {
+            if (!filtered_data.includes(element)) filtered_data.push(element);
+          }
+          if (filters.has("proficiency") && element.data.combat.damage.proficiency === true) {
+            if (!filtered_data.includes(element)) filtered_data.push(element);
+          }
         } else {
 
         }

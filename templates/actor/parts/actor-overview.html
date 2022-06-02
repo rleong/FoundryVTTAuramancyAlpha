@@ -38,10 +38,29 @@
                 </div>
               </div>
             </div>
+
+            <div class="grid-container" style="height: 50px; border-bottom: 2px groove #eeede0;">
+              <div class="grid-item" style="">
+                <label>Ancestry</label>
+              </div>
+              <div class="grid-container-two" style="">
+                <div class="grid-item-inline" style="width: 100px; font-size: 12px;">
+                  <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <select name="data.traits.ancestry" style="font-size: 10px; width: 80px; height: 20px;">
+                    {{selectOptions config.ancestries selected=data.traits.ancestry}}
+                  </select>
+                </div>
+                <div class="grid-item-inline" style="width: 100px; font-size: 12px;">
+                  <label>&nbsp;&nbsp;&nbsp;</label>
+                  <input type="text" name="data.traits.ancestry_other" value="{{data.traits.ancestry_other}}" placeholder="Other" style="width: 80px; height: 20px;"></input>
+                </div>
+              </div>
+            </div>
+
             <div class="grid-item-left grid-row-align">
               <label>Tags: </label>
               <a class="box-selector small-icon" data-action="tags" title="Tags" name="Tags">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.traits.tags}}
@@ -142,7 +161,7 @@
             <div class="grid-item-left"">
               <label>Comfortable Climates: </label>
               <a class="box-selector small-icon" data-action="comfortableclimates" title="Comfortable Climates" name="Comfortable Climates">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.traveling.climate}}
@@ -153,7 +172,7 @@
             <div class="grid-item-left">
               <label>Movement Options: </label>
               <a class="config-button small-icon" data-action="movement" title="Movement">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each movement as |v k|}}
@@ -164,7 +183,7 @@
             <div class="grid-item-left"">
               <label>Favored Terrain: </label>
               <a class="box-selector small-icon" data-action="favoredterrain" title="Favored Terrain" name="Favored Terrain">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.traveling.favored_terrain}}
@@ -175,7 +194,7 @@
             <div class="grid-item-left"">
               <label>Favored Enemies: </label>
               <a class="box-selector small-icon" data-action="favoredenemies" title="Favored Enemies" name="Favored Enemies">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.traveling.favored_enemies}}
@@ -196,7 +215,7 @@
             <div class="grid-item-left">
               <label>Backgrounds: </label>
               <a class="characteristics-selector small-icon" data-action="backgrounds" title="Backgrounds" name="Backgrounds">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.social.characteristics.backgrounds}}
@@ -207,7 +226,7 @@
             <div class="grid-item-left">
               <label>Cultures: </label>
               <a class="characteristics-selector small-icon" data-action="cultures" title="Cultures" name="Cultures">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.social.characteristics.cultures}}
@@ -218,7 +237,7 @@
             <div class="grid-item-left">
               <label>Traits: </label>
               <a class="characteristics-selector small-icon" data-action="traits" title="Traits" name="Traits">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.social.characteristics.traits}}
@@ -229,7 +248,7 @@
             <div class="grid-item-left">
               <label>Strings: </label>
               <a class="characteristics-selector small-icon" data-action="strings" title="Strings" name="Strings">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.social.strings}}
@@ -248,7 +267,7 @@
             <div class="grid-item-left">
               <label>Sensories: </label>
               <a class="config-button small-icon" data-action="sensories" title="Sensories">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each sensories as |v k|}}
@@ -259,7 +278,7 @@
             <div class="grid-item-left">
               <label>Sensitivities: </label>
               <a class="box-selector small-icon" data-action="sensitivites" title="Sensitivities" name="Sensitivities">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.traits.sensitivities}}
@@ -281,7 +300,7 @@
             <div class="grid-item-left">
               <label>Weapons: </label>
               <a class="proficiencies-selector small-icon" data-action="weapons" title="Weapons" name="Weapons">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
                 {{#each proficiencies.weapons as |v k|}}
@@ -296,7 +315,7 @@
             <div class="grid-item-left">
               <label>Tools: </label>
               <a class="proficiencies-selector small-icon" data-action="tools" title="Tools" name="Tools">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
                 {{#each proficiencies.tools as |v k|}}
@@ -311,7 +330,7 @@
             <div class="grid-item-left">
               <label>Instruments: </label>
               <a class="proficiencies-selector small-icon" data-action="instruments" title="Instruments" name="Instruments">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
                 {{#each proficiencies.instruments as |v k|}}
@@ -326,7 +345,7 @@
             <div class="grid-item-left">
               <label>Languages: </label>
               <a class="proficiencies-selector small-icon" data-action="languages" title="Languages" name="Languages">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
                 {{#each proficiencies.languages as |v k|}}
@@ -341,7 +360,7 @@
             <div class="grid-item-left">
               <label>Vehicles: </label>
               <a class="proficiencies-selector small-icon" data-action="vehicles" title="Vehicles" name="Vehicles">
-                <i class="fas fa-cog grid-item-inline-right"></i>
+                <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
                 {{#each proficiencies.vehicles as |v k|}}

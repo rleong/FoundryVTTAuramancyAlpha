@@ -4,26 +4,14 @@
 
 		<div class="grid-container-two">
 
-			<div class="grid-container" style="padding-right: 5px;">
+			<div class="grid-container" style="padding-right: 5px; align-content: flex-start;">
 				<div class="grid-item">
 					<img class="profile-picture" src="{{actor.img}}" title="{{actor.name}}" data-edit="img"/>
 				</div>
 				<div class="grid-item-padded">
 					<input type="text" name="data.traits.pronouns" value="{{data.traits.pronouns}}" placeholder="Pronouns"></input>
 				</div>
-				<div class="grid-item-padded">
-					<!-- <input type="text" name="data.traits.ancestry" value="{{data.traits.ancestry}}" placeholder="Ancestry"></input> -->
-					<select name="data.traits.ancestry" style="font-size: 10px;">
-						{{selectOptions config.ancestries selected=data.traits.ancestry}}
-					</select>
-				</div>
-				<div class="grid-item-padded">
-					<input type="text" name="data.auramancy.scent" value="{{data.auramancy.scent}}" placeholder="Aura Scent"></input>
-				</div>
-				<div class="grid-item-padded grid-item-inline" style="width: 80%;">
-					<input type="text" name="data.auramancy.color" value="{{data.auramancy.color}}" placeholder="Aura Color"></input>
-					<input type="color" name="data.auramancy.hex" value="{{data.auramancy.hex}}" style="width: 30px;">
-				</div>
+
 				<div class="grid-container-three" style="border: 2px groove #eeede0;">
 					<div class="grid-item mini-header" style="border-right: 2px groove #eeede0;">
 						<label style="font-size: 12px;">Rest:</label>
@@ -38,6 +26,20 @@
 							<i class="fas fa-undo small-icon-alt"></i>
 						</a>
 					</div>
+				</div>
+
+				<div class="grid-container groove" style="height: 100px;">
+					<div class="grid-item-inline mini-header groove-bottom" style="height: 20px;">
+						<label style="font-size: 12px;">Conditions:</label>
+						<a class=" small-icon" data-action="tags" title="Tags" name="Tags">
+							<i class="fas fa-cog grid-item-inline-right"></i>
+						</a>
+					</div>
+					<ul class="traits-list grid-item-left">
+					{{#each conditions}}
+						<li class="tag">{{this}}</li>
+					{{/each}}
+					</ul>
 				</div>
 			</div>
 

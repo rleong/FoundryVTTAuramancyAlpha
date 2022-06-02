@@ -42,8 +42,9 @@ export class AuramancyActor extends Actor {
     //
 
     // Carrying Capacity
-    data.traits.carrying_capacity.value = Math.min(1, (5 + data.traits.carrying_capacity.mod + data.attributes.str.value));
-    data.traits.carrying_capacity.max = 10 + data.attributes.str.value;
+    data.traits.carrying_capacity.current = this._getCurrentBulk(actorData.items, data.traits.carrying_capacity.current);
+    data.traits.carrying_capacity.value = Math.max(1, (5 + data.traits.carrying_capacity.mod + data.attributes.str.value));
+    data.traits.carrying_capacity.max = 10 + data.attributes.str.value + data.traits.carrying_capacity.mod;
 
     // Movement Speed
     data.stats.movement.max = CONFIG.AURAMANCY.sizeCategoryMovement[data.traits.size] + data.stats.movement.temp + data.stats.movement.ancestry_mod + data.stats.movement.mod;
@@ -65,6 +66,10 @@ export class AuramancyActor extends Actor {
     // HP
     data.health.hp.max = CONFIG.AURAMANCY.minHp[data.health.reserve.die] + ((data.auramancy.level) * data.attributes.con.value) + ((data.auramancy.level-1) * data.health.reserve.die);
     data.health.reserve.max = Math.max(0, data.auramancy.level * 2);
+
+    // currency
+    data.currency.credits = Math.max(0, data.currency.credits);
+    data.currency.tokens.value = Math.max(0, data.currency.tokens.value);
 
     // Attributes
     data.attributes.str.min = -5 + data.attributes.str.min_mod;
@@ -175,6 +180,29 @@ export class AuramancyActor extends Actor {
     if (this.data.type !== 'npc') return;
 
     // Process additional NPC data here.
+  }
+
+  _getCurrentBulk(data, current_bulk){
+    let total_bulk = current_bulk;
+    for(const item of data){
+      let bulk = this._getBulkValue(item.data.data.details.bulk);
+      total_bulk += bulk;
+    }
+    return total_bulk;
+  }
+
+  _getBulkValue(bulk){
+    let bulk_float = parseFloat(bulk);
+    if(!isNaN(bulk_float)){
+      return bulk_float;
+    }
+    if(typeof bulk === "string"){
+      if(bulk.toLowerCase().trim() === "l"){
+        return 0.1;
+      } else {
+        return 0;
+      }
+    }
   }
 
 }

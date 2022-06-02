@@ -1,12 +1,97 @@
 <section class="center-pane flexcol">
   <div class="overview grid-item grid-container">
-    <div class="grid-container grid-row-squish" style="border: 2px groove #eeede0;">
-      <div class="grid-item-inline mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+    <div class="grid-container grid-row-squish">
+      <!-- <div class="grid-item-inline mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
         <label class="fancy-font" style="font-size: 26px;">Assets</label>
+      </div> -->
+
+      <div class="grid-container-three groove">
+        <div class="grid-container groove-right" style="min-width: 200px; width: 225px;">
+          <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+            <label style="font-size: 16px;">Attunement</label>
+          </div>
+          <div class="grid-container-two">
+            <div class="grid-container" style="min-width: 75px;">
+              <label style="font-size: 12px;">Current</label>
+              <div class="grid-item">
+                <input class="input-medium" type="text" name="data.stats.attunement.value" value="{{data.stats.attunement.value}}" placeholder="{{data.stats.attunement.max}}" data-dtype="Number" disabled="disabled"/>
+              </div>
+            </div>
+            <div class="grid-container" style="min-width: 75px;">
+              <label style="font-size: 12px;">Maximum</label>
+              <div class="grid-item">
+                <input class="input-medium" type="text" name="data.stats.attunement.max" value="{{data.stats.attunement.max}}" placeholder="{{data.stats.attunement.max}}" data-dtype="Number" disabled="disabled"/>
+              </div>
+            </div>
+          </div>
+          <div class="grid-item-inline">
+            <label class="small-gray-text">Attunement Mod:</label>
+            <input type="text" class="input-small-inline" name="data.stats.attunement.mod" value="{{data.stats.attunement.mod}}" placeholder="0" data-dtype="Number"/>
+          </div>
+        </div>
+        <div class="grid-container groove-right" style="min-width: 200px; width: 225px;">
+          <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+            <label style="font-size: 16px;">Carry Weight</label>
+          </div>
+          <div class="grid-container-three">
+            <div class="grid-container" style="min-width: 75px;">
+              <label style="font-size: 12px;">Current</label>
+              <div class="grid-item">
+                <input class="input-medium" type="text" name="data.traits.carrying_capacity.current" value="{{data.traits.carrying_capacity.current}}" placeholder="{{data.traits.carrying_capacity.current}}" data-dtype="Number" disabled="disabled"/>
+              </div>
+            </div>
+            <div class="grid-container" style="min-width: 75px;">
+              <label style="font-size: 12px;">Limit</label>
+              <div class="grid-item">
+                <input class="input-medium" type="text" value="{{data.traits.carrying_capacity.value}}" placeholder="{{data.traits.carrying_capacity.value}}" data-dtype="Number" disabled="disabled"/>
+              </div>
+            </div>
+            <div class="grid-container" style="min-width: 75px;">
+              <label style="font-size: 12px;">Maximum</label>
+              <div class="grid-item">
+                <input class="input-medium" type="text" value="{{data.traits.carrying_capacity.max}}" placeholder="{{data.traits.carrying_capacity.max}}" data-dtype="Number" disabled="disabled"/>
+              </div>
+            </div>
+          </div>
+          <div class="grid-item-inline">
+            <label class="small-gray-text">Carrying Capacity Mod:</label>
+            <input type="text" class="input-small-inline" value="{{data.traits.carrying_capacity.mod}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+          </div>
+        </div>
+        <div class="grid-container" style="min-width: 200px; width: 225px;">
+          <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+            <label style="font-size: 16px;">Currency</label>
+          </div>
+          <div class="grid-container-two">
+            <div class="grid-item" style="width: 10px;">
+            </div>
+            <div class="grid-container" style="width: 185px;">
+              <div class="grid-container-two">
+                <div class="grid-item-left-inline" style="width: 60px;">
+                  <label>Credits:</label>
+                </div>
+                <div class="grid-item">
+                  <input class="input-medium" type="text" name="data.currency.credits" value="{{data.currency.credits}}" placeholder="0" data-dtype="Number"/>
+                </div>
+              </div>
+              <div class="grid-container-two">
+                <div class="grid-item-left-inline" style="width: 60px;">
+                  <label>Fate Tokens:</label>
+                </div>
+                <div class="grid-item">
+                  <input class="input-medium" type="text" name="data.currency.tokens.value" value="{{data.currency.tokens.value}}" placeholder="{{data.currency.tokens.max}}" data-dtype="Number"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="grid-item">
+
+      <br>
+
+      <div class="grid-item groove">
         <div class="inventory-filters flexrow">
-            <ul class="filter-list flexrow" data-filter="abilities">
+            <ul class="filter-list flexrow" data-filter="inventory">
                 <li class="filter-item" data-filter="attunement">Attunement</li>
                 <li class="filter-item" data-filter="equipped">Equipped</li>
                 <li class="filter-item" data-filter="inventory">Inventory</li>
@@ -42,16 +127,22 @@
               </div>
 
               <div class="item-detail">
-                {{item.details.quantity}}
+                {{item.data.details.quantity}}
               </div>
               <div class="item-detail">
-                {{item.details.bulk}}
+                {{item.data.details.bulk}}
               </div>
               <div class="item-detail">
                 {{item.data.details.usages.value}}/{{item.data.details.usages.max}}
               </div>
 
               <div class="item-controls flexrow">
+                {{#if item.data.attunement.required}}
+                <a class="item-control item-toggle {{item.toggleAttune}}" title='{{item.toggleAttuneTitle}}' name="attune"><i class="fas fa-sun"></i></a>
+                {{/if}}
+                {{#if item.data.tags.misc.equipment.enabled}}
+                <a class="item-control item-toggle {{item.toggleEquip}}" title='{{item.toggleEquipTitle}}' name="equip"><i class="fas fa-shield-alt"></i></a>
+                {{/if}}
                 <a class="item-control item-edit" title="Edit"><i class="fas fa-edit"></i></a>
                 <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
               </div>

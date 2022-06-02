@@ -480,7 +480,9 @@ AURAMANCY.ancestries = {
   "torlahng": "Torlahng",
   "vishaar": "Vishaar",
   "xyphid": "Xyphid",
-  "yojin": "Yojin"
+  "yojin": "Yojin",
+  "mixed": "Mixed Ancestry",
+  "custom": "Custom Ancestry"
 };
 
 AURAMANCY.abilityCategories = {
@@ -732,4 +734,42 @@ AURAMANCY.quality = {
   "high": "High",
   "superb": "Superb",
   "flawless": "Flawless"
+};
+
+AURAMANCY.conditions = {
+  "bleeding": "Bleeding",
+  "blinded": "Blinded",
+  "bloodthirsty": "Bloodthirsty",
+  "charmed": "Charmed",
+  "concentrated": "Concentrated",
+  "confused": "Confused",
+  "cursed": "Cursed",
+  "dazed": "Dazed",
+  "depleted": "Depleted",
+  "deafened": "Deafened",
+  "encumbered": "Encumbered",
+  "enlarged": "Enlarged",
+  "fatigued": "Fatigued",
+  "frightened": "Frightened",
+  "grappled": "Grappled",
+  "hasted": "Hasted",
+  "hidden": "Hidden",
+  "incapacitated": "Incapacitated",
+  "inebriated": "Inebriated",
+  "insane": "Insane",
+  "inspired": "Inspired",
+  "invisible": "Invisible",
+  "lethargic": "Lethargic",
+  "muted": "Muted",
+  "nullified": "Nullified",
+  "paralyzed": "Paralyzed",
+  "petrified": "Petrified",
+  "prone": "Prone",
+  "restrained": "Restrained",
+  "shrunken": "Shrunken",
+  "staggered": "Staggered",
+  "stunned": "Stunned",
+  "surprised": "Surprised",
+  "taunted": "Taunted",
+  "unconscious": "Unconscious"
 };
