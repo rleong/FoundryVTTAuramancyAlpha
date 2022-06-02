@@ -1,0 +1,23 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <div class="grid-item-inline header-fields">
+      <h1 class="charname fancy-font"><input type="text" value="{{item.name}}" placeholder="Name" style="font-size: 32px; text-align: center;" disabled="disabled"/></h1>
+    </div>
+  </header>
+
+  <br>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    <div class="grid-container groove">
+      <div class="grid-item-left">
+        {{data.chatdata}}
+      </div>
+      <div class="grid-item-left">
+        {{data.description}}
+      </div>
+    </div>
+
+  </section>
+</form>

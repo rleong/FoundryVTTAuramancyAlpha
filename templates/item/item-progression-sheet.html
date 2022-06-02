@@ -1,0 +1,87 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname fancy-font"><input name="name" type="text" value="{{item.name}}" placeholder="Name" style="font-size: 32px; text-align: center;" /></h1>
+    </div>
+  </header>
+
+  <br>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    <div class="grid-container groove">
+      <div class="grid-item groove-bottom mini-header">
+        <label class="fancy-font" style="font-size: 26px; text-align: center;">Level Progression</label>
+      </div>
+
+      <div class="grid-container">
+        <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Level</summary>
+        <div class="grid-container-two-item">
+          <div class="grid-item-left">
+            <label>Level: </label>
+          </div>
+          <div class="grid-item-left">
+            <div class="grid-item-left">
+              <input type="text" class="input-medium-inline" name="data.level" value="{{data.level}}" placeholder="0" data-dtype="Number"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-container-two" style="align-content: flex-start;">
+
+        <div class="grid-item">
+          <!-- <details> -->
+            <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Pool 1</summary>
+            <div class="grid-container">
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Option: </label>
+                </div>
+                <select name="data.pool1.option" style="font-size: 8px; width: 120px; height: 20px;">
+                  {{selectOptions config.pool1Options selected=data.pool1.option}}
+                </select>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Choice: </label>
+                </div>
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline-long" name="data.pool1.choice" value="{{data.pool1.choice}}" placeholder="Enter Choice." style="width: 120px;"/>
+                </div>
+              </div>
+            </div>
+          <!-- </details> -->
+        </div>
+
+        <div class="grid-item groove-left">
+          <!-- <details> -->
+            <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Pool 2</summary>
+            <div class="grid-container">
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Option: </label>
+                </div>
+                <select name="data.pool2.option" style="font-size: 8px; width: 120px; height: 20px;">
+                  {{selectOptions config.pool2Options selected=data.pool2.option}}
+                </select>
+              </div>
+              <div class="grid-container-two-item">
+                <div class="grid-item-left">
+                  <label>Choice: </label>
+                </div>
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline-long" name="data.pool2.choice" value="{{data.pool2.choice}}" placeholder="Enter Choice." style="width: 120px;"/>
+                </div>
+              </div>
+            </div>
+          <!-- </details> -->
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</form>

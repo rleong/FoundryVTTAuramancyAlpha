@@ -5,6 +5,7 @@ import ActorMovementConfig from "../apps/movement-config.js";
 import ActorBoxSelectorConfig from "../apps/box-selector.js";
 import ActorCharacteristicsConfig from "../apps/characteristics.js";
 import ActorProficienciesConfig from "../apps/proficiencies-selector.js";
+import ActorConditionsConfig from "../apps/conditions-config.js";
 
 
 /**
@@ -95,6 +96,9 @@ export class AuramancyActorSheet extends ActorSheet {
     // Filters
     context.filters = this._filters;
 
+    // calculations
+    context.conditions = this._getConditions(actorData);
+
     return context;
   }
 
@@ -123,6 +127,7 @@ export class AuramancyActorSheet extends ActorSheet {
     // Initialize containers.
     const abilities = [];
     const inventory = [];
+    const progression = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -136,13 +141,27 @@ export class AuramancyActorSheet extends ActorSheet {
         this._prepareItemToggleState(i);
         inventory.push(i);
       }
+      // Append to progression.
+      else if (i.type === 'progression') {
+        progression.push(i);
+        // if(progression.length < context.data.auramancy.level-1){
+        //   progression.push(i);
+        // } else {
+        //   ui.notifications.warn("You cannot gain another progression until you have leveled up.");
+        // }
+        //
+        // while(progression.length > context.data.auramancy.level-1){
+        //   progression = progression.pop();
+        // }
+      }
     }
 
     // Assign and return
-    context.abilities = abilities
+    context.abilities = abilities;
     context.filtered_abilities = this._filterItems(abilities, this._filters.abilities, "abilities");
     context.inventory = inventory;
     context.filtered_inventory = this._filterItems(inventory, this._filters.inventory, "inventory");
+    context.progression = progression;
   }
 
   /* -------------------------------------------- */
@@ -207,8 +226,14 @@ export class AuramancyActorSheet extends ActorSheet {
     // Damage Selector
     html.find(".proficiencies-selector").click(this._onProficienciesSelector.bind(this));
 
+    // Conditions
+    html.find(".conditions-config").click(this._onConditionsConfig.bind(this));
+
     // Add Inventory Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
+
+    // Item Rolling
+    html.find(".rollable .item-image").click(event => this._onItemRoll(event));
 
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
@@ -268,7 +293,6 @@ export class AuramancyActorSheet extends ActorSheet {
           return item.update({["data.attunement.attuned"]: value});
         } else {
           ui.notifications.warn("You cannot attune to anymore items.");
-          console.log("Limit!");
         }
       }
     }else if (name==="equip"){
@@ -448,6 +472,19 @@ export class AuramancyActorSheet extends ActorSheet {
     li.toggleClass("expanded");
   }
 
+  /**
+   * Handle rolling an item from the Actor sheet, obtaining the Item instance, and dispatching to its roll method.
+   * @param {Event} event  The triggering click event.
+   * @returns {Promise}    Results of the roll.
+   * @private
+   */
+  _onItemRoll(event) {
+    event.preventDefault();
+    const itemId = event.currentTarget.closest(".item").dataset.itemId;
+    const item = this.actor.items.get(itemId);
+    if ( item ) return item.roll();
+  }
+
   _getItemTags(data){
     const robustness = data.tags.robustness || {};
     const substance = data.tags.substance || {};
@@ -514,37 +551,21 @@ export class AuramancyActorSheet extends ActorSheet {
     return tags;
   }
 
-  /**
-   * Prepare the data structure for traits data like languages, resistances & vulnerabilities, and proficiencies.
-   * @param {object} traits   The raw traits data object from the actor data. *Will be mutated.*
-   * @private
-   */
-  _prepareTraits(traits) {
-    const map = {
-      dr: CONFIG.AURAMANCY.damageResistanceTypes,
-      di: CONFIG.AURAMANCY.damageResistanceTypes,
-      dv: CONFIG.AURAMANCY.damageResistanceTypes,
-      ci: CONFIG.AURAMANCY.conditionTypes,
-      languages: CONFIG.AURAMANCY.languages
-    };
-    for ( let [t, choices] of Object.entries(map) ) {
-      const trait = traits[t];
-      if ( !trait ) continue;
-      let values = [];
-      if ( trait.value ) {
-        values = trait.value instanceof Array ? trait.value : [trait.value];
-      }
-      trait.selected = values.reduce((obj, t) => {
-        obj[t] = choices[t];
-        return obj;
-      }, {});
+  _onConditionsConfig(event) {
+    event.preventDefault();
 
-      // Add custom entry
-      if ( trait.custom ) {
-        trait.custom.split(";").forEach((c, i) => trait.selected[`custom${i+1}`] = c.trim());
+    return new ActorConditionsConfig(this.object).render(true);
+  }
+
+  _getConditions(actorData) {
+    const conditions = CONFIG.AURAMANCY.conditions;
+    const tags = [];
+    for ( let [k, v] of Object.entries(actorData.data.health.conditions) ) {
+      if(v.enabled === true){
+        tags.push(conditions[k]);
       }
-      trait.cssClass = !isObjectEmpty(trait.selected) ? "" : "inactive";
     }
+    return tags;
   }
 
   _calculateAllData(actorData) {

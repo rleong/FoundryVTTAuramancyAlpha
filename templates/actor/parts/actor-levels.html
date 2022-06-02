@@ -20,7 +20,7 @@
 
     <br>
 
-    <div class="grid-container" style="border: 2px groove #eeede0;">
+    <div class="grid-container groove" style="">
       <div class="grid-item-inline mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
         <a class="decrease-level" data-action="tags" title="Decrease Level">
           <label class="glow" style="font-size: 26px;">-</label>
@@ -32,7 +32,79 @@
           <label class="fancy-font glow" style="font-size: 26px;">+</label>
         </a>
       </div>
-      <div class="grid-item-left" style="border-bottom: 2px groove #eeede0;"/>
+
+      <div class="grid-container-two" style="min-height: 150px; align-content: flex-start;">
+
+        <div class="grid-container groove-right" style="min-width: 300px;">
+
+          <div class="grid-container groove-bottom" style="height: 60px;">
+            <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+              <label class="" style="font-size: 14px;">Level 1 Options</label>
+            </div>
+          </div>
+
+          <div class="grid-container groove-bottom" style="">
+            <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+              <label class="" style="font-size: 14px;">Remaining Level Options</label>
+            </div>
+            <ol class="items-list inventory-list">
+              <li class="items-header flexrow">
+                <h3 class="item-name flexrow">Progression</h3>
+
+                <div class="item-controls flexrow">
+                  <a class="item-control item-create" title="Add" data-type="progression">
+                    <i class="fas fa-plus"></i> Add
+                  </a>
+                </div>
+              </li>
+
+              <ol class="item-list">
+              {{#each progression as |progression id|}}
+                <li class="item flexrow" data-item-id="{{progression._id}}">
+                  <div class="item-name flexrow rollable">
+                    <!-- <div class="item-image" tabindex="0" role="button" aria-label="{{progression.name}}" style="background-image: url('{{progression.img}}')"></div> -->
+                    <h4>
+                      Level: {{progression.data.level}} -- {{progression.data.pool1.choice}}, {{progression.data.pool2.choice}}
+                    </h4>
+                  </div>
+
+                  <div class="item-controls flexrow">
+                    <a class="item-control item-edit" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
+                  </div>
+                </li>
+              {{/each}}
+              </ol>
+            </ol>
+          </div>
+
+        </div>
+
+        <div class="grid-container" style="min-width: 150px;">
+
+          <div class="grid-container groove-bottom" style="">
+            <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+              <label class="" style="font-size: 14px;">Cultivation</label>
+            </div>
+          </div>
+
+          <div class="grid-container groove-bottom" style="">
+            <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+              <label class="" style="font-size: 14px;">Releases</label>
+            </div>
+          </div>
+
+          <div class="grid-container groove-bottom" style="">
+            <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+              <label class="" style="font-size: 14px;">Paths</label>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="grid-item-left"/>
     </div>
   </div>
 </section>

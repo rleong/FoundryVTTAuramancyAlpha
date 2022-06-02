@@ -1,4 +1,4 @@
-export default class ActorMovementConfig extends DocumentSheet {
+export default class ItemObjectTagConfig extends DocumentSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {

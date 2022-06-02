@@ -294,42 +294,17 @@
           <div class="grid-container">
             <div class="grid-container-two-item">
               <div class="grid-item-left">
-                <label>Amount: </label>
+                <label>Damage: </label>
               </div>
-              <div class="grid-item-left">
-                <input type="text" class="input-medium-inline" name="data.damage.amount" value="{{data.damage.amount}}" placeholder="0" data-dtype="Number"/>
-              </div>
-            </div>
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Die: </label>
-              </div>
-              <select name="data.damage.die" style="font-size: 8px; width: 80px; height: 20px;">
-                {{selectOptions config.damageDice selected=data.damage.die}}
-              </select>
-            </div>
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Type: </label>
-              </div>
-              <select name="data.damage.type" style="font-size: 8px; width: 80px; height: 20px;">
-                {{selectOptions config.damageTypes selected=data.damage.type}}
-              </select>
-            </div>
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Subtype: </label>
-              </div>
-              <select name="data.damage.subtype" style="font-size: 8px; width: 80px; height: 20px;">
-                {{selectOptions config.damageSubtypes selected=data.damage.subtype}}
-              </select>
-            </div>
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Other: </label>
-              </div>
-              <div class="grid-item-left">
-                <input type="text" class="input-medium-inline-long" name="data.damage.other" value="{{data.damage.other}}" placeholder="Separate by commas."/>
+              <div class="grid-item">
+                <a class="damage-config small-icon" data-action="tags" title="Tags" name="Tags">
+                  <i class="fas fa-cog grid-item-inline-right"></i>
+                </a>
+                <ul class="traits-list grid-item-left">
+                {{#each data.damage.array}}
+                  <li class="tag {{this}}">{{this}}</li>
+                {{/each}}
+                </ul>
               </div>
             </div>
             <div class="grid-container-two-item">

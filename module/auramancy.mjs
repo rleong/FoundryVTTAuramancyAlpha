@@ -129,3 +129,7 @@ function rollItemMacro(itemName) {
 Handlebars.registerHelper("getProperty", function(data, property) {
   return getProperty(data, property);
 });
+
+Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});

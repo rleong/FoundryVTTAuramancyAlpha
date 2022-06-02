@@ -773,3 +773,22 @@ AURAMANCY.conditions = {
   "taunted": "Taunted",
   "unconscious": "Unconscious"
 };
+
+AURAMANCY.pool1Options = {
+  "cultivation": "Cultivation Technique",
+  "release": "Release Technique",
+  "path": "Path Advancement",
+  "perk": "Combat Perk",
+  "attribute": "Attribute Improvement"
+};
+
+AURAMANCY.pool2Options = {
+  "attribute": "Attribute Improvement",
+  "hitdice": "Hit Dice Improvement",
+  "proficiency": "Learn Proficiency",
+  "expertise": "Proficiency Improvement",
+  "well": "Aether Well Improvement",
+  "reserve": "Aether Reserve Improvement",
+  "release": "Release Progression",
+  "perk": "Non-Combat Perk"
+};

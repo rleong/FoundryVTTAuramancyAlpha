@@ -113,42 +113,17 @@
               </div>
               <div class="grid-container-two-item">
                 <div class="grid-item-left">
-                  <label>Amount: </label>
+                  <label>Damage: </label>
                 </div>
-                <div class="grid-item-left">
-                  <input type="text" class="input-medium-inline" name="data.combat.damage.amount" value="{{data.combat.damage.amount}}" placeholder="0" data-dtype="Number"/>
-                </div>
-              </div>
-              <div class="grid-container-two-item">
-                <div class="grid-item-left">
-                  <label>Die: </label>
-                </div>
-                <select name="data.combat.damage.die" style="font-size: 8px; width: 80px; height: 20px;">
-                  {{selectOptions config.damageDice selected=data.combat.damage.die}}
-                </select>
-              </div>
-              <div class="grid-container-two-item">
-                <div class="grid-item-left">
-                  <label>Type: </label>
-                </div>
-                <select name="data.combat.damage.type" style="font-size: 8px; width: 80px; height: 20px;">
-                  {{selectOptions config.damageTypes selected=data.combat.damage.type}}
-                </select>
-              </div>
-              <div class="grid-container-two-item">
-                <div class="grid-item-left">
-                  <label>Subtype: </label>
-                </div>
-                <select name="data.combat.damage.subtype" style="font-size: 8px; width: 80px; height: 20px;">
-                  {{selectOptions config.damageSubtypes selected=data.combat.damage.subtype}}
-                </select>
-              </div>
-              <div class="grid-container-two-item">
-                <div class="grid-item-left">
-                  <label>Other: </label>
-                </div>
-                <div class="grid-item-left">
-                  <input type="text" class="input-medium-inline-long" name="data.combat.damage.other" value="{{data.combat.damage.other}}" placeholder="Separate by commas."/>
+                <div class="grid-item">
+                  <a class="damage-config small-icon" data-action="tags" title="Tags" name="Tags">
+                    <i class="fas fa-cog grid-item-inline-right"></i>
+                  </a>
+                  <ul class="traits-list grid-item-left">
+                  {{#each data.combat.damage.array}}
+                    <li class="tag {{this}}">{{this}}</li>
+                  {{/each}}
+                  </ul>
                 </div>
               </div>
               <div class="grid-container-two-item">

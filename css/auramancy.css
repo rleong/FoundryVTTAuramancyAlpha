@@ -59,6 +59,10 @@
   display: grid;
   grid-template-columns: auto auto;
 }
+.grid-container-two-card {
+  display: grid;
+  grid-template-columns: 120px auto;
+}
 .grid-container-two-item {
   display: grid;
   grid-template-columns: 95px auto;
@@ -417,6 +421,10 @@
   width: 150px;
   height: 150px;
 }
+.profile-picture-chat {
+  width: 50px;
+  height: 50px;
+}
 .small-icon {
   flex: 0 0 16px;
   padding: 2px 0;
@@ -532,6 +540,14 @@ input.input-tags-inline {
   color: gray;
   height: 15px;
   width: 15px;
+}
+input.input-tags-inline-long {
+  border-color: gray;
+  font-size: 10px;
+  background-color: transparent;
+  color: gray;
+  height: 20px;
+  width: 80px;
 }
 input.input-medium-inline-long {
   border-color: gray;

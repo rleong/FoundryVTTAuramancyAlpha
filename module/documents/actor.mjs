@@ -121,12 +121,6 @@ export class AuramancyActor extends Actor {
 
     // Make modifications to data here. For example:
     const data = actorData.data;
-
-    // Loop through attribute scores, and add their modifiers to our sheet output.
-    for (let [key, attribute] of Object.entries(data.attributes)) {
-      // Calculate the modifier using d20 rules.
-      attribute.mod = Math.floor((attribute.value - 10) / 2);
-    }
   }
 
   /**
@@ -137,7 +131,6 @@ export class AuramancyActor extends Actor {
 
     // Make modifications to data here. For example:
     const data = actorData.data;
-    data.xp = (data.cr * data.cr) * 100;
   }
 
   /**
@@ -185,8 +178,10 @@ export class AuramancyActor extends Actor {
   _getCurrentBulk(data, current_bulk){
     let total_bulk = current_bulk;
     for(const item of data){
-      let bulk = this._getBulkValue(item.data.data.details.bulk);
-      total_bulk += bulk;
+      if(item.type === "object"){
+        let bulk = this._getBulkValue(item.data.data.details.bulk);
+        total_bulk += bulk;
+      }
     }
     return total_bulk;
   }

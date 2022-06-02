@@ -454,9 +454,11 @@
           "biography": ""
         },
         "progression": {
+          "level1": [],
           "cultivations": [],
           "releases": {
             "artifice": {
+              "enabled": false,
               "value": 0,
               "max": 5,
               "restriction": 4,
@@ -464,6 +466,7 @@
               "artifice_die": 4
             },
             "augmentation": {
+              "enabled": false,
               "value": 0,
               "max": 10,
               "restriction": 2,
@@ -474,18 +477,21 @@
               "augmentation_die": 4
             },
             "causal_manipulation": {
+              "enabled": false,
               "value": 0,
               "max": 5,
               "restriction": 4,
               "tactical_die": 4
             },
             "martial_techniques": {
+              "enabled": false,
               "value": 0,
               "max": 5,
               "restriction": 4,
               "max_surge": 2
             },
             "psionics": {
+              "enabled": false,
               "value": 0,
               "max": 5,
               "restriction": 4,
@@ -495,18 +501,21 @@
               }
             },
             "spellcasting": {
+              "enabled": false,
               "value": 0,
               "max": 10,
               "restriction": 2,
               "spell_tier": 1
             },
             "thoughtscape": {
+              "enabled": false,
               "value": 0,
               "max": 10,
               "restriction": 2,
               "max_thoughtscape": 22
             },
             "weapon_art": {
+              "enabled": false,
               "value": 0,
               "max": 10,
               "restriction": 2,
@@ -517,9 +526,7 @@
               }
             }
           },
-          "paths": {
-
-          }
+          "paths": []
         }
       }
     },
@@ -531,10 +538,11 @@
     }
   },
   "Item": {
-    "types": ["object", "ability"],
+    "types": ["object", "ability", "progression"],
     "templates": {
       "base": {
-        "description": ""
+        "description": "",
+        "chatdata": []
       }
     },
     "object": {
@@ -548,7 +556,7 @@
         "quantity": 1,
         "quality": "",
         "rarity": "",
-        "value": "",
+        "value": 0,
         "bulk": "-",
         "usages": {
           "value": 0,
@@ -564,6 +572,7 @@
           "subtype": "",
           "other": "",
           "parsed": [],
+          "array": [],
           "proficiency": false
         },
         "subtype": "",
@@ -943,6 +952,7 @@
         "subtype": "",
         "other": "",
         "parsed": [],
+        "array": [],
         "proficiency": false
       },
       "range": {
@@ -956,6 +966,17 @@
       "sub_abilities": {
         "string": "",
         "list": []
+      }
+    },
+    "progression": {
+      "level": 2,
+      "pool1": {
+        "option": "",
+        "choice": ""
+      },
+      "pool2": {
+        "option": "",
+        "choice": ""
       }
     }
   }

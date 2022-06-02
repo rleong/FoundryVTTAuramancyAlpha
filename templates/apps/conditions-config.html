@@ -1,0 +1,23 @@
+<form autocomplete="off">
+    <p class="notes">Check which Conditions you have. Leave the text field blank if there is no descriptor for the Condition involved.</p>
+    <div class="grid-container">
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Conditions</div>
+        {{#each conditions as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.health.conditions.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../condition_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline-long" name="data.health.conditions.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="Description"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+    </div>
+
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+</form>
