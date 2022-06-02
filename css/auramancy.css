@@ -61,7 +61,7 @@
 }
 .grid-container-two-card {
   display: grid;
-  grid-template-columns: 120px auto;
+  grid-template-columns: 125px auto;
 }
 .grid-container-two-item {
   display: grid;

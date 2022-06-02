@@ -134,9 +134,9 @@
               <div class="grid-item-left">
                 <label>Components: </label>
               </div>
-              <select name="data.magical.components" style="font-size: 8px; width: 80px; height: 20px;">
-                {{selectOptions config.magicComponents selected=data.magical.components}}
-              </select>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.magical.components" value="{{data.magical.components}}" placeholder="V, S, and/or M."/>
+              </div>
             </div>
           </div>
         <!-- </details> -->
@@ -152,6 +152,15 @@
               </div>
               <div class="grid-item-left">
                 <input type="text" class="input-medium-inline-long" name="data.duration.time" value="{{data.duration.time}}" placeholder="ex. Until Dismissed."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Dismissable: </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="data.duration.dismissable" data-dtype="Boolean"
+                 {{checked data.duration.dismissable}}/>
               </div>
             </div>
             <div class="grid-container-two-item">

@@ -454,8 +454,10 @@
           "biography": ""
         },
         "progression": {
-          "level1": [],
-          "cultivations": [],
+          "level1_array": [],
+          "cultivations_array": [],
+          "releases_array": [],
+          "paths_array": [],
           "releases": {
             "artifice": {
               "enabled": false,
@@ -913,8 +915,8 @@
       },
       "category": {
         "prefix": "",
-        "category": "",
-        "source": "",
+        "category": "action",
+        "source": "default",
         "other": ""
       },
       "trigger": "",
@@ -926,6 +928,7 @@
       },
       "duration": {
         "time": "",
+        "dismissable": false,
         "dismiss": 0
       },
       "concentration": false,

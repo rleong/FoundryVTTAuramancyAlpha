@@ -35,12 +35,20 @@
 
       <div class="grid-container-two" style="min-height: 150px; align-content: flex-start;">
 
-        <div class="grid-container groove-right" style="min-width: 300px;">
+        <div class="grid-container groove-right" style="width: 425px;">
 
           <div class="grid-container groove-bottom" style="height: 60px;">
             <div class="grid-item mini-header groove-bottom" style="height: 20px;">
               <label class="" style="font-size: 14px;">Level 1 Options</label>
+              <a class="box-selector small-icon" data-action="level1" title="Level1" name="Level1">
+  							<i class="fas fa-cog grid-item-inline-right"></i>
+  						</a>
             </div>
+            <ul class="traits-list grid-item-left">
+            {{#each data.progression.level1_array}}
+              <li class="tag">{{this}}</li>
+            {{/each}}
+            </ul>
           </div>
 
           <div class="grid-container groove-bottom" style="">
@@ -80,24 +88,48 @@
 
         </div>
 
-        <div class="grid-container" style="min-width: 150px;">
+        <div class="grid-container" style="width: 250px;">
 
           <div class="grid-container groove-bottom" style="">
-            <div class="grid-item mini-header groove-bottom" style="height: 20px;">
+            <div class="grid-item-inline mini-header groove-bottom" style="height: 20px;">
               <label class="" style="font-size: 14px;">Cultivation</label>
+              <a class="box-selector small-icon" data-action="cultivations" title="Cultivations" name="Cultivations">
+  							<i class="fas fa-cog grid-item-inline-right"></i>
+  						</a>
             </div>
+            <ul class="traits-list grid-item-left">
+            {{#each data.progression.cultivations_array}}
+              <li class="tag">{{this}}</li>
+            {{/each}}
+            </ul>
           </div>
 
           <div class="grid-container groove-bottom" style="">
             <div class="grid-item mini-header groove-bottom" style="height: 20px;">
               <label class="" style="font-size: 14px;">Releases</label>
+              <a class="box-selector small-icon" data-action="releases" title="Releases" name="Releases">
+  							<i class="fas fa-cog grid-item-inline-right"></i>
+  						</a>
             </div>
+            <ul class="traits-list grid-item-left">
+            {{#each data.progression.releases_array}}
+              <li class="tag">{{this}}</li>
+            {{/each}}
+            </ul>
           </div>
 
           <div class="grid-container groove-bottom" style="">
             <div class="grid-item mini-header groove-bottom" style="height: 20px;">
               <label class="" style="font-size: 14px;">Paths</label>
+              <a class="box-selector small-icon" data-action="paths" title="Paths" name="Paths">
+  							<i class="fas fa-cog grid-item-inline-right"></i>
+  						</a>
             </div>
+            <ul class="traits-list grid-item-left">
+            {{#each data.progression.paths_array}}
+              <li class="tag">{{this}}</li>
+            {{/each}}
+            </ul>
           </div>
 
         </div>

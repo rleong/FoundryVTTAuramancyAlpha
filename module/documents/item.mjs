@@ -30,7 +30,8 @@ export class AuramancyItem extends Item {
 
     // Make modifications to data here. For example:
     const data = itemData.data;
-
+    let chatdata = this._prepareChatData(itemData);
+    data.chatdata = chatdata;
   }
 
   /**
@@ -41,7 +42,8 @@ export class AuramancyItem extends Item {
 
     // Make modifications to data here. For example:
     const data = itemData.data;
-
+    let chatdata = this._prepareChatData(itemData);
+    data.chatdata = chatdata;
   }
 
   /**
@@ -86,8 +88,13 @@ export class AuramancyItem extends Item {
 
   _prepareChatData(item){
     let chatdata = [];
+    // console.log(item.type);
+    // console.log("------------");
+    // console.log(item);
+    // console.log("------------");
 
     if(item.type === "object"){
+      // console.log("object");
       chatdata.push([`Quantity:`, ` ${item.data.details.quantity}`]);
       if (item.data.details.quality !== "") {
         chatdata.push([`Quality:`, ` ${CONFIG.AURAMANCY.quality[item.data.details.quality]}`]);
@@ -137,16 +144,136 @@ export class AuramancyItem extends Item {
       if (item.data.stats.size !== 0) {
         chatdata.push([`Size Category:`, ` ${CONFIG.AURAMANCY.sizeCategories[item.data.stats.size]}`]);
       }
+      if (item.data.stats.movement.max !== 0) {
+        chatdata.push([`Movement:`, ` ${item.data.stats.movement.value}/${item.data.stats.movement.max}`]);
+        let movement_string = "";
+        let units = item.data.stats.movement.units ? `${item.data.stats.movement.units}.` : "";
+        for(let [k, v] of Object.entries(item.data.stats.movement.options)){
+          if(k !== "special" && k !== "units" && v !== 0){
+
+            movement_string += `${CONFIG.AURAMANCY.movementOptions[k]} (${v}${units}), `;
+          }
+        }
+        if(item.data.stats.movement.options["special"] !== ""){
+          movement_string += `${item.data.stats.movement.options["special"]}`
+        }
+        if(movement_string !== ""){
+          if (movement_string.endsWith(", ")) {
+            movement_string = movement_string.substring(0, movement_string.length - 2);
+          }
+          chatdata.push([`Movement Options: `, movement_string]);
+        }
+      }
+      let tags = "";
+      for (let [k, v] of Object.entries(item.data.tags)){
+        for (let [sk, sv] of Object.entries(v)){
+          if(sv["enabled"] === true){
+            let descriptor = sv["descriptor"] === "" ? "" : ` ${sv["descriptor"]}`;
+            tags += `${CONFIG.AURAMANCY.objectTags[sk]}${descriptor}, `;
+          }
+        }
+      }
+      if (tags !== ""){
+        if (tags.endsWith(", ")){
+          tags = tags.substring(0, tags.length - 2);
+        }
+        chatdata.push([`Tags: `, tags]);
+      }
 
       // console.log(chatdata);
-      item.data.chatdata = chatdata;
+      // item.data.chatdata = chatdata;
     }else if (item.type === "ability"){
+      let prerequisites = "";
+      if(item.data.prerequisites.level !== 0){
+        prerequisites += `Level ${item.data.prerequisites.level}, `;
+      }
+      if(item.data.prerequisites.other !== ""){
+        prerequisites += item.data.prerequisites.other;
+      }
+      if (prerequisites !== ""){
+        if (prerequisites.endsWith(", ")){
+          prerequisites = prerequisites.substring(0, prerequisites.length - 2);
+        }
+        chatdata.push([`Prerequisites: `, prerequisites]);
+      }
+      let prefix = item.data.category.prefix === "" || item.data.category.prefix === "none" ? "" : `${CONFIG.AURAMANCY.abilityPrefixes[item.data.category.prefix]} `;
+      let source = item.data.category.other === "" ? CONFIG.AURAMANCY.abilitySources[item.data.category.source] : item.data.category.other;
+      chatdata.push([`Category: `, `${prefix}${CONFIG.AURAMANCY.abilityCategories[item.data.category.category]} (${source})`]);
+      if (item.data.category.category === "reaction"){
+        chatdata.push([`Trigger: `, item.data.trigger]);
+      }
+      if (item.data.magical.magical !== "" && item.data.magical.magical !== "No") {
+        let tiers = item.data.magical.tier === "" ? "" : `Tier ${item.data.magical.tier} `;
+        let school = item.data.magical.school === "" || item.data.magical.school === "none" ? "" : `${CONFIG.AURAMANCY.magicSchools[item.data.magical.school]}`;
+        let components = item.data.magical.components === "" ? "" : (school === "" ? `${item.data.magical.components}` : `, ${item.data.magical.components}`);
+        let magical = `${tiers}${school}${components}` === "" ? "" : ` (${tiers}${school}${components})`;
+        chatdata.push([`Magical: `, `${CONFIG.AURAMANCY.magicalOptions[item.data.magical.magical]}${magical}`]);
+      }
+      if (item.data.duration.time !== "") {
+        let dismiss = item.data.duration.dismissable === false ? "" : ` (${item.data.duration.dismiss} AP)`;
+        chatdata.push([`Duration: `, `${item.data.duration.time}${dismiss}`]);
+      }
+      if (item.data.concentration === true) {
+        chatdata.push([`Concentration: `, `Yes`]);
+      }
+      if (item.data.usages.max !== 0) {
+        chatdata.push([`Usages: `, `${item.data.usages.value}/${item.data.usages.max}`]);
+        chatdata.push([`Recharge: `, `${item.data.recharge}`]);
+      }
+      let cost = "";
+      if (item.data.cost.ap !== 0 && item.data.cost.ap !== null) {
+        cost += `${item.data.cost.ap} AP, `;
+      }
+      if (item.data.cost.charges !== 0 && item.data.cost.charges !== null) {
+        cost += `${item.data.cost.charges} Aether Charges, `;
+      }
+      if (item.data.cost.usages !== 0 && item.data.cost.usages !== null) {
+        cost += `${item.data.cost.usages} Usasges, `;
+      }
+      if (item.data.cost.other !== "") {
+        cost += item.data.cost.other;
+      }
+      if (cost !== "") {
+        if (cost.endsWith(", ")){
+          cost = cost.substring(0, cost.length - 2);
+        }
+        let ritual = item.data.cost.ritual === false ? "" : ` (Ritual)`;
+        cost += ritual;
+        chatdata.push([`Cost: `, cost]);
+      }
+      if (item.data.attack_type.type !== ""){
+        chatdata.push([`Attack Type: `, `${CONFIG.AURAMANCY.attackTypes[item.data.attack_type.type]} (${item.data.attack_type.source})`]);
+      }
+      if (item.data.damage.array.length !== 0) {
+        let damage_string = "";
+        for(const element of item.data.damage.array){
+          damage_string += `${element}, `;
+        }
+        if(damage_string.endsWith(", ")){
+          damage_string = damage_string.substring(0, damage_string.length - 2);
+        }
+        chatdata.push([`Damage: `, damage_string]);
+      }
+      if (item.data.damage.proficiency === true) {
+        chatdata.push([`Proficient: `, `Yes`]);
+      }
+      if (item.data.range.distance !== "") {
+        chatdata.push([`Range: `, `${item.data.range.distance}${item.data.range.unit}.`]);
+      }
+      if (item.data.area.dimensions !== "") {
+        chatdata.push([`Area: `, `${item.data.area.dimensions} ${CONFIG.AURAMANCY.shapes[item.data.area.shape]}`]);
+      }
 
-
-      // console.log(chatdata);
-      item.data.chatdata = chatdata;
+    } else {
+      return;
     }
 
+    // console.log("---------");
+    // console.log(chatdata);
+    // console.log("---------");
+
+    item.data.chatdata = chatdata;
+    return chatdata;
   }
 
   /**

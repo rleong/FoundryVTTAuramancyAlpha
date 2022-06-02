@@ -6,6 +6,7 @@ import ActorBoxSelectorConfig from "../apps/box-selector.js";
 import ActorCharacteristicsConfig from "../apps/characteristics.js";
 import ActorProficienciesConfig from "../apps/proficiencies-selector.js";
 import ActorConditionsConfig from "../apps/conditions-config.js";
+import ItemCard from "../apps/item-card.js";
 
 
 /**
@@ -188,6 +189,9 @@ export class AuramancyActorSheet extends ActorSheet {
     // Item State Toggling
     html.find(".item-toggle").click(this._onToggleItem.bind(this));
 
+    // Item State Toggling
+    html.find(".item-info").click(this._onToggleItemInfo.bind(this));
+
     // -------------------------------------------------------------
     // Everything below here is only needed if the sheet is editable
     if (!this.isEditable) return;
@@ -276,7 +280,7 @@ export class AuramancyActorSheet extends ActorSheet {
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const name = event.currentTarget.name;
     const item = this.actor.items.get(itemId);
-    const actor = this.actor.data.data
+    const actor = this.actor.data.data;
 
     if(name==="attune"){
 
@@ -299,6 +303,22 @@ export class AuramancyActorSheet extends ActorSheet {
       const value = !item.data.data.equipped;
       return item.update({["data.equipped"]: value});
     }
+  }
+
+  _onToggleItemInfo(event){
+    event.preventDefault();
+    const itemId = event.currentTarget.closest(".item").dataset.itemId;
+    const name = event.currentTarget.name;
+    const item = this.actor.items.get(itemId);
+    const actor = this.actor.data.data;
+
+    // Setup html
+    const options = {
+      actor: actor,
+      item: item
+    }
+
+    return new ItemCard(this.object, options).render(true);
   }
 
   /**
@@ -724,6 +744,22 @@ export class AuramancyActorSheet extends ActorSheet {
       current_values = this.object.data.data.traits.sensitivities;
       available_options = CONFIG.AURAMANCY.sensitivities;
       data_name = "data.traits.sensitivities";
+    } else if (name === "Cultivations") {
+      current_values = this.object.data.data.progression.cultivations_array;
+      available_options = CONFIG.AURAMANCY.cultivation;
+      data_name = "data.progression.cultivations_array";
+    } else if (name === "Releases") {
+      current_values = this.object.data.data.progression.releases_array;
+      available_options = CONFIG.AURAMANCY.releases;
+      data_name = "data.progression.releases_array";
+    } else if (name === "Paths") {
+      current_values = this.object.data.data.progression.paths_array;
+      available_options = CONFIG.AURAMANCY.paths;
+      data_name = "data.progression.paths_array";
+    } else if (name === "Level1") {
+      current_values = this.object.data.data.progression.level1_array;
+      available_options = CONFIG.AURAMANCY.level1Options;
+      data_name = "data.progression.level1_array";
     } else {
       console.log("Oopssieeeesss");
       return;

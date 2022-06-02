@@ -792,3 +792,10 @@ AURAMANCY.pool2Options = {
   "release": "Release Progression",
   "perk": "Non-Combat Perk"
 };
+
+AURAMANCY.level1Options = {
+  "cultivation": "Cultivation",
+  "release": "Release",
+  "path": "Path",
+  "perk": "Perk"
+};

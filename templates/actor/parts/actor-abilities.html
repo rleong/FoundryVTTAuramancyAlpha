@@ -58,6 +58,7 @@
               </div>
 
               <div class="item-controls flexrow">
+                <a class="item-control item-info" title="Info"><i class="fas fa-info"></i></a>
                 <a class="item-control item-edit" title="Edit"><i class="fas fa-edit"></i></a>
                 <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
               </div>
@@ -75,6 +76,10 @@
             <div class="item-detail">Charge Cost</div>
             <div class="item-detail">Usages</div>
             <div class="item-detail">Magical</div>
+
+            <div class="item-controls flexrow">
+              <a class="item-control">Info</a>
+            </div>
 
           </li>
 
@@ -102,6 +107,10 @@
               </div>
               <div class="item-detail">
                 {{lookup ../config.magicalOptions ability.data.magical.magical}}
+              </div>
+
+              <div class="item-controls flexrow">
+                <a class="item-control item-info" title="Info"><i class="fas fa-info"></i></a>
               </div>
             </li>
           {{/each}}
