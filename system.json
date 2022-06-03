@@ -9,7 +9,16 @@
   "esmodules": ["module/auramancy.mjs"],
   "styles": ["css/auramancy.css"],
   "scripts": ["js/auramancy.js"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "default_abilities",
+      "label": "Default Abilities",
+      "system": "auramancy",
+      "path": "./packs/default-abilities.db",
+      "entity": "Item",
+      "type": "ability"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

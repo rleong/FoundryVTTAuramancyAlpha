@@ -129,6 +129,7 @@ export class AuramancyActorSheet extends ActorSheet {
     const abilities = [];
     const inventory = [];
     const progression = [];
+    const default_abilities = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -156,6 +157,8 @@ export class AuramancyActorSheet extends ActorSheet {
         // }
       }
     }
+
+    // async getDefaultAbilities();
 
     // Assign and return
     context.abilities = abilities;
@@ -992,6 +995,53 @@ export class AuramancyActorSheet extends ActorSheet {
         break;
     }
     app?.render(true);
+  }
+
+  async getDefaultAbilities() {
+    let default_abilities = [];
+
+    let compendium = game.packs.get("auramancy.default_abilities");
+    console.log(compendium);
+
+    return ;
+  }
+
+  static async loadClassFeatures() {
+    // Get the configuration of features which may be added
+    const clsConfig = "auramancy.default_abilities";
+    if (!clsConfig) return [];
+
+    let ids = [];
+
+    // Acquire class features
+    // let ids = [];
+    // for ( let [l, f] of Object.entries(clsConfig.features || {}) ) {
+    //   l = parseInt(l);
+    //   if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);
+    // }
+
+    // Acquire subclass features
+    // const subConfig = clsConfig.subclasses[subclassName] || {};
+    // for ( let [l, f] of Object.entries(subConfig.features || {}) ) {
+    //   l = parseInt(l);
+    //   if ( (l <= level) && (l > priorLevel) ) ids = ids.concat(f);
+    // }
+
+    // Load item data for all identified features
+    const features = [];
+    for ( let id of ids ) {
+      features.push(await fromUuid(id));
+    }
+
+    // Class spells should always be prepared
+    for ( const feature of features ) {
+      if ( feature.type === "spell" ) {
+        const preparation = feature.data.data.preparation;
+        preparation.mode = "always";
+        preparation.prepared = true;
+      }
+    }
+    return features;
   }
 
 }

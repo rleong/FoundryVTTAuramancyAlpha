@@ -127,7 +127,12 @@ export class AuramancyItem extends Item {
         chatdata.push([`Subtype:`, ` ${CONFIG.AURAMANCY.attackTypes[item.data.combat.subtype]}`]);
       }
       if (item.data.combat.range.distance !== "") {
-        chatdata.push([`Range:`, ` ${item.data.combat.range.distance}${item.data.combat.range.unit}.`]);
+        let float_range = parseFloat(item.data.combat.range.distance);
+        if (isNaN(float_range)) {
+          chatdata.push([`Range: `, `${item.data.combat.range.distance}`]);
+        } else {
+          chatdata.push([`Range: `, `${item.data.combat.range.distance}${item.data.combat.range.unit}.`]);
+        }
       }
       if (item.data.stats.ac.value !== 0) {
         chatdata.push([`AC:`, ` ${item.data.stats.ac.value}`]);
@@ -202,7 +207,7 @@ export class AuramancyItem extends Item {
       if (item.data.category.category === "reaction"){
         chatdata.push([`Trigger: `, item.data.trigger]);
       }
-      if (item.data.magical.magical !== "" && item.data.magical.magical !== "No") {
+      if (item.data.magical.magical !== "" && item.data.magical.magical !== "no") {
         let tiers = item.data.magical.tier === "" ? "" : `Tier ${item.data.magical.tier} `;
         let school = item.data.magical.school === "" || item.data.magical.school === "none" ? "" : `${CONFIG.AURAMANCY.magicSchools[item.data.magical.school]}`;
         let components = item.data.magical.components === "" ? "" : (school === "" ? `${item.data.magical.components}` : `, ${item.data.magical.components}`);
@@ -241,8 +246,10 @@ export class AuramancyItem extends Item {
         cost += ritual;
         chatdata.push([`Cost: `, cost]);
       }
-      if (item.data.attack_type.type !== ""){
-        chatdata.push([`Attack Type: `, `${CONFIG.AURAMANCY.attackTypes[item.data.attack_type.type]} (${item.data.attack_type.source})`]);
+      if (item.data.category.category === "attack") {
+        if (item.data.attack_type.type !== ""){
+          chatdata.push([`Attack Type: `, `${CONFIG.AURAMANCY.attackTypes[item.data.attack_type.type]} (${item.data.attack_type.source})`]);
+        }
       }
       if (item.data.damage.array.length !== 0) {
         let damage_string = "";
@@ -258,7 +265,12 @@ export class AuramancyItem extends Item {
         chatdata.push([`Proficient: `, `Yes`]);
       }
       if (item.data.range.distance !== "") {
-        chatdata.push([`Range: `, `${item.data.range.distance}${item.data.range.unit}.`]);
+        let float_range = parseFloat(item.data.range.distance);
+        if (isNaN(float_range)) {
+          chatdata.push([`Range: `, `${item.data.range.distance}`]);
+        } else {
+          chatdata.push([`Range: `, `${item.data.range.distance}${item.data.range.unit}.`]);
+        }
       }
       if (item.data.area.dimensions !== "") {
         chatdata.push([`Area: `, `${item.data.area.dimensions} ${CONFIG.AURAMANCY.shapes[item.data.area.shape]}`]);
