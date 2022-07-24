@@ -1,75 +1,151 @@
 <section class="center-pane flexcol">
   <div class="overview grid-item grid-container" style="align-content: flex-start;">
 
+    <div class="grid-container groove" style="height: 70px;">
+      <div class="grid-item-inline mini-header groove-bottom" style="height: 30px;">
+        <label class="fancy-font" style="font-size: 26px;">Aura</label>
+      </div>
+      <div class="grid-container-three">
+        <div class="grid-item">
+          <input type="text" name="data.auramancy.scent" value="{{data.auramancy.scent}}" placeholder="Aura Scent" style="width: 150px;"></input>
+        </div>
+        <div class="grid-item">
+          <input type="text" name="data.auramancy.color" value="{{data.auramancy.color}}" placeholder="Aura Color" style="width: 150px;"></input>
+        </div>
+        <div class="grid-item">
+          <input type="color" name="data.auramancy.hex" value="{{data.auramancy.hex}}" style="width: 150px;">
+        </div>
+      </div>
+    </div>
+
     <div class="grid-container">
       <div class="grid-container-three grid-row-squish">
-        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
+
+        <div class="grid-container" style="min-height: 130px; width: 454px; border: 2px groove #eeede0;">
           <div class="grid-container grid-row-squish">
-            <div class="grid-container" style="height: 100px; border-bottom: 2px groove #eeede0;">
-              <div class="grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
-                <label class="fancy-font" style="font-size: 26px;">Traits</label>
+            <div class="grid-container grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+              <label class="fancy-font" style="font-size: 26px;">Biology</label>
+            </div>
+
+            <div class="grid-container-two">
+              <div class="grid-container groove-right" style="min-height: 130px; width: 226px;">
+
+                <div class="grid-container grid-row-squish">
+                  <div class="grid-container" style="height: 50px; border-bottom: 2px groove #eeede0;">
+                    <div class="grid-item" style="">
+                      <label>Ancestry</label>
+                    </div>
+                    <div class="grid-container-two" style="">
+                      <div class="grid-item-inline" style="width: 100px; font-size: 12px;">
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <select name="data.traits.ancestry" style="font-size: 10px; width: 80px; height: 20px;">
+                          {{selectOptions config.ancestries selected=data.traits.ancestry}}
+                        </select>
+                      </div>
+                      <div class="grid-item-inline" style="width: 100px; font-size: 12px;">
+                        <label>&nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" name="data.traits.ancestry_other" value="{{data.traits.ancestry_other}}" placeholder="Other" style="width: 80px; height: 20px;"></input>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="grid-item-left grid-row-align">
+                    <label>Tags: </label>
+                    <a class="box-selector small-icon" data-action="tags" title="Tags" name="Tags">
+                      <i class="fas fa-edit grid-item-inline-right"></i>
+                    </a>
+                    <ul class="traits-list">
+                    {{#each data.traits.tags}}
+                      <li class="tag">{{this}}</li>
+                    {{/each}}
+                    </ul>
+                  </div>
+
+                  <div class="grid-item-left">
+                    <label>Sensories: </label>
+                    <a class="config-button small-icon" data-action="sensories" title="Sensories">
+                      <i class="fas fa-edit grid-item-inline-right"></i>
+                    </a>
+                    <ul class="traits-list">
+                    {{#each sensories as |v k|}}
+                      <li class="tag {{k}}">{{v}}</li>
+                    {{/each}}
+                    </ul>
+                  </div>
+                  <div class="grid-item-left">
+                    <label>Sensitivities: </label>
+                    <a class="box-selector small-icon" data-action="sensitivites" title="Sensitivities" name="Sensitivities">
+                      <i class="fas fa-edit grid-item-inline-right"></i>
+                    </a>
+                    <ul class="traits-list">
+                    {{#each data.traits.sensitivities}}
+                      <li class="tag">{{this}}</li>
+                    {{/each}}
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div class="grid-container-two" style="height: 70px;">
-                <div class="grid-container" style="border-right: 2px groove #eeede0;">
-                  <div class="grid-item" style="border-bottom: 2px groove #eeede0; height: 20px;">
-                    <label>Carrying Capacity</label>
+
+              <div class="grid-container grid-row-squish" style="width: 227px;">
+                <div class="grid-container-two groove-bottom" style="height: 70px;">
+                  <div class="grid-container" style="border-right: 2px groove #eeede0;">
+                    <div class="grid-item" style="border-bottom: 2px groove #eeede0; height: 20px;">
+                      <label>Carrying Capacity</label>
+                    </div>
+                    <div class="grid-item">
+                      <input type="text" class="input-medium" name="data.traits.carrying_capacity.value" value="{{data.traits.carrying_capacity.value}}" placeholder="{{data.traits.carrying_capacity.value}}" data-dtype="Number" disabled="disabled"/>
+                    </div>
+                    <div class="grid-item-inline">
+                      <label style="font-size: 12px;">Modifier:</label>
+                      <input type="text" class="input-medium-inline" name="data.traits.carrying_capacity.mod" value="{{data.traits.carrying_capacity.mod}}" placeholder="{{data.traits.carrying_capacity.mod}}" data-dtype="Number"/>
+                    </div>
                   </div>
-                  <div class="grid-item">
-                    <input type="text" class="input-medium" name="data.traits.carrying_capacity.value" value="{{data.traits.carrying_capacity.value}}" placeholder="{{data.traits.carrying_capacity.value}}" data-dtype="Number" disabled="disabled"/>
-                  </div>
-                  <div class="grid-item-inline">
-                    <label style="font-size: 12px;">Modifier:</label>
-                    <input type="text" class="input-medium-inline" name="data.traits.carrying_capacity.mod" value="{{data.traits.carrying_capacity.mod}}" placeholder="{{data.traits.carrying_capacity.mod}}" data-dtype="Number"/>
+                  <div class="grid-container">
+                    <div class="grid-item" style="border-bottom: 2px groove #eeede0; height: 20px;">
+                      <label>Size Category</label>
+                    </div>
+                    <div class="grid-item" style="width: 100px; font-size: 12px;">
+                      <select class="data-traits-size" name="data.traits.size">
+                        {{#select data.traits.size}}
+                          {{#each config.sizeCategories as |label size|}}
+                            <option value="{{size}}">{{label}}</option>
+                          {{/each}}
+                        {{/select}}
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div class="grid-container">
-                  <div class="grid-item" style="border-bottom: 2px groove #eeede0; height: 20px;">
-                    <label>Size Category</label>
-                  </div>
-                  <div class="grid-item" style="width: 100px; font-size: 12px;">
-                    <select class="data-traits-size" name="data.traits.size">
-                      {{#select data.traits.size}}
-                        {{#each config.sizeCategories as |label size|}}
-                          <option value="{{size}}">{{label}}</option>
-                        {{/each}}
-                      {{/select}}
-                    </select>
-                  </div>
+
+                <div class="grid-item-left"">
+                  <label>Comfortable Temperatures: </label>
+                  <a class="box-selector small-icon" data-action="comfortableclimates" title="Comfortable Climates" name="Comfortable Climates">
+                    <i class="fas fa-edit grid-item-inline-right"></i>
+                  </a>
+                  <ul class="traits-list">
+                  {{#each data.traveling.climate}}
+                    <li class="tag">{{this}}</li>
+                  {{/each}}
+                  </ul>
                 </div>
+
+                <div class="grid-item-left"">
+                  <label>Comfortable Climates: </label>
+                  <a class="box-selector small-icon" data-action="comfortableclimates" title="Comfortable Climates" name="Comfortable Climates">
+                    <i class="fas fa-edit grid-item-inline-right"></i>
+                  </a>
+                  <ul class="traits-list">
+                  {{#each data.traveling.climate}}
+                    <li class="tag">{{this}}</li>
+                  {{/each}}
+                  </ul>
+                </div>
+
               </div>
             </div>
 
-            <div class="grid-container" style="height: 50px; border-bottom: 2px groove #eeede0;">
-              <div class="grid-item" style="">
-                <label>Ancestry</label>
-              </div>
-              <div class="grid-container-two" style="">
-                <div class="grid-item-inline" style="width: 100px; font-size: 12px;">
-                  <label>&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <select name="data.traits.ancestry" style="font-size: 10px; width: 80px; height: 20px;">
-                    {{selectOptions config.ancestries selected=data.traits.ancestry}}
-                  </select>
-                </div>
-                <div class="grid-item-inline" style="width: 100px; font-size: 12px;">
-                  <label>&nbsp;&nbsp;&nbsp;</label>
-                  <input type="text" name="data.traits.ancestry_other" value="{{data.traits.ancestry_other}}" placeholder="Other" style="width: 80px; height: 20px;"></input>
-                </div>
-              </div>
-            </div>
-
-            <div class="grid-item-left grid-row-align">
-              <label>Tags: </label>
-              <a class="box-selector small-icon" data-action="tags" title="Tags" name="Tags">
-                <i class="fas fa-edit grid-item-inline-right"></i>
-              </a>
-              <ul class="traits-list">
-              {{#each data.traits.tags}}
-                <li class="tag">{{this}}</li>
-              {{/each}}
-              </ul>
-            </div>
           </div>
         </div>
+
         <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
           <div class="grid-container grid-row-squish">
             <div class="grid-container" style="height: 100px; border-bottom: 2px groove #eeede0;">
@@ -120,93 +196,13 @@
             </div>
           </div>
         </div>
-        <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
-          <div class="grid-container grid-row-squish">
-            <div class="grid-container" style="height: 100px;">
-              <div class="grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
-                <label class="fancy-font" style="font-size: 26px;">Traveling</label>
-              </div>
-              <div class="grid-container" style="padding-bottom: 3px; border-bottom: 2px groove #eeede0;">
-                <div class="grid-item">
-                  <label>Comfortable Temperatures</label>
-                </div>
-                <!-- <div class="grid-container-three">
-                  <div class="grid-container" style="">
-                    <div class="grid-item">
-                      <label style="font-size: 10px; color: gray;">Cold</label>
-                    </div>
-                    <div class="grid-item">
-                      <input type="text" class="input-small" name="data.traveling.temperature.cold" value="{{data.traveling.temperature.cold}}" placeholder="{{data.traveling.temperature.cold}}" data-dtype="Number"/>
-                    </div>
-                  </div>
-                  <div class="grid-container" style="">
-                    <div class="grid-item">
-                      <label style="font-size: 10px; color: gray;">Normal</label>
-                    </div>
-                    <div class="grid-item">
-                      <input type="text" class="input-small" name="data.traveling.temperature.normal" value="{{data.traveling.temperature.normal}}" placeholder="{{data.traveling.temperature.normal}}" data-dtype="Number"/>
-                    </div>
-                  </div>
-                  <div class="grid-container" style="">
-                    <div class="grid-item">
-                      <label style="font-size: 10px; color: gray;">Hot</label>
-                    </div>
-                    <div class="grid-item">
-                      <input type="text" class="input-small" name="data.traveling.temperature.hot" value="{{data.traveling.temperature.hot}}" placeholder="{{data.traveling.temperature.hot}}" data-dtype="Number"/>
-                    </div>
-                  </div>
-                </div> -->
-              </div>
-            </div>
-            <div class="grid-item-left"">
-              <label>Comfortable Climates: </label>
-              <a class="box-selector small-icon" data-action="comfortableclimates" title="Comfortable Climates" name="Comfortable Climates">
-                <i class="fas fa-edit grid-item-inline-right"></i>
-              </a>
-              <ul class="traits-list">
-              {{#each data.traveling.climate}}
-                <li class="tag">{{this}}</li>
-              {{/each}}
-              </ul>
-            </div>
-            <div class="grid-item-left">
-              <label>Movement Options: </label>
-              <a class="config-button small-icon" data-action="movement" title="Movement">
-                <i class="fas fa-edit grid-item-inline-right"></i>
-              </a>
-              <ul class="traits-list">
-              {{#each movement as |v k|}}
-                <li class="tag {{k}}">{{v}}</li>
-              {{/each}}
-              </ul>
-            </div>
-            <div class="grid-item-left"">
-              <label>Favored Terrain: </label>
-              <a class="box-selector small-icon" data-action="favoredterrain" title="Favored Terrain" name="Favored Terrain">
-                <i class="fas fa-edit grid-item-inline-right"></i>
-              </a>
-              <ul class="traits-list">
-              {{#each data.traveling.favored_terrain}}
-                <li class="tag">{{this}}</li>
-              {{/each}}
-              </ul>
-            </div>
-            <div class="grid-item-left"">
-              <label>Favored Enemies: </label>
-              <a class="box-selector small-icon" data-action="favoredenemies" title="Favored Enemies" name="Favored Enemies">
-                <i class="fas fa-edit grid-item-inline-right"></i>
-              </a>
-              <ul class="traits-list">
-              {{#each data.traveling.favored_enemies}}
-                <li class="tag">{{this}}</li>
-              {{/each}}
-              </ul>
-            </div>
-          </div>
-        </div>
+
+
+
       </div>
 
       <div class="grid-container-three grid-row-squish">
+
         <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
           <div class="grid-container grid-row-squish">
             <div class="grid-container grid-item mini-header" style="height: 35px; border-bottom: 2px groove #eeede0;">
@@ -262,26 +258,48 @@
         <div class="grid-container" style="min-height: 130px; width: 227px; border: 2px groove #eeede0;">
           <div class="grid-container grid-row-squish">
             <div class="grid-container grid-item mini-header" style="height: 35px; border-bottom: 2px groove #eeede0;">
-              <label class="fancy-font" style="font-size: 26px;">Senses</label>
+              <label class="fancy-font" style="font-size: 26px;">Traveling</label>
             </div>
             <div class="grid-item-left">
-              <label>Sensories: </label>
-              <a class="config-button small-icon" data-action="sensories" title="Sensories">
+              <label>Movement Options: </label>
+              <a class="config-button small-icon" data-action="movement" title="Movement">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-              {{#each sensories as |v k|}}
+              {{#each movement as |v k|}}
                 <li class="tag {{k}}">{{v}}</li>
               {{/each}}
               </ul>
             </div>
             <div class="grid-item-left">
-              <label>Sensitivities: </label>
+              <label>Movement Enhancements: </label>
               <a class="box-selector small-icon" data-action="sensitivites" title="Sensitivities" name="Sensitivities">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
               {{#each data.traits.sensitivities}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left"">
+              <label>Favored Terrain: </label>
+              <a class="box-selector small-icon" data-action="favoredterrain" title="Favored Terrain" name="Favored Terrain">
+                <i class="fas fa-edit grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.traveling.favored_terrain}}
+                <li class="tag">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left"">
+              <label>Favored Enemies: </label>
+              <a class="box-selector small-icon" data-action="favoredenemies" title="Favored Enemies" name="Favored Enemies">
+                <i class="fas fa-edit grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+              {{#each data.traveling.favored_enemies}}
                 <li class="tag">{{this}}</li>
               {{/each}}
               </ul>
@@ -298,7 +316,7 @@
               <p style="font-size: 10px;">An asterisk (*) denotes Expertise.</p>
             </div>
             <div class="grid-item-left">
-              <label>Weapons: </label>
+              <label>Equipment: </label>
               <a class="proficiencies-selector small-icon" data-action="weapons" title="Weapons" name="Weapons">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
@@ -313,7 +331,7 @@
               </ul>
             </div>
             <div class="grid-item-left">
-              <label>Tools: </label>
+              <label>Crafting: </label>
               <a class="proficiencies-selector small-icon" data-action="tools" title="Tools" name="Tools">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
@@ -328,7 +346,7 @@
               </ul>
             </div>
             <div class="grid-item-left">
-              <label>Instruments: </label>
+              <label>Operating: </label>
               <a class="proficiencies-selector small-icon" data-action="instruments" title="Instruments" name="Instruments">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
@@ -358,7 +376,7 @@
               </ul>
             </div>
             <div class="grid-item-left">
-              <label>Vehicles: </label>
+              <label>Other: </label>
               <a class="proficiencies-selector small-icon" data-action="vehicles" title="Vehicles" name="Vehicles">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
@@ -374,7 +392,20 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
+
+    <div class="grid-container groove" style="min-height: 350px;">
+      <div class="grid-container grid-row-squish">
+        <div class="grid-item-inline mini-header groove-bottom" style="height: 30px;">
+          <label class="fancy-font" style="font-size: 26px;">Description</label>
+        </div>
+        <div class="grid-item" style="text-align: left;">
+          {{editor content=data.social.biography target="data.social.biography" rollData=rollData button=true owner=owner editable=editable}}
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

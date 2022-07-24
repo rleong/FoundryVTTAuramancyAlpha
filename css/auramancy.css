@@ -557,6 +557,9 @@ input.input-medium-inline-long {
   height: 15px;
   width: 100px;
 }
+input.input-tiny {
+  width: 20px;
+}
 input.input-small {
   width: 40px;
 }

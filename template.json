@@ -172,11 +172,41 @@
             "min": 2
           }
         },
+        "abilities":{
+          "stress": {
+            "value": 0,
+            "mod": 0,
+            "max": 5
+          },
+          "artifice": {
+            "value": 0,
+            "mod": 0,
+            "max": 4
+          },
+          "steps": {
+            "mod": 0,
+            "max": 3
+          },
+          "magic": {
+            "tier": 1
+          },
+          "metamagic": {
+            "max": 1,
+            "mod": 0,
+            "application_max": 3,
+            "application_mod": 0
+          }
+        },
         "stats": {
           "attunement": {
             "value": 0,
             "max": 3,
             "mod": 0
+          },
+          "companions": {
+            "total": 3,
+            "any": 1,
+            "familiars": 2
           },
           "ac": {
             "value": 0,

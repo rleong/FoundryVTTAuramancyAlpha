@@ -179,7 +179,6 @@ AURAMANCY.favoredEnemies = {
 
 AURAMANCY.entityTags = {
   "aberration": "Aberration",
-  "aethereal": "Aethereal",
   "animal": "Animal",
   "archon": "Archon",
   "astral": "Astral",
@@ -205,7 +204,9 @@ AURAMANCY.entityTags = {
   "hominid": "Hominid",
   "humanoid": "Humanoid",
   "infernal": "Infernal",
+  "intangible": "Intangible",
   "legendary": "Legendary",
+  "lycanthrope": "Lycanthrope",
   "lunar": "Lunar",
   "merfolk": "Merfolk",
   "monstrosity": "Monstrosity",
@@ -217,6 +218,7 @@ AURAMANCY.entityTags = {
   "shapeshifter": "Shapeshifter",
   "undead": "Undead",
   "unit": "Unit",
+  "vampire": "Vampire",
   "voidling": "Voidling",
   "weakspot": "Weakspot"
 };
@@ -817,8 +819,50 @@ AURAMANCY.level1Options = {
 };
 
 AURAMANCY.proficiencySubjects = {
-  "cultivation": "Cultivation",
-  "release": "Release",
-  "path": "Path",
-  "perk": "Perk"
+  "equipment": "Equipment",
+  "unarmed": "Unarmed",
+  "riding": "Riding",
+  "crafting": "Crafting",
+  "operating": "Operating",
+  "languages": "Languages"
+};
+
+AURAMANCY.equipmentProficiencies = {
+  "melee": "Melee Weapons",
+  "ranged": "Ranged Weapons",
+  "improvised": "Improvised Weapons",
+  "oversized": "Oversized Weapons",
+  "shield": "Shields"
+};
+
+AURAMANCY.meleeExpertise = {
+  "blunt": "Blunt",
+  "edged": "Edged",
+  "flail": "Flail",
+  "flexible": "Flexible",
+  "pointed": "Pointed",
+  "polearm": "Polearm"
+};
+
+AURAMANCY.rangedExpertise = {
+  "firearm": "Firearm",
+  "leverage": "Leverage",
+  "pneumatic": "Pneumatic",
+  "tension": "Tension",
+  "throwable": "Throwable"
+};
+
+AURAMANCY.craftingProficiencies = {
+  "alchemy": "Alchemy",
+  "artistry": "Artistry",
+  "blacksmithing": "Blacksmithing",
+  "brewing": "Brewing",
+  "carpentry": "Carpentry",
+  "cooking": "Cooking",
+  "enchanting": "Enchanting",
+  "handicrafting": "Handicrafting",
+  "masonry": "Masonry",
+  "programming": "Programming",
+  "scribing": "Scribing",
+  "tailoring": "Tailoring"
 };

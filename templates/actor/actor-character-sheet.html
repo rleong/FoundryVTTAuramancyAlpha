@@ -75,13 +75,20 @@
 							<div class="grid-item-inline mini-header" style="padding-top: 3px; border-bottom: 2px groove #eeede0;">
 								<label>Proficiency</label>
 							</div>
-							<div class="grid-container" style="padding-top: 3px;">
-								<div class="grid-item">
-									<input class="input-small" type="text" name="data.stats.proficiency.value" value="{{data.stats.proficiency.value}}" placeholder="{{data.stats.proficiency.value}}" data-dtype="Number" disabled="disabled"/>
+							<div class="grid-container-three" style="padding-top: 3px;">
+								<div class="grid-container groove-right" style="width: 40px; ">
+									<label class="grid-item medium-gray-text groove-bottom" style="color: black;">Mod</label>
+									<label class="grid-item medium-gray-text" style="color: black;">{{data.stats.proficiency.value}}</label>
 								</div>
-								<div class="grid-item-inline">
-									<label class="medium-gray-text" style="color: black;">Save DC: </label>
-									<input type="text" class="input-small-inline" style="color: black; font-size: 10px;" name="data.stats.proficiency.save" value="{{data.stats.proficiency.save}}" placeholder="{{data.stats.proficiency.save}}" data-dtype="Number" disabled="disabled"/>
+
+								<div class="grid-container groove-right" style="width: 40px; ">
+									<label class="grid-item medium-gray-text groove-bottom" style="color: black;">Save DC</label>
+									<label class="grid-item medium-gray-text" style="color: black;">{{data.stats.proficiency.save}}</label>
+								</div>
+
+								<div class="grid-container" style="width: 40px; ">
+									<label class="grid-item medium-gray-text groove-bottom" style="color: black;">Die</label>
+									<label class="grid-item medium-gray-text" style="color: black;">{{data.stats.proficiency.die_amount}}d{{data.stats.proficiency.die}}</label>
 								</div>
 							</div>
 						</div>
@@ -360,7 +367,7 @@
 			<a class="item active" data-tab="overview">Overview</a>
 			<a class="item" data-tab="abilities">Abilities</a>
 			<a class="item" data-tab="assets">Assets</a>
-			<a class="item" data-tab="levels">Auramancy</a>
+			<a class="item" data-tab="levels">Progression</a>
 			<a class="item" data-tab="misc">Misc</a>
 		</nav>
 
@@ -390,10 +397,7 @@
 			{{!-- Misc Tab --}}
 			<div class="tab misc flexcol" data-group="primary" data-tab="misc">
 				<div class="tab groove" style="min-height: 400px;">
-					<div class="groove-bottom mini-header">
-						<label class="fancy-font" style="font-size: 16px;">Description:</label>
-					</div>
-					{{editor content=data.social.biography target="data.social.biography" rollData=rollData button=true owner=owner editable=editable}}
+
 				</div>
 			</div>
 
