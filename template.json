@@ -11,13 +11,15 @@
           },
           "buffer": {
             "value": 0,
-            "min": 0
+            "min": 0,
+            "mod": 0
           },
           "reserve": {
             "die": 6,
             "value": 2,
             "max": 2,
-            "temp": 0
+            "temp": 0,
+            "mod": 0
           },
           "impairment": 0,
           "conditions": {
@@ -177,16 +179,20 @@
             "mod": 0
           },
           "ac": {
-            "value": 8,
+            "value": 0,
+            "base": 8,
             "temp": 0,
             "mod": 0,
             "armor": 0,
-            "cap": 0
+            "cap": 0,
+            "hindrance": 0
           },
           "proficiency": {
             "value": 2,
             "save": 12,
-            "mod": 0
+            "mod": 0,
+            "die": 4,
+            "die_amount": 1
           },
           "movement": {
             "value": 30,
@@ -209,18 +215,17 @@
             "units": "ft",
             "walking": 0
           },
+          "movement_enhancements": [],
           "climate": [],
-          "temperature": {
-            "cold": 0,
-            "normal": 0,
-            "hot": 0
-          },
+          "temperature": [],
           "favored_terrain": [],
           "favored_enemies": []
         },
         "ap": {
           "value": 3,
+          "min": 3,
           "max": 3,
+          "mod": 0,
           "temp": 0,
           "dots": []
         },
@@ -229,6 +234,7 @@
           "hex": "#e66465",
           "scent": "",
           "level": 1,
+          "exp": 10,
           "charges": {
             "value": 6,
             "max": 6,
@@ -326,7 +332,9 @@
             "current": 0,
             "value": 5,
             "mod": 0,
-            "max": 10
+            "max": 10,
+            "default_carry": 5,
+            "wield_capacity": "L-2"
           },
           "damage_immunities": [],
           "damage_resistances": [],

@@ -51,7 +51,8 @@ export class AuramancyActor extends Actor {
     data.stats.movement.value = Math.max(0, Math.min(data.stats.movement.value, data.stats.movement.max));
 
     // Armor class
-    data.stats.ac.value = 8 + data.stats.ac.temp + data.stats.ac.mod + Math.min(data.attributes.agi.value, data.stats.ac.cap) + data.stats.ac.armor;
+    let ac_capped = data.stats.ac.cap === 0 ? data.attributes.agi.value : Math.min(data.attributes.agi.value, data.stats.ac.cap);
+    data.stats.ac.value = 8 + data.stats.ac.temp + data.stats.ac.mod + ac_capped + data.stats.ac.armor;
 
     // Proficiency
     data.stats.proficiency.value = 1 + Math.ceil(data.auramancy.level/4);
@@ -179,7 +180,7 @@ export class AuramancyActor extends Actor {
     let total_bulk = current_bulk;
     for(const item of data){
       if(item.type === "object"){
-        let bulk = this._getBulkValue(item.data.data.details.bulk);
+        let bulk = item.data.data.details.quantity * this._getBulkValue(item.data.data.details.bulk);
         total_bulk += bulk;
       }
     }

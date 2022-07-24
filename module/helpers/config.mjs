@@ -100,6 +100,11 @@ AURAMANCY.movementOptions = {
   "walking": "Walking"
 };
 
+AURAMANCY.movementEnhancements = {
+  "hover": "Hover",
+  "spiderclimb": "Spiderclimb"
+};
+
 AURAMANCY.damageTypes = {
   "none": "",
   "energy": "Energy",
@@ -110,6 +115,7 @@ AURAMANCY.damageTypes = {
 };
 
 AURAMANCY.sensitivities = {
+  "silver": "Silver Weakness",
   "sunlight": "Sunlight Sensitivity"
 };
 
@@ -137,7 +143,6 @@ AURAMANCY.damageSubtypes = {
   "shock": "Shock",
   "slashing": "Slashing",
   "sonic": "Sonic",
-  "soulfire": "Soulfire",
   "void": "Void"
 };
 
@@ -251,6 +256,13 @@ AURAMANCY.comfortableClimates = {
   "dry": "Dry",
   "normal": "Normal",
   "wet": "Wet",
+};
+
+AURAMANCY.comfortableTemperatures = {
+  "cold": "Cold",
+  "extremecold": "Extreme Cold",
+  "extremeheat": "Extreme Heat",
+  "hot": "Hot"
 };
 
 AURAMANCY.characteristicsBackgrounds = {
@@ -469,15 +481,18 @@ AURAMANCY.ancestries = {
   "ikairi": "Ikairi",
   "ishtal": "Ishtal",
   "jotunn": "Jotunn",
+  "lycanthrope": "Lycanthrope",
   "moribi": "Moribi",
   "mutant": "Mutant",
   "mycota": "Mycota",
   "noros": "Noros",
   "orc": "Orc",
+  "shade": "Shade",
   "sidhe": "Sidhe",
   "soulforged": "Soulforged",
   "succubusincubus": "Succubus / Incubus",
   "torlahng": "Torlahng",
+  "vampire": "Vampire",
   "vishaar": "Vishaar",
   "xyphid": "Xyphid",
   "yojin": "Yojin",
@@ -502,15 +517,13 @@ AURAMANCY.abilityPrefixes = {
 AURAMANCY.abilitySources = {
   "default": "Default",
   "ancestry": "Ancestry",
-  "composition": "Composition",
+  "augmentation": "Augmentation",
+  "combination": "Combination",
   "cultivation": "Cultivation",
-  "invocation": "Invocation",
+  "domain": "Domain",
+  "metamagic": "Metamagic",
   "path": "Path",
   "perk": "Perk",
-  "psionic": "Psionic Power",
-  "release": "Release",
-  "scheme": "Scheme",
-  "spell": "Spell",
   "other": "Other"
 };
 
@@ -525,7 +538,8 @@ AURAMANCY.magicSchools = {
   "evocation": "Evocation",
   "illusion": "Illusion",
   "necromancy": "Necromancy",
-  "restoration": "Restoration"
+  "restoration": "Restoration",
+  "uncategorized": "Uncategorized"
 };
 
 AURAMANCY.spellTiers = {
@@ -550,6 +564,7 @@ AURAMANCY.magicComponents = {
 };
 
 AURAMANCY.attackTypes = {
+  "areal": "Areal",
   "melee": "Melee",
   "ranged": "Ranged"
 };
@@ -771,14 +786,15 @@ AURAMANCY.conditions = {
   "stunned": "Stunned",
   "surprised": "Surprised",
   "taunted": "Taunted",
-  "unconscious": "Unconscious"
+  "unconscious": "Unconscious",
+  "wounded": "Wounded"
 };
 
 AURAMANCY.pool1Options = {
   "cultivation": "Cultivation Technique",
   "release": "Release Technique",
   "path": "Path Advancement",
-  "perk": "Combat Perk",
+  "perk": "Pool 1 Perk",
   "attribute": "Attribute Improvement"
 };
 
@@ -790,10 +806,17 @@ AURAMANCY.pool2Options = {
   "well": "Aether Well Improvement",
   "reserve": "Aether Reserve Improvement",
   "release": "Release Progression",
-  "perk": "Non-Combat Perk"
+  "perk": "Pool 2 Perk"
 };
 
 AURAMANCY.level1Options = {
+  "cultivation": "Cultivation",
+  "release": "Release",
+  "path": "Path",
+  "perk": "Perk"
+};
+
+AURAMANCY.proficiencySubjects = {
   "cultivation": "Cultivation",
   "release": "Release",
   "path": "Path",

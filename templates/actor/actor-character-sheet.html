@@ -389,7 +389,12 @@
 
 			{{!-- Misc Tab --}}
 			<div class="tab misc flexcol" data-group="primary" data-tab="misc">
-
+				<div class="tab groove" style="min-height: 400px;">
+					<div class="groove-bottom mini-header">
+						<label class="fancy-font" style="font-size: 16px;">Description:</label>
+					</div>
+					{{editor content=data.social.biography target="data.social.biography" rollData=rollData button=true owner=owner editable=editable}}
+				</div>
 			</div>
 
 		</section>
