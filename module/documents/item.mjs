@@ -17,9 +17,22 @@ export class AuramancyItem extends Item {
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
     this._prepareObjectData(itemData);
+    this._prepareItemData(itemData);
     this._prepareAbilityData(itemData);
     this._prepareProgressionData(itemData);
 
+  }
+
+  /**
+   * Prepare Character type specific data
+   */
+  _prepareItemData(itemData) {
+    if (itemData.type !== 'item') return;
+
+    // Make modifications to data here. For example:
+    const data = itemData.data;
+    let chatdata = this._prepareChatData(itemData);
+    data.chatdata = chatdata;
   }
 
   /**
@@ -188,17 +201,8 @@ export class AuramancyItem extends Item {
       // console.log(chatdata);
       // item.data.chatdata = chatdata;
     }else if (item.type === "ability"){
-      let prerequisites = "";
-      if(item.data.prerequisites.level !== 0){
-        prerequisites += `Level ${item.data.prerequisites.level}, `;
-      }
-      if(item.data.prerequisites.other !== ""){
-        prerequisites += item.data.prerequisites.other;
-      }
-      if (prerequisites !== ""){
-        if (prerequisites.endsWith(", ")){
-          prerequisites = prerequisites.substring(0, prerequisites.length - 2);
-        }
+      let prerequisites = String(item.data.prerequisites).trim();
+      if(prerequisites !== ""){
         chatdata.push([`Prerequisites: `, prerequisites]);
       }
       let prefix = item.data.category.prefix === "" || item.data.category.prefix === "none" ? "" : `${CONFIG.AURAMANCY.abilityPrefixes[item.data.category.prefix]} `;
@@ -207,12 +211,20 @@ export class AuramancyItem extends Item {
       if (item.data.category.category === "reaction"){
         chatdata.push([`Trigger: `, item.data.trigger]);
       }
+      if (item.data.category.category === "attack") {
+        if (item.data.type.subtype !== "none"){
+          chatdata.push([`Type: `, `${CONFIG.AURAMANCY.attackTypes[item.data.type.type]} (${item.data.type.subtype})`]);
+        } else {
+          chatdata.push([`Type: `, `${CONFIG.AURAMANCY.attackTypes[item.data.type.type]}`]);
+        }
+      }
       if (item.data.magical.magical !== "" && item.data.magical.magical !== "no") {
         let tiers = item.data.magical.tier === "" ? "" : `Tier ${item.data.magical.tier} `;
         let school = item.data.magical.school === "" || item.data.magical.school === "none" ? "" : `${CONFIG.AURAMANCY.magicSchools[item.data.magical.school]}`;
-        let components = item.data.magical.components === "" ? "" : (school === "" ? `${item.data.magical.components}` : `, ${item.data.magical.components}`);
-        let magical = `${tiers}${school}${components}` === "" ? "" : ` (${tiers}${school}${components})`;
-        chatdata.push([`Magical: `, `${CONFIG.AURAMANCY.magicalOptions[item.data.magical.magical]}${magical}`]);
+        let components = item.data.magical.components === "" ? "" : ` - ${item.data.magical.components}`;
+        let materials = item.data.magical.material === "" ? "" : `: ${item.data.magical.material}`;
+        let magical = `${tiers}${school}${components}${materials}`;
+        chatdata.push([`Magical: `, `${magical}`]);
       }
       if (item.data.duration.time !== "") {
         let dismiss = item.data.duration.dismissable === false ? "" : ` (${item.data.duration.dismiss} AP)`;
@@ -233,7 +245,13 @@ export class AuramancyItem extends Item {
         cost += `${item.data.cost.charges} Aether Charges, `;
       }
       if (item.data.cost.usages !== 0 && item.data.cost.usages !== null) {
-        cost += `${item.data.cost.usages} Usasges, `;
+        cost += `${item.data.cost.usages} Usages, `;
+      }
+      if (item.data.cost.time !== 0 && item.data.cost.time !== null) {
+        cost += `${item.data.cost.time}, `;
+      }
+      if (item.data.cost.material !== 0 && item.data.cost.material !== null) {
+        cost += `${item.data.cost.material}, `;
       }
       if (item.data.cost.other !== "") {
         cost += item.data.cost.other;
@@ -245,24 +263,6 @@ export class AuramancyItem extends Item {
         let ritual = item.data.cost.ritual === false ? "" : ` (Ritual)`;
         cost += ritual;
         chatdata.push([`Cost: `, cost]);
-      }
-      if (item.data.category.category === "attack") {
-        if (item.data.attack_type.type !== ""){
-          chatdata.push([`Attack Type: `, `${CONFIG.AURAMANCY.attackTypes[item.data.attack_type.type]} (${item.data.attack_type.source})`]);
-        }
-      }
-      if (item.data.damage.array.length !== 0) {
-        let damage_string = "";
-        for(const element of item.data.damage.array){
-          damage_string += `${element}, `;
-        }
-        if(damage_string.endsWith(", ")){
-          damage_string = damage_string.substring(0, damage_string.length - 2);
-        }
-        chatdata.push([`Damage: `, damage_string]);
-      }
-      if (item.data.damage.proficiency === true) {
-        chatdata.push([`Proficient: `, `Yes`]);
       }
       if (item.data.range.distance !== "") {
         let float_range = parseFloat(item.data.range.distance);
@@ -276,7 +276,51 @@ export class AuramancyItem extends Item {
         chatdata.push([`Area: `, `${item.data.area.dimensions} ${CONFIG.AURAMANCY.shapes[item.data.area.shape]}`]);
       }
 
-    } else {
+    } else if (item.type === "item") {
+      chatdata.push([`Bulk:`, ` ${item.data.bulk.value} per ${item.data.bulk.per}`]);
+      chatdata.push([`Quantity:`, ` ${item.data.quantity}`]);
+      if (item.data.quality !== "") {
+        chatdata.push([`Quality:`, ` ${CONFIG.AURAMANCY.quality[item.data.quality]}`]);
+      }
+      if (item.data.rarity !== "") {
+        chatdata.push([`Rarity:`, ` ${CONFIG.AURAMANCY.rarity[item.data.rarity]}`]);
+      }
+      if (item.data.standard_value !== 0 && item.data.standard_value !== null) {
+        chatdata.push([`Standard Value:`, ` ${item.data.standard_value} Credits`]);
+      }
+      if (item.data.usages.max !== 0) {
+        chatdata.push([`Usages:`, ` ${item.data.usages.value}/${item.data.usages.max}`]);
+        chatdata.push([`Recharge:`, ` ${item.data.rechrage}`]);
+      }
+      if (item.data.damage !== "" && item.data.damage !== null) {
+        chatdata.push([`Damage:`, ` ${item.data.damage}`]);
+      }
+      if (item.data.range !== "" && item.data.range !== null) {
+        chatdata.push([`Range:`, ` ${item.data.range}`]);
+      }
+      if (item.data.armor.armor === true) {
+        chatdata.push([`AC Base:`, ` ${item.data.armor.ac}`]);
+        chatdata.push([`Hindrance:`, ` ${item.data.armor.hindrance}`]);
+      }
+      let tags = "";
+      for (let [k, v] of Object.entries(item.data.tags)){
+        for (let [sk, sv] of Object.entries(v)){
+          if(sv["enabled"] === true){
+            let descriptor = sv["descriptor"] === "" ? "" : ` ${sv["descriptor"]}`;
+            tags += `${CONFIG.AURAMANCY.allItemTags[sk]}${descriptor}, `;
+          }
+        }
+      }
+      if (tags !== ""){
+        if (tags.endsWith(", ")){
+          tags = tags.substring(0, tags.length - 2);
+        }
+        chatdata.push([`Tags: `, tags]);
+      }
+
+      // console.log(chatdata);
+      // item.data.chatdata = chatdata;
+    }else {
       return;
     }
 

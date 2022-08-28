@@ -1,0 +1,82 @@
+<form autocomplete="off">
+    <p class="notes">Check which Tags this Item has. Leave the text field blank if there is no descriptor for the Tag involved.</p>
+    <div class="grid-container">
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">General</div>
+        {{#each item as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.item.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../all_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline-long" name="data.tags.item.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Equipment</div>
+        {{#each equipment as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.equipment.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../all_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline-long" name="data.tags.equipment.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Armor</div>
+        {{#each armor as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.armor.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../all_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline-long" name="data.tags.armor.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Weapon</div>
+        {{#each weapon as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.weapon.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../all_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline-long" name="data.tags.weapon.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-item groove mini-header fancy-font">Shield</div>
+        {{#each shield as |v k|}}
+        <div class="form-group grid-container-two">
+          <div class="grid-item-left-inline" style="width: 100px;">
+            <input type="checkbox" name="data.tags.shield.{{k}}.enabled" data-dtype="Boolean" style="font-size: 10px;"
+             {{checked v.enabled}}>{{lookup ../all_tags k}}</input>
+          </div>
+          <div class="grid-item">
+            <input type="text" class="input-tags-inline-long" name="data.tags.shield.{{k}}.descriptor" value="{{v.descriptor}}" placeholder="-"/>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+</form>

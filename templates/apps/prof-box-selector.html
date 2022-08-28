@@ -1,0 +1,39 @@
+<form autocomplete="off">
+
+  <p class="notes">Select which proficiencies and expertise your character has.</p>
+
+  <div class="grid-container">
+
+    <div class="grid-container">
+      <div class="grid-item" style="border: 2px groove #eeede0;">
+        <label style="font-size: 16px;">Proficiency</label>
+      </div>
+      <div class="grid-container" style="float: left; text-align: left; max-height: 300px; overflow-x: hidden; overflow-y: scroll;">
+        {{#each proficiency_array as |v k|}}
+        <label class="checkbox">
+          <input type="checkbox" name="{{k}}" data-dtype="Boolean" {{v}}/>{{k}}
+        </label>
+        {{/each}}
+      </div>
+      <div class="grid-item" style="height: 15px;">
+      </div>
+    </div>
+
+    <div class="grid-container">
+      <div class="grid-item" style="border: 2px groove #eeede0;">
+        <label style="font-size: 16px;">Expertise</label>
+      </div>
+      <div class="grid-container" style="float: left; text-align: left; max-height: 300px; overflow-x: hidden; overflow-y: scroll;">
+        {{#each expertise_array as |v k|}}
+        <label class="checkbox">
+          <input type="checkbox" name="{{k}}" data-dtype="Boolean" {{v}}/>{{k}}
+        </label>
+        {{/each}}
+      </div>
+      <div class="grid-item" style="height: 15px;">
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" name="submit" value="1"><i class="far fa-save"></i>Submit</button>
+</form>

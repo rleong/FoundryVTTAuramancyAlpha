@@ -83,6 +83,17 @@
                     {{/each}}
                     </ul>
                   </div>
+                  <div class="grid-item-left">
+                    <label>Conditional Immunities: </label>
+                    <a class="box-selector small-icon" data-action="conditionalimmunities" title="Conditional Immunities" name="Conditional Immunities">
+                      <i class="fas fa-edit grid-item-inline-right"></i>
+                    </a>
+                    <ul class="traits-list">
+                    {{#each data.traits.conditional_immunities}}
+                      <li class="tag">{{this}}</li>
+                    {{/each}}
+                    </ul>
+                  </div>
                 </div>
               </div>
 
@@ -96,8 +107,8 @@
                       <input type="text" class="input-medium" name="data.traits.carrying_capacity.value" value="{{data.traits.carrying_capacity.value}}" placeholder="{{data.traits.carrying_capacity.value}}" data-dtype="Number" disabled="disabled"/>
                     </div>
                     <div class="grid-item-inline">
-                      <label style="font-size: 12px;">Modifier:</label>
-                      <input type="text" class="input-medium-inline" name="data.traits.carrying_capacity.mod" value="{{data.traits.carrying_capacity.mod}}" placeholder="{{data.traits.carrying_capacity.mod}}" data-dtype="Number"/>
+                      <label style="font-size: 12px;">Wield Capacity:</label>
+                      <input type="text" class="input-medium-inline" name="data.traits.carrying_capacity.wield_capacity" value="{{data.traits.carrying_capacity.wield_capacity}}" placeholder="{{data.traits.carrying_capacity.wield_capacity}}" disabled="disabled"/>
                     </div>
                   </div>
                   <div class="grid-container">
@@ -118,11 +129,11 @@
 
                 <div class="grid-item-left"">
                   <label>Comfortable Temperatures: </label>
-                  <a class="box-selector small-icon" data-action="comfortableclimates" title="Comfortable Climates" name="Comfortable Climates">
+                  <a class="box-selector small-icon" data-action="comfortabletemperatures" title="Comfortable Temperatures" name="Comfortable Temperatures">
                     <i class="fas fa-edit grid-item-inline-right"></i>
                   </a>
                   <ul class="traits-list">
-                  {{#each data.traveling.climate}}
+                  {{#each data.traveling.temperature}}
                     <li class="tag">{{this}}</li>
                   {{/each}}
                   </ul>
@@ -208,6 +219,39 @@
             <div class="grid-container grid-item mini-header" style="height: 35px; border-bottom: 2px groove #eeede0;">
               <label class="fancy-font" style="font-size: 26px;">Social</label>
             </div>
+            <div class="grid-container" style="">
+              <div class="grid-item" style="height: 20px;">
+                <label>Companions</label>
+              </div>
+              <div class="grid-item">
+                <div class="grid-container-three groove-bottom">
+                  <div class="grid-container" style="width: 75px;">
+                    <div class="grid-item">
+                      <input type="text" class="input-small" name="data.stats.companions.total" value="{{data.stats.companions.total}}" placeholder="{{data.stats.companions.total}}" data-dtype="Number" disabled="disabled"/>
+                    </div>
+                    <div class="grid-item-inline">
+                      <label style="font-size: 12px;">Total</label>
+                    </div>
+                  </div>
+                  <div class="grid-container" style="width: 75px;">
+                    <div class="grid-item">
+                      <input type="text" class="input-small" name="data.stats.companions.any" value="{{data.stats.companions.any}}" placeholder="{{data.stats.companions.any}}" data-dtype="Number"/>
+                    </div>
+                    <div class="grid-item-inline">
+                      <label style="font-size: 12px;">Any</label>
+                    </div>
+                  </div>
+                  <div class="grid-container" style="width: 75px;">
+                    <div class="grid-item">
+                      <input type="text" class="input-small" name="data.stats.companions.familiars" value="{{data.stats.companions.familiars}}" placeholder="{{data.stats.companions.familiars}}" data-dtype="Number"/>
+                    </div>
+                    <div class="grid-item-inline">
+                      <label style="font-size: 12px;">Familiars</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="grid-item-left">
               <label>Backgrounds: </label>
               <a class="characteristics-selector small-icon" data-action="backgrounds" title="Backgrounds" name="Backgrounds">
@@ -231,7 +275,7 @@
               </ul>
             </div>
             <div class="grid-item-left">
-              <label>Traits: </label>
+              <label>Quirks: </label>
               <a class="characteristics-selector small-icon" data-action="traits" title="Traits" name="Traits">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
@@ -273,11 +317,11 @@
             </div>
             <div class="grid-item-left">
               <label>Movement Enhancements: </label>
-              <a class="box-selector small-icon" data-action="sensitivites" title="Sensitivities" name="Sensitivities">
+              <a class="box-selector small-icon" data-action="movementenhancements" title="Movement Enhancements" name="Movement Enhancements">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-              {{#each data.traits.sensitivities}}
+              {{#each data.traveling.movement_enhancements}}
                 <li class="tag">{{this}}</li>
               {{/each}}
               </ul>
@@ -317,13 +361,43 @@
             </div>
             <div class="grid-item-left">
               <label>Equipment: </label>
-              <a class="proficiencies-selector small-icon" data-action="weapons" title="Weapons" name="Weapons">
+              <a class="prof-box-selector small-icon" data-action="equipment" title="Equipment" name="Equipment">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-                {{#each proficiencies.weapons as |v k|}}
-                  {{#if (lookup ../config.proficiencyWeapons k)}}
-                    <li class="tag {{k}}">{{lookup ../config.proficiencyWeapons k}}{{v}}</li>
+                {{#each proficiencies.equipment as |v k|}}
+                  {{#if (lookup ../config.proficiencyEquipmentAll k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyEquipmentAll k}}{{v}}</li>
+                  {{else}}
+                    <li class="tag {{k}}">{{k}}{{v}}</li>
+                  {{/if}}
+                {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left">
+              <label>Augmentation: </label>
+              <a class="prof-box-selector small-icon" data-action="augmentation" title="Augmentation" name="Augmentation">
+                <i class="fas fa-edit grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+                {{#each proficiencies.augmentation as |v k|}}
+                  {{#if (lookup ../config.proficiencyAugmentationAll k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyAugmentationAll k}}{{v}}</li>
+                  {{else}}
+                    <li class="tag {{k}}">{{k}}{{v}}</li>
+                  {{/if}}
+                {{/each}}
+              </ul>
+            </div>
+            <div class="grid-item-left">
+              <label>Spellcasting: </label>
+              <a class="prof-box-selector small-icon" data-action="spellcasting" title="Spellcasting" name="Spellcasting">
+                <i class="fas fa-edit grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list">
+                {{#each proficiencies.spellcasting as |v k|}}
+                  {{#if (lookup ../config.proficiencySpellcastingAll k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencySpellcastingAll k}}{{v}}</li>
                   {{else}}
                     <li class="tag {{k}}">{{k}}{{v}}</li>
                   {{/if}}
@@ -332,13 +406,13 @@
             </div>
             <div class="grid-item-left">
               <label>Crafting: </label>
-              <a class="proficiencies-selector small-icon" data-action="tools" title="Tools" name="Tools">
+              <a class="proficiencies-selector small-icon" data-action="crafting" title="Crafting" name="Crafting">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-                {{#each proficiencies.tools as |v k|}}
-                  {{#if (lookup ../config.proficiencyTools k)}}
-                    <li class="tag {{k}}">{{lookup ../config.proficiencyTools k}}{{v}}</li>
+                {{#each proficiencies.crafting as |v k|}}
+                  {{#if (lookup ../config.proficiencyCrafting k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyCrafting k}}{{v}}</li>
                   {{else}}
                     <li class="tag {{k}}">{{k}}{{v}}</li>
                   {{/if}}
@@ -347,13 +421,13 @@
             </div>
             <div class="grid-item-left">
               <label>Operating: </label>
-              <a class="proficiencies-selector small-icon" data-action="instruments" title="Instruments" name="Instruments">
+              <a class="proficiencies-selector small-icon" data-action="operating" title="Operating" name="Operating">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-                {{#each proficiencies.instruments as |v k|}}
-                  {{#if (lookup ../config.proficiencyInstruments k)}}
-                    <li class="tag {{k}}">{{lookup ../config.proficiencyInstruments k}}{{v}}</li>
+                {{#each proficiencies.operating as |v k|}}
+                  {{#if (lookup ../config.proficiencyVehicles k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyVehicles k}}{{v}}</li>
                   {{else}}
                     <li class="tag {{k}}">{{k}}{{v}}</li>
                   {{/if}}
@@ -377,13 +451,13 @@
             </div>
             <div class="grid-item-left">
               <label>Other: </label>
-              <a class="proficiencies-selector small-icon" data-action="vehicles" title="Vehicles" name="Vehicles">
+              <a class="proficiencies-selector small-icon" data-action="other" title="Other" name="Other">
                 <i class="fas fa-edit grid-item-inline-right"></i>
               </a>
               <ul class="traits-list">
-                {{#each proficiencies.vehicles as |v k|}}
-                  {{#if (lookup ../config.proficiencyVehicles k)}}
-                    <li class="tag {{k}}">{{lookup ../config.proficiencyVehicles k}}{{v}}</li>
+                {{#each proficiencies.other as |v k|}}
+                  {{#if (lookup ../config.proficiencyOther k)}}
+                    <li class="tag {{k}}">{{lookup ../config.proficiencyOther k}}{{v}}</li>
                   {{else}}
                     <li class="tag {{k}}">{{k}}{{v}}</li>
                   {{/if}}
@@ -396,12 +470,12 @@
       </div>
     </div>
 
-    <div class="grid-container groove" style="min-height: 350px;">
+    <div class="grid-container groove" style="">
       <div class="grid-container grid-row-squish">
         <div class="grid-item-inline mini-header groove-bottom" style="height: 30px;">
           <label class="fancy-font" style="font-size: 26px;">Description</label>
         </div>
-        <div class="grid-item" style="text-align: left;">
+        <div class="grid-item" style="text-align: left; min-height: 350px;">
           {{editor content=data.social.biography target="data.social.biography" rollData=rollData button=true owner=owner editable=editable}}
         </div>
       </div>

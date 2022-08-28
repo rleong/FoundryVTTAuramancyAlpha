@@ -1,33 +1,81 @@
 <section class="center-pane flexcol">
   <div class="overview grid-item grid-container" style="align-content: flex-start;">
 
-    <div class="grid-container-two groove" style="">
-      <div class="grid-container groove-right" style="width: 227px;">
+    <div class="grid-container-three groove" style="">
+      <div class="grid-container groove-right" style="width: 125px; height: 100px;">
         <div class="grid-container grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
           <label class="fancy-font" style="font-size: 26px;">Level</label>
         </div>
-        <div class="grid-container">
+        <div class="grid-container" style="">
           <div class="grid-item-inline" style="">
             <a class="decrease-level" data-action="tags" title="Decrease Level">
               <label class="glow" style="font-size: 26px;">-</label>
             </a>
             <label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
-            <label class="fancy-font" style="font-size: 26px;">{{data.auramancy.level}}</label>
+            <input type="text" class="input-large-inline" name="data.auramancy.level" value="{{data.auramancy.level}}" placeholder="1" data-dtype="Number"/>
             <label class="fancy-font" style="font-size: 26px;">&nbsp;&nbsp;</label>
             <a class="increase-level" data-action="tags" title="Increase Level">
               <label class="fancy-font glow" style="font-size: 26px;">+</label>
             </a>
           </div>
         </div>
-
       </div>
-      <div class="grid-container" style="width: 227px;">
-
+      <div class="grid-container groove-right" style="width: 427px; height: 100px;">
+        <div class="grid-container grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+          <label class="fancy-font" style="font-size: 26px;">Experience Points</label>
+        </div>
+        <div class="grid-container-three" style="">
+          <div class="grid-container">
+            <div class="grid-item">
+              <label class="fancy-font" style="font-size: 18px;">Available</label>
+            </div>
+            <div class="grid-item">
+              <input type="text" class="input-large" name="data.auramancy.exp.available" value="{{data.auramancy.exp.available}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+            </div>
+          </div>
+          <div class="grid-container">
+            <div class="grid-item">
+              <label class="fancy-font" style="font-size: 18px;">Expended</label>
+            </div>
+            <div class="grid-item">
+              <input type="text" class="input-large" name="data.auramancy.exp.expended" value="{{data.auramancy.exp.expended}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+            </div>
+          </div>
+          <div class="grid-container">
+            <div class="grid-item">
+              <label class="fancy-font" style="font-size: 18px;">Total</label>
+            </div>
+            <div class="grid-item">
+              <input type="text" class="input-large" name="data.auramancy.exp.total" value="{{data.auramancy.exp.total}}" placeholder="0" data-dtype="Number"/>
+            </div>
+          </div>
+        </div>
+        <br>
       </div>
-
-
+      <div class="grid-container" style="width: 125px; height: 100px;">
+        <div class="grid-container grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+          <label class="fancy-font" style="font-size: 26px;">Magic</label>
+        </div>
+        <div class="grid-container" style="">
+          <div class="grid-item" style="">
+            <label class="fancy-font" style="font-size: 14px;">Highest Tier of Magic</label>
+          </div>
+          <div class="grid-item">
+            <label class="fancy-font" style="font-size: 20px;">{{data.abilities.magic.tier}}</label>
+          </div>
+        </div>
+      </div>
       <div class="grid-item-left"/>
     </div>
-
   </div>
+
+  <div class="grid-container groove" style="height: 150px;">
+    <div class="grid-container grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+      <label class="fancy-font" style="font-size: 26px;">Point Buy Costs</label>
+    </div>
+    <div class="grid-container" style="">
+
+    </div>
+  </div>
+
 </section>

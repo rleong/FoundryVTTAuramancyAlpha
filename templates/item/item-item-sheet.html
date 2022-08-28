@@ -1,0 +1,207 @@
+<form class="{{cssClass}}" autocomplete="off">
+  <header class="sheet-header">
+    <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
+    <div class="header-fields">
+      <h1 class="charname fancy-font"><input name="name" type="text" value="{{item.name}}" placeholder="Name" style="font-size: 32px; text-align: center;" /></h1>
+    </div>
+  </header>
+
+  <br>
+
+  {{!-- Sheet Body --}}
+  <section class="sheet-body">
+
+    <div class="grid-container groove">
+      <div class="grid-item groove-bottom mini-header">
+        <label class="fancy-font" style="font-size: 26px; text-align: center;">Object</label>
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Attunement</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Required: </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="data.attunement.required" data-dtype="Boolean"
+                 {{checked data.attunement.required}}/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Details</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Bulk: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.bulk.value" value="{{data.bulk.value}}" placeholder="ex. -, L, or a number."/>
+                <label> per </label>
+                <input type="text" class="input-medium-inline" name="data.bulk.per" value="{{data.bulk.per}}" placeholder="1" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Quantity: </label>
+              </div>
+              <div class="grid-item-left">
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline" name="data.quantity" value="{{data.quantity}}" placeholder="0" data-dtype="Number"/>
+                </div>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Quality: </label>
+              </div>
+              <div class="grid-item-left">
+                <select name="data.details.quality" style="font-size: 8px; width: 80px; height: 20px;">
+                  {{selectOptions config.quality selected=data.quality}}
+                </select>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Rarity: </label>
+              </div>
+              <div class="grid-item-left">
+                <select name="data.details.rarity" style="font-size: 8px; width: 80px; height: 20px;">
+  								{{selectOptions config.rarity selected=data.rarity}}
+  							</select>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Standard Value: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.standard_value" value="{{data.standard_value}}" placeholder="0" data-dtype="Number"/> Credits
+              </div>
+            </div>
+
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Usages: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.usages.max" value="{{data.usages.max}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Recharge: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.recharge" value="{{data.recharge}}" placeholder="ex. Full Rest."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Damage</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Damage: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.damage" value="{{data.damage}}" placeholder="ex. 1d4 Physical (Slashing)."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Range</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Range: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.range" value="{{data.range}}" placeholder="ex. 15ft."/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Tags</summary>
+          <div class="grid-container-two-item">
+            <div class="grid-item-left">
+              <label>Tags: </label>
+            </div>
+            <div class="grid-item">
+              <a class="item-tag-config small-icon" data-action="item" title="Item" name="Item">
+                <i class="fas fa-cog grid-item-inline-right"></i>
+              </a>
+              <ul class="traits-list grid-item-left">
+              {{#each tags}}
+                <li class="tag {{this}}">{{this}}</li>
+              {{/each}}
+              </ul>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Armor</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Is Armor: </label>
+              </div>
+              <div class="checkbox">
+                <input type="checkbox" name="data.armor.armor" data-dtype="Boolean"
+                 {{checked data.armor.armor}}/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>AC Base: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.armor.ac" value="{{data.armor.ac}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Hindrance: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.armor.hindrance" value="{{data.armor.hindrance}}" placeholder="0" data-dtype="Number"/>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item" style="height: 15px;"/>
+    </div>
+
+    {{!-- Description Tab --}}
+    <div class="tab groove" style="height: 200px;">
+      <div class="groove-bottom mini-header">
+        <label class="fancy-font" style="font-size: 16px;">Description:</label>
+      </div>
+      {{editor content=data.description target="data.description" rollData=rollData button=true owner=owner editable=editable}}
+    </div>
+
+  </section>
+</form>

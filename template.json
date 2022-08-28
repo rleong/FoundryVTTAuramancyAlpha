@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": ["character", "npc"],
+    "types": ["character"],
     "templates": {
       "base": {
         "health": {
@@ -22,6 +22,18 @@
             "mod": 0
           },
           "impairment": 0,
+          "strain": {
+            "mental": {
+              "value": 0,
+              "max": 4,
+              "mod": 0
+            },
+            "physical": {
+              "value": 0,
+              "max": 4,
+              "mod": 0
+            }
+          },
           "conditions": {
             "bleeding": {
               "enabled": false,
@@ -166,7 +178,7 @@
           }
         },
         "currency": {
-          "credits": 0,
+          "credits": 100,
           "tokens": {
             "value": 2,
             "min": 2
@@ -264,7 +276,11 @@
           "hex": "#e66465",
           "scent": "",
           "level": 1,
-          "exp": 10,
+          "exp": {
+            "total": 10,
+            "expended": 0,
+            "available": 10
+          },
           "charges": {
             "value": 6,
             "max": 6,
@@ -387,9 +403,46 @@
             "units": "ft"
           },
           "sensitivities": [],
+          "conditional_immunities": [],
           "tags": []
         },
         "proficiencies": {
+          "other":{
+            "unarmed": 0,
+            "riding": 0,
+            "artifice": 0,
+            "combinations": 0,
+            "strength": 0,
+            "agility": 0,
+            "constitution": 0,
+            "willpower": 0
+          },
+          "equipment": {
+            "proficiency": [],
+            "expertise": []
+          },
+          "augmentation": {
+            "proficiency": [],
+            "expertise": []
+          },
+          "spellcasting": {
+            "proficiency": [],
+            "expertise": []
+          },
+          "crafting": {
+            "alchemy": 0,
+            "artistry": 0,
+            "blacksmithing": 0,
+            "brewing": 0,
+            "carpentry": 0,
+            "cooking": 0,
+            "enchanting": 0,
+            "handicrafting": 0,
+            "masonry": 0,
+            "programming": 0,
+            "scribing": 0,
+            "tailoring": 0
+          },
           "weapons": {
             "mbalanced": 0,
             "mdualwield": 0,
@@ -449,16 +502,16 @@
           "languages": {
             "ancientaztan": 0,
             "aztan": 0,
-            "bakhwa": 0,
-            "chianhwa": 0,
+            "betwa": 0,
+            "chanwa": 0,
             "common": 0,
             "durskarian": 0,
             "elorish": 0,
             "etferum": 0,
-            "geonhwa": 0,
-            "goyohwa": 0,
+            "gonwa": 0,
+            "goyowa": 0,
             "highelorean": 0,
-            "jinhwa": 0,
+            "jinwa": 0,
             "kharic": 0,
             "kolkharic": 0,
             "lowelorean": 0,
@@ -470,7 +523,16 @@
             "telmarian": 0,
             "ulkgharish": 0,
             "viertryz": 0,
-            "yamakhwa": 0
+            "yamawa": 0,
+            "celestial": 0
+          },
+          "operating": {
+            "advancedair": 0,
+            "advancedland": 0,
+            "advancedwater": 0,
+            "basicair": 0,
+            "basicland": 0,
+            "basicwater": 0
           },
           "vehicles": {
             "advancedair": 0,
@@ -492,81 +554,6 @@
           "biography": ""
         },
         "progression": {
-          "level1_array": [],
-          "cultivations_array": [],
-          "releases_array": [],
-          "paths_array": [],
-          "releases": {
-            "artifice": {
-              "enabled": false,
-              "value": 0,
-              "max": 5,
-              "restriction": 4,
-              "additional_attunement": 1,
-              "artifice_die": 4
-            },
-            "augmentation": {
-              "enabled": false,
-              "value": 0,
-              "max": 10,
-              "restriction": 2,
-              "stress": {
-                "value": 0,
-                "max": 5
-              },
-              "augmentation_die": 4
-            },
-            "causal_manipulation": {
-              "enabled": false,
-              "value": 0,
-              "max": 5,
-              "restriction": 4,
-              "tactical_die": 4
-            },
-            "martial_techniques": {
-              "enabled": false,
-              "value": 0,
-              "max": 5,
-              "restriction": 4,
-              "max_surge": 2
-            },
-            "psionics": {
-              "enabled": false,
-              "value": 0,
-              "max": 5,
-              "restriction": 4,
-              "strain": {
-                "value": 0,
-                "max": 98
-              }
-            },
-            "spellcasting": {
-              "enabled": false,
-              "value": 0,
-              "max": 10,
-              "restriction": 2,
-              "spell_tier": 1
-            },
-            "thoughtscape": {
-              "enabled": false,
-              "value": 0,
-              "max": 10,
-              "restriction": 2,
-              "max_thoughtscape": 22
-            },
-            "weapon_art": {
-              "enabled": false,
-              "value": 0,
-              "max": 10,
-              "restriction": 2,
-              "maneuver_dice:": {
-                "value": 6,
-                "max": 6,
-                "size": 4
-              }
-            }
-          },
-          "paths": []
         }
       }
     },
@@ -575,14 +562,206 @@
     },
     "npc": {
       "templates": ["base"]
+    },
+    "entity": {
+      "templates": ["base"]
     }
   },
   "Item": {
-    "types": ["object", "ability", "progression"],
+    "types": ["ability", "item"],
     "templates": {
       "base": {
         "description": "",
         "chatdata": []
+      }
+    },
+    "item": {
+      "templates": ["base"],
+      "equipped": false,
+      "attunement": {
+        "required": false,
+        "attuned": false
+      },
+      "bulk": {
+        "value": "",
+        "per": "",
+        "total": ""
+      },
+      "quantity": "",
+      "quality": "",
+      "rarity": "",
+      "standard_value": "",
+      "usages": {
+        "value": 0,
+        "max": 0
+      },
+      "recharge": "",
+      "damage": "",
+      "range": "",
+      "tags": {
+        "item": {
+          "ammunition": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "arcanefocus": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "armor": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "equipment": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "mundane": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "oil": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "shield": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "sustenance": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "trap": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "weapon": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "equipment": {
+          "heavy": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "prostech": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "special": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "armor": {
+          "adamantium": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "bulwark": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "comfortable": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "hindrance": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "loud": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "weapon": {
+          "automatic": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "balanced": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "finesse": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "flail": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "flexible": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "improvised": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "light": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "melee": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "misfire": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "oversized": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "polearm": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "ranged": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "reach": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "reload": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "returning": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "scatter": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "silvered": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "twohanded": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        },
+        "shield": {
+          "offhand": {
+            "enabled": false,
+            "descriptor": ""
+          }
+        }
+      },
+      "armor": {
+        "armor": false,
+        "ac": 0,
+        "hindrance": 0
       }
     },
     "object": {
@@ -947,22 +1126,24 @@
     },
     "ability": {
       "templates": ["base"],
-      "prerequisites": {
-        "level": 0,
-        "other": ""
-      },
+      "prerequisites": "",
       "category": {
         "prefix": "",
         "category": "action",
-        "source": "default",
+        "source": "path",
         "other": ""
       },
       "trigger": "",
+      "type": {
+        "type": "",
+        "subtype": ""
+      },
       "magical": {
         "magical": "",
         "tier": "",
         "school": "",
-        "components": ""
+        "components": "",
+        "material": ""
       },
       "duration": {
         "time": "",
@@ -979,22 +1160,10 @@
         "ap": 0,
         "charges": 0,
         "usages": 0,
+        "time": "",
+        "material": "",
         "other": "",
         "ritual": false
-      },
-      "attack_type": {
-        "type": "",
-        "source": ""
-      },
-      "damage": {
-        "amount": 0,
-        "die": 4,
-        "type": "",
-        "subtype": "",
-        "other": "",
-        "parsed": [],
-        "array": [],
-        "proficiency": false
       },
       "range": {
         "distance": "",
@@ -1003,10 +1172,6 @@
       "area": {
         "dimensions": "",
         "shape": ""
-      },
-      "sub_abilities": {
-        "string": "",
-        "list": []
       }
     },
     "progression": {

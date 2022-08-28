@@ -3,6 +3,7 @@ import ActorSensoriesConfig from "../apps/sensories-config.js";
 import ActorDamageStatsConfig from "../apps/damage-stats-config.js";
 import ActorMovementConfig from "../apps/movement-config.js";
 import ActorBoxSelectorConfig from "../apps/box-selector.js";
+import ActorProfBoxSelectorConfig from "../apps/prof-box-selector.js";
 import ActorCharacteristicsConfig from "../apps/characteristics.js";
 import ActorProficienciesConfig from "../apps/proficiencies-selector.js";
 import ActorConditionsConfig from "../apps/conditions-config.js";
@@ -23,7 +24,9 @@ export class AuramancyActorSheet extends ActorSheet {
      */
     this._filters = {
       inventory: new Set(),
+      default_abilities: new Set(),
       abilities: new Set(),
+      equipment: new Set(),
       effects: new Set()
     };
   }
@@ -127,34 +130,29 @@ export class AuramancyActorSheet extends ActorSheet {
   _prepareItems(context) {
     // Initialize containers.
     const abilities = [];
-    const inventory = [];
-    const progression = [];
     const default_abilities = [];
+    const inventory = [];
+    const equipment = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
       i.img = i.img || DEFAULT_TOKEN;
       // Append to abilities.
       if (i.type === 'ability') {
-        abilities.push(i);
+        if (i.data.category.source === "default") {
+          default_abilities.push(i);
+        } else {
+          abilities.push(i);
+        }
       }
       // Append to inventory.
-      else if (i.type === 'object') {
+      else if (i.type === 'item') {
         this._prepareItemToggleState(i);
-        inventory.push(i);
-      }
-      // Append to progression.
-      else if (i.type === 'progression') {
-        progression.push(i);
-        // if(progression.length < context.data.auramancy.level-1){
-        //   progression.push(i);
-        // } else {
-        //   ui.notifications.warn("You cannot gain another progression until you have leveled up.");
-        // }
-        //
-        // while(progression.length > context.data.auramancy.level-1){
-        //   progression = progression.pop();
-        // }
+        if (i.data.tags.item.equipment.enabled === true) {
+          equipment.push(i);
+        } else {
+          inventory.push(i);
+        }
       }
     }
 
@@ -163,9 +161,12 @@ export class AuramancyActorSheet extends ActorSheet {
     // Assign and return
     context.abilities = abilities;
     context.filtered_abilities = this._filterItems(abilities, this._filters.abilities, "abilities");
+    context.default_abilities = default_abilities;
+    context.filtered_default_abilities = this._filterItems(default_abilities, this._filters.default_abilities, "default_abilities");
     context.inventory = inventory;
     context.filtered_inventory = this._filterItems(inventory, this._filters.inventory, "inventory");
-    context.progression = progression;
+    context.equipment = equipment;
+    context.filtered_equipment = this._filterItems(equipment, this._filters.equipment, "equipment");
   }
 
   /* -------------------------------------------- */
@@ -228,6 +229,9 @@ export class AuramancyActorSheet extends ActorSheet {
     html.find(".box-selector").click(this._onBoxSelector.bind(this));
 
     // Damage Selector
+    html.find(".prof-box-selector").click(this._onProfBoxSelector.bind(this));
+
+    // Damage Selector
     html.find(".characteristics-selector").click(this._onCharacteristicsSelector.bind(this));
 
     // Damage Selector
@@ -268,7 +272,7 @@ export class AuramancyActorSheet extends ActorSheet {
   }
 
   _prepareItemToggleState(item) {
-    if (item.type === "object") {
+    if (item.type === "item") {
       const isAttuned = item.data.attunement.attuned;
       const isEquipped = item.data.equipped;
       item.toggleAttune = isAttuned ? "active" : "";
@@ -431,6 +435,11 @@ export class AuramancyActorSheet extends ActorSheet {
             // console.log("Yes");
             if (!filtered_data.includes(element)) filtered_data.push(element);
           }
+        } else if(type === "default_abilities"){
+          if (filters.has(element.data.category.category)) {
+            // console.log("Yes");
+            if (!filtered_data.includes(element)) filtered_data.push(element);
+          }
         } else if (type === "inventory"){
           if (filters.has("attunement") && element.data.attunement.required === true) {
             if (!filtered_data.includes(element)) filtered_data.push(element);
@@ -438,16 +447,11 @@ export class AuramancyActorSheet extends ActorSheet {
           if (filters.has("equipped") && element.data.equipped === true) {
             if (!filtered_data.includes(element)) filtered_data.push(element);
           }
-          if (filters.has("inventory") && element.data.equipped === false) {
+        } else if (type === "equipment"){
+          if (filters.has("attunement") && element.data.attunement.required === true) {
             if (!filtered_data.includes(element)) filtered_data.push(element);
           }
-          if (filters.has("weapon") && element.data.tags.misc.weapon.enabled === true) {
-            if (!filtered_data.includes(element)) filtered_data.push(element);
-          }
-          if (filters.has("equipment") && element.data.tags.misc.equipment.enabled === true) {
-            if (!filtered_data.includes(element)) filtered_data.push(element);
-          }
-          if (filters.has("proficiency") && element.data.combat.damage.proficiency === true) {
+          if (filters.has("equipped") && element.data.equipped === true) {
             if (!filtered_data.includes(element)) filtered_data.push(element);
           }
         } else {
@@ -743,10 +747,22 @@ export class AuramancyActorSheet extends ActorSheet {
       current_values = this.object.data.data.traveling.climate;
       available_options = CONFIG.AURAMANCY.comfortableClimates;
       data_name = "data.traveling.climate";
+    } else if (name === "Comfortable Temperatures") {
+      current_values = this.object.data.data.traveling.temperature;
+      available_options = CONFIG.AURAMANCY.comfortableTemperatures;
+      data_name = "data.traveling.temperature";
+    } else if (name === "Conditional Immunities") {
+      current_values = this.object.data.data.traits.conditional_immunities;
+      available_options = CONFIG.AURAMANCY.conditions;
+      data_name = "data.traits.conditional_immunities";
     } else if (name === "Sensitivities") {
       current_values = this.object.data.data.traits.sensitivities;
       available_options = CONFIG.AURAMANCY.sensitivities;
       data_name = "data.traits.sensitivities";
+    } else if (name === "Movement Enhancements") {
+      current_values = this.object.data.data.traveling.movement_enhancements;
+      available_options = CONFIG.AURAMANCY.movementEnhancements;
+      data_name = "data.traveling.movement_enhancements";
     } else if (name === "Cultivations") {
       current_values = this.object.data.data.progression.cultivations_array;
       available_options = CONFIG.AURAMANCY.cultivation;
@@ -770,6 +786,52 @@ export class AuramancyActorSheet extends ActorSheet {
 
     const options = { current_values, available_options, name, data_name };
     return new ActorBoxSelectorConfig(this.object, options).render(true);
+  }
+
+  /**
+   * Handle spawning the TraitSelector application which allows a checkbox of multiple trait options.
+   * @param {Event} event      The click event which originated the selection.
+   * @returns {TraitSelector}  Newly displayed application.
+   * @private
+   */
+  _onProfBoxSelector(event) {
+    event.preventDefault();
+    const name = event.currentTarget.name;
+    let proficiency_options = {};
+    let expertise_options = {};
+    let current_proficiency_values = [];
+    let current_expertise_values = [];
+    let proficiency_data_name = "";
+    let expertise_data_name = "";
+
+    if (name === "Equipment") {
+      current_proficiency_values = this.object.data.data.proficiencies.equipment.proficiency;
+      current_expertise_values = this.object.data.data.proficiencies.equipment.expertise;
+      proficiency_options = CONFIG.AURAMANCY.proficiencyEquipment;
+      expertise_options = CONFIG.AURAMANCY.weaponExpertise;
+      proficiency_data_name = "data.proficiencies.equipment.proficiency";
+      expertise_data_name = "data.proficiencies.equipment.expertise";
+    } else if (name === "Augmentation") {
+      current_proficiency_values = this.object.data.data.proficiencies.augmentation.proficiency;
+      current_expertise_values = this.object.data.data.proficiencies.augmentation.expertise;
+      proficiency_options = CONFIG.AURAMANCY.proficiencyAugmentation;
+      expertise_options = CONFIG.AURAMANCY.augmentationExpertise;
+      proficiency_data_name = "data.proficiencies.augmentation.proficiency";
+      expertise_data_name = "data.proficiencies.augmentation.expertise";
+    } else if (name === "Spellcasting") {
+      current_proficiency_values = this.object.data.data.proficiencies.spellcasting.proficiency;
+      current_expertise_values = this.object.data.data.proficiencies.spellcasting.expertise;
+      proficiency_options = CONFIG.AURAMANCY.proficiencySpellcasting;
+      expertise_options = CONFIG.AURAMANCY.spellcastingExpertise;
+      proficiency_data_name = "data.proficiencies.spellcasting.proficiency";
+      expertise_data_name = "data.proficiencies.spellcasting.expertise";
+    } else {
+      console.log("Oopssieeeesss");
+      return;
+    }
+
+    const options = { current_proficiency_values, current_expertise_values, proficiency_options, expertise_options, proficiency_data_name, expertise_data_name };
+    return new ActorProfBoxSelectorConfig(this.object, options).render(true);
   }
 
   _onCharacteristicsSelector(event) {
@@ -831,6 +893,15 @@ export class AuramancyActorSheet extends ActorSheet {
       available_options = "proficiencyVehicles";
       data_name = "data.proficiencies.vehicles";
       expertise_separate = true;
+    } else if (name === "Operating") {
+      available_options = "proficiencyVehicles";
+      data_name = "data.proficiencies.operating";
+    } else if (name === "Crafting") {
+      available_options = "proficiencyCrafting";
+      data_name = "data.proficiencies.crafting";
+    } else if (name === "Other") {
+      available_options = "proficiencyOther";
+      data_name = "data.proficiencies.other";
     } else {
       console.log("Oopssieeeesss");
       return;
@@ -852,6 +923,15 @@ export class AuramancyActorSheet extends ActorSheet {
     const instruments = actorData.data.proficiencies.instruments || {};
     const languages = actorData.data.proficiencies.languages || {};
     const vehicles = actorData.data.proficiencies.vehicles || {};
+    const crafting = actorData.data.proficiencies.crafting || {};
+    const operating = actorData.data.proficiencies.operating || {};
+    const other = actorData.data.proficiencies.other || {};
+    const equipment_proficiency = actorData.data.proficiencies.equipment.proficiency || {};
+    const equipment_expertise = actorData.data.proficiencies.equipment.expertise || {};
+    const augmentation_proficiency = actorData.data.proficiencies.augmentation.proficiency || {};
+    const augmentation_expertise = actorData.data.proficiencies.augmentation.expertise || {};
+    const spellcasting_proficiency = actorData.data.proficiencies.spellcasting.proficiency || {};
+    const spellcasting_expertise = actorData.data.proficiencies.spellcasting.expertise || {};
     const proficiencies = {};
 
     // -----------------------------------------------------------------------------------------
@@ -973,6 +1053,129 @@ export class AuramancyActorSheet extends ActorSheet {
       {}
     );
     proficiencies["vehicles"] = ordered_vehicles;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- Crafting ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let crafting_list = {};
+    for(let [key, value] of Object.entries(crafting)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        crafting_list[key] = asterisk;
+      }
+    }
+    const ordered_crafting = Object.keys(crafting_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = crafting_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["crafting"] = ordered_crafting;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- OPERATING ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let operating_list = {};
+    for(let [key, value] of Object.entries(operating)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        operating_list[key] = asterisk;
+      }
+    }
+    const ordered_operating = Object.keys(operating_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = operating_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["operating"] = ordered_operating;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- OTHER ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let other_list = {};
+    for(let [key, value] of Object.entries(other)){
+      if(key !== "expertise" && value !== 0){
+        let asterisk = "";
+        if(value === 2){
+          asterisk = "*";
+        }
+        other_list[key] = asterisk;
+      }
+    }
+    const ordered_other = Object.keys(other_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = other_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["other"] = ordered_other;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- EQUIPMENT ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let equipment_list = {};
+    for(let [key, value] of Object.entries(equipment_proficiency)){
+      equipment_list[value] = "";
+    }
+    for(let [key, value] of Object.entries(equipment_expertise)){
+      equipment_list[value] = "*";
+    }
+    const ordered_equipment = Object.keys(equipment_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = equipment_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["equipment"] = equipment_list;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- AUGMENTATION ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let augmentation_list = {};
+    for(let [key, value] of Object.entries(augmentation_proficiency)){
+      augmentation_list[value] = "";
+    }
+    for(let [key, value] of Object.entries(augmentation_expertise)){
+      augmentation_list[value] = "*";
+    }
+    const ordered_augmentation = Object.keys(augmentation_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = augmentation_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["augmentation"] = augmentation_list;
+
+    // -----------------------------------------------------------------------------------------
+    // ---------------------------------------- SPELLCASTING ----------------------------------------
+    // -----------------------------------------------------------------------------------------
+    let spellcasting_list = {};
+    for(let [key, value] of Object.entries(spellcasting_proficiency)){
+      spellcasting_list[value] = "";
+    }
+    for(let [key, value] of Object.entries(spellcasting_expertise)){
+      spellcasting_list[value] = "*";
+    }
+    const ordered_spellcasting = Object.keys(spellcasting_list).sort().reduce(
+      (obj, key) => {
+        obj[key] = spellcasting_list[key];
+        return obj;
+      },
+      {}
+    );
+    proficiencies["spellcasting"] = spellcasting_list;
 
     return proficiencies;
   }

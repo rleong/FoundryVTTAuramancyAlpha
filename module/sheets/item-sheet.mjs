@@ -1,4 +1,5 @@
 import ItemObjectTagConfig from "../apps/object-tag-config.js";
+import ItemItemTagConfig from "../apps/item-tag-config.js";
 import ItemMovementConfig from "../apps/object-movement-config.js";
 import ItemDamageConfig from "../apps/damage-config.js";
 
@@ -75,6 +76,9 @@ export class AuramancyItemSheet extends ItemSheet {
     html.find(".object-tag-config").click(this._onObjectTagConfig.bind(this));
 
     // Damage Selector
+    html.find(".item-tag-config").click(this._onItemTagConfig.bind(this));
+
+    // Damage Selector
     html.find(".object-movement-config").click(this._onMovementConfig.bind(this));
 
     // Damage Selector
@@ -106,6 +110,13 @@ export class AuramancyItemSheet extends ItemSheet {
 
     return new ItemObjectTagConfig(this.object).render(true);
   }
+
+  _onItemTagConfig(event) {
+    event.preventDefault();
+
+    return new ItemItemTagConfig(this.object).render(true);
+  }
+
 
   _onDamageConfig(event) {
     event.preventDefault();
@@ -190,6 +201,66 @@ export class AuramancyItemSheet extends ItemSheet {
       }
 
       // console.log(tags);
+
+      return tags;
+    } else if (itemData.type === "item") {
+      const item_tags = itemData.data.tags.item || {};
+      const equipment_tags = itemData.data.tags.equipment || {};
+      const armor_tags = itemData.data.tags.armor || {};
+      const weapon_tags = itemData.data.tags.weapon || {};
+      const shield_tags = itemData.data.tags.shield || {};
+      const all_tags = CONFIG.AURAMANCY.allItemTags;
+      const tags = [];
+
+      for ( let [k, v] of Object.entries(item_tags) ) {
+        if (v.enabled === true) {
+          let tag = `${all_tags[k]}`;
+          if (v.descriptor !== ""){
+            tag += ` ${v.descriptor}`;
+          }
+          tags.push(tag);
+        }
+      }
+
+      for ( let [k, v] of Object.entries(equipment_tags) ) {
+        if (v.enabled === true) {
+          let tag = `${all_tags[k]}`;
+          if (v.descriptor !== ""){
+            tag += ` ${v.descriptor}`;
+          }
+          tags.push(tag);
+        }
+      }
+
+      for ( let [k, v] of Object.entries(armor_tags) ) {
+        if (v.enabled === true) {
+          let tag = `${all_tags[k]}`;
+          if (v.descriptor !== ""){
+            tag += ` ${v.descriptor}`;
+          }
+          tags.push(tag);
+        }
+      }
+
+      for ( let [k, v] of Object.entries(weapon_tags) ) {
+        if (v.enabled === true) {
+          let tag = `${all_tags[k]}`;
+          if (v.descriptor !== ""){
+            tag += ` ${v.descriptor}`;
+          }
+          tags.push(tag);
+        }
+      }
+
+      for ( let [k, v] of Object.entries(shield_tags) ) {
+        if (v.enabled === true) {
+          let tag = `${all_tags[k]}`;
+          if (v.descriptor !== ""){
+            tag += ` ${v.descriptor}`;
+          }
+          tags.push(tag);
+        }
+      }
 
       return tags;
     }

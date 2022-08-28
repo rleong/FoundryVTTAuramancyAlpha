@@ -22,18 +22,10 @@
           <div class="grid-container">
             <div class="grid-container-two-item">
               <div class="grid-item-left">
-                <label>Level: </label>
+                <label>Prerequisites: </label>
               </div>
               <div class="grid-item-left">
-                <input type="text" class="input-medium-inline" name="data.prerequisites.level" value="{{data.prerequisites.level}}" placeholder="0" data-dtype="Number"/>
-              </div>
-            </div>
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Other: </label>
-              </div>
-              <div class="grid-item-left">
-                <input type="text" class="input-medium-inline-long" name="data.prerequisites.other" value="{{data.prerequisites.other}}" placeholder="Separate by commas."/>
+                <input type="text" class="input-medium-inline-long" name="data.prerequisites" value="{{data.prerequisites}}" placeholder="If applicable."/>
               </div>
             </div>
           </div>
@@ -88,7 +80,7 @@
 
       <div class="grid-item-left">
         <!-- <details> -->
-          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Trigger</summary>
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Trigger (Reaction Only)</summary>
           <div class="grid-container">
             <div class="grid-container-two-item">
               <div class="grid-item-left">
@@ -97,6 +89,30 @@
               <div class="grid-item-left">
                 <input type="text" class="input-medium-inline-long" name="data.trigger" value="{{data.trigger}}" placeholder="Only for Reactions."/>
               </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Type (Attack Only)</summary>
+          <div class="grid-container">
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Type: </label>
+              </div>
+              <select name="data.type.type" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.attackTypes selected=data.type.type}}
+              </select>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Subtype: </label>
+              </div>
+              <select name="data.type.subtype" style="font-size: 8px; width: 80px; height: 20px;">
+                {{selectOptions config.attackSubtypes selected=data.type.subtype}}
+              </select>
             </div>
           </div>
         <!-- </details> -->
@@ -116,11 +132,11 @@
             </div>
             <div class="grid-container-two-item">
               <div class="grid-item-left">
-                <label>Spell Tier: </label>
+                <label>Tier: </label>
               </div>
-              <select name="data.magical.tier" style="font-size: 8px; width: 80px; height: 20px;">
-                {{selectOptions config.spellTiers selected=data.magical.tier}}
-              </select>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline" name="data.magical.tier" value="{{data.magical.tier}}" placeholder="0" data-dtype="Number"/>
+              </div>
             </div>
             <div class="grid-container-two-item">
               <div class="grid-item-left">
@@ -136,6 +152,14 @@
               </div>
               <div class="grid-item-left">
                 <input type="text" class="input-medium-inline-long" name="data.magical.components" value="{{data.magical.components}}" placeholder="V, S, and/or M."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Materials: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.magical.material" value="{{data.magical.material}}" placeholder="If applicable."/>
               </div>
             </div>
           </div>
@@ -254,6 +278,22 @@
             </div>
             <div class="grid-container-two-item">
               <div class="grid-item-left">
+                <label>Time: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.cost.time" value="{{data.cost.time}}" placeholder="If applicable."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Material: </label>
+              </div>
+              <div class="grid-item-left">
+                <input type="text" class="input-medium-inline-long" name="data.cost.material" value="{{data.cost.material}}" placeholder="If applicable."/>
+              </div>
+            </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
                 <label>Other: </label>
               </div>
               <div class="grid-item-left">
@@ -267,62 +307,6 @@
               <div class="checkbox">
                 <input type="checkbox" name="data.cost.ritual" data-dtype="Boolean"
                  {{checked data.cost.ritual}}/>
-              </div>
-            </div>
-          </div>
-        <!-- </details> -->
-      </div>
-
-      <div class="grid-item-left">
-        <!-- <details> -->
-          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Attack Type</summary>
-          <div class="grid-container">
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Type: </label>
-              </div>
-              <select name="data.attack_type.type" style="font-size: 8px; width: 80px; height: 20px;">
-                {{selectOptions config.attackTypes selected=data.attack_type.type}}
-              </select>
-            </div>
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Source: </label>
-              </div>
-              <div class="grid-item-left">
-                <input type="text" class="input-medium-inline-long" name="data.attack_type.source" value="{{data.attack_type.source}}" placeholder="ex. Longsword."/>
-              </div>
-            </div>
-          </div>
-        <!-- </details> -->
-      </div>
-
-      <div class="grid-item-left">
-        <!-- <details> -->
-          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Damage</summary>
-          <div class="grid-container">
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Damage: </label>
-              </div>
-              <div class="grid-item">
-                <a class="damage-config small-icon" data-action="tags" title="Tags" name="Tags">
-                  <i class="fas fa-cog grid-item-inline-right"></i>
-                </a>
-                <ul class="traits-list grid-item-left">
-                {{#each data.damage.array}}
-                  <li class="tag {{this}}">{{this}}</li>
-                {{/each}}
-                </ul>
-              </div>
-            </div>
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Proficiency: </label>
-              </div>
-              <div class="checkbox">
-                <input type="checkbox" name="data.damage.proficiency" data-dtype="Boolean"
-                 {{checked data.damage.proficiency}}/>
               </div>
             </div>
           </div>
@@ -372,22 +356,6 @@
               <select name="data.area.shape" style="font-size: 8px; width: 80px; height: 20px;">
                 {{selectOptions config.shapes selected=data.area.shape}}
               </select>
-            </div>
-          </div>
-        <!-- </details> -->
-      </div>
-
-      <div class="grid-item-left">
-        <!-- <details> -->
-          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Options / Included Abilities</summary>
-          <div class="grid-container">
-            <div class="grid-container-two-item">
-              <div class="grid-item-left">
-                <label>Available: </label>
-              </div>
-              <div class="grid-item-left">
-                <input type="text" class="input-medium-inline-long" name="data.sub_abilities.string" value="{{data.sub_abilities.string}}" placeholder="Seprate by commas."/>
-              </div>
             </div>
           </div>
         <!-- </details> -->

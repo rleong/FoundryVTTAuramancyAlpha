@@ -441,16 +441,16 @@ AURAMANCY.proficiencyInstruments = {
 AURAMANCY.proficiencyLanguages = {
   "ancientaztan": "Ancient Aztan (Meritonese)",
   "aztan": "Aztan (Meritonese)",
-  "bakhwa": "Ba’khwa (Serenese)",
-  "chianhwa": "Chianhwa (Serenese)",
+  "betwa": "Betwa (Serenese)",
+  "chanwa": "Chanwa (Serenese)",
   "common": "Common (Elorish)",
   "durskarian": "Durskarian (Durskarian)",
   "elorish": "Elorish (Elorish)",
   "etferum": "Etferum (Iferosii)",
-  "geonhwa": "Geonhwa (Serenese)",
-  "goyohwa": "Goyohwa (Serenese)",
+  "gonwa": "Gonwa (Serenese)",
+  "goyowa": "Goyowa (Serenese)",
   "highelorean": "High Elorean (Elorish)",
-  "jinhwa": "Jinhwa (Serenese)",
+  "jinwa": "Jinwa (Serenese)",
   "kharic": "Kharic (Alkherrech)",
   "kolkharic": "Kolkharic (Alkherrech)",
   "lowelorean": "Low Elorean (Elorish)",
@@ -462,7 +462,8 @@ AURAMANCY.proficiencyLanguages = {
   "telmarian": "Telmarian (Telmarian)",
   "ulkgharish": "Ulkgharish (Merexian)",
   "viertryz": "Viertryz (Vertrullian)",
-  "yamakhwa": "Yama’khwa (Serenese)"
+  "yamawa": "Yamawa (Serenese)",
+  "celestial": "Celestial Speech (Anochia)"
 };
 
 AURAMANCY.ancestries = {
@@ -517,15 +518,17 @@ AURAMANCY.abilityPrefixes = {
 };
 
 AURAMANCY.abilitySources = {
-  "default": "Default",
   "ancestry": "Ancestry",
+  "artifice": "Artifice",
   "augmentation": "Augmentation",
   "combination": "Combination",
   "cultivation": "Cultivation",
-  "domain": "Domain",
+  "default": "Default",
+  "feat": "Feat",
   "metamagic": "Metamagic",
   "path": "Path",
   "perk": "Perk",
+  "proficiency": "Proficiency",
   "other": "Other"
 };
 
@@ -569,6 +572,12 @@ AURAMANCY.attackTypes = {
   "areal": "Areal",
   "melee": "Melee",
   "ranged": "Ranged"
+};
+
+AURAMANCY.attackSubtypes = {
+  "none": "None",
+  "auto": "Auto",
+  "save": "Save"
 };
 
 AURAMANCY.shapes = {
@@ -650,7 +659,7 @@ AURAMANCY.objectTagsTraits = {
   "thrown": "Thrown",
   "twohanded": "Two-Handed",
   "variant": "Variant",
-  "versatile": "Versatile",
+  "versatile": "Versatile"
 };
 
 AURAMANCY.objectTagsMisc = {
@@ -681,6 +690,66 @@ AURAMANCY.objectTags = {
   ...AURAMANCY.objectTagsSpecial,
   ...AURAMANCY.objectTagsTraits,
   ...AURAMANCY.objectTagsMisc
+};
+
+AURAMANCY.equipmentTags = {
+  "heavy": "Heavy",
+  "prostech": "Prostech",
+  "special": "Special"
+};
+
+AURAMANCY.shieldTags = {
+  "offhand": "Offhand"
+};
+
+AURAMANCY.itemTags = {
+  "ammunition": "Ammunition",
+  "arcanefocus": "Arcane Focus",
+  "armor": "Armor",
+  "equipment": "Equipment",
+  "mundane": "Mundane",
+  "oil": "Oil",
+  "shield": "Shield",
+  "sustenance": "Sustenance",
+  "trap": "Trap",
+  "weapon": "Weapon"
+};
+
+AURAMANCY.weaponTags = {
+  "automatic": "Automatic",
+  "balanced": "Balanced",
+  "finesse": "Finesse",
+  "flail": "Flail",
+  "flexible": "Flexible",
+  "improvised": "Improvised",
+  "light": "Light",
+  "melee": "Melee",
+  "misfire": "Misfire",
+  "oversized": "Oversized",
+  "polearm": "Polearm",
+  "ranged": "Ranged",
+  "reach": "Reach",
+  "reload": "Reload",
+  "returning": "Returning",
+  "scatter": "Scatter",
+  "silvered": "Silvered",
+  "twohanded": "Two-Handed"
+};
+
+AURAMANCY.armorTags = {
+  "adamantium": "Adamantium",
+  "bulwark": "Bulwark",
+  "comfortable": "Comfortable",
+  "hindrance": "Hindrance",
+  "loud": "Loud"
+};
+
+AURAMANCY.allItemTags = {
+  ...AURAMANCY.equipmentTags,
+  ...AURAMANCY.shieldTags,
+  ...AURAMANCY.itemTags,
+  ...AURAMANCY.weaponTags,
+  ...AURAMANCY.armorTags
 };
 
 AURAMANCY.releases = {
@@ -827,7 +896,7 @@ AURAMANCY.proficiencySubjects = {
   "languages": "Languages"
 };
 
-AURAMANCY.equipmentProficiencies = {
+AURAMANCY.proficiencyEquipment = {
   "melee": "Melee Weapons",
   "ranged": "Ranged Weapons",
   "improvised": "Improvised Weapons",
@@ -852,7 +921,24 @@ AURAMANCY.rangedExpertise = {
   "throwable": "Throwable"
 };
 
-AURAMANCY.craftingProficiencies = {
+AURAMANCY.weaponExpertise = {
+  ...AURAMANCY.meleeExpertise,
+  ...AURAMANCY.rangedExpertise
+};
+
+AURAMANCY.proficiencyEquipmentAll = {
+  ...AURAMANCY.weaponExpertise,
+  ...AURAMANCY.proficiencyEquipment
+};
+
+AURAMANCY.savingThrowProficiencies = {
+  "strength": "Strength",
+  "agility": "Agility",
+  "constitution": "Constitution",
+  "willpower": "Willpower"
+};
+
+AURAMANCY.proficiencyCrafting = {
   "alchemy": "Alchemy",
   "artistry": "Artistry",
   "blacksmithing": "Blacksmithing",
@@ -865,4 +951,53 @@ AURAMANCY.craftingProficiencies = {
   "programming": "Programming",
   "scribing": "Scribing",
   "tailoring": "Tailoring"
+};
+
+AURAMANCY.proficiencyOther = {
+  "unarmed": "Unarmed",
+  "riding": "Riding",
+  "artifice": "Artifice",
+  "combinations": "Combinations",
+  ...AURAMANCY.savingThrowProficiencies,
+};
+
+AURAMANCY.proficiencyAugmentation = {
+  "augmentation": "Augmentation"
+};
+
+AURAMANCY.proficiencySpellcasting = {
+  "spellcasting": "Spellcasting"
+};
+
+AURAMANCY.proficiencyAugmentationAll = {
+  ...AURAMANCY.proficiencyAugmentation,
+  ...AURAMANCY.augmentationExpertise
+};
+
+AURAMANCY.proficiencySpellcastingAll = {
+  ...AURAMANCY.proficiencySpellcasting,
+  ...AURAMANCY.spellcastingExpertise
+};
+
+AURAMANCY.augmentationExpertise = {
+  "aero": "Aero",
+  "arcane": "Arcane",
+  "cryo": "Cryo",
+  "electro": "Electro",
+  "geo": "Geo",
+  "hydro": "Hydro",
+  "pyro": "Pyro"
+};
+
+AURAMANCY.spellcastingExpertise = {
+  "abjuration": "Abjuration",
+  "alteration": "Alteration",
+  "chronomancy": "Chronomancy",
+  "conjuration": "Conjuration",
+  "divination": "Divination",
+  "enchantment": "Enchantment",
+  "evocation": "Evocation",
+  "illusion": "Illusion",
+  "necromancy": "Necromancy",
+  "restoration": "Restoration"
 };

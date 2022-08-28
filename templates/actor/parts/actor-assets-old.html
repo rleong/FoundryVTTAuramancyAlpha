@@ -1,6 +1,9 @@
 <section class="center-pane flexcol">
   <div class="overview grid-item grid-container">
     <div class="grid-container grid-row-squish">
+      <!-- <div class="grid-item-inline mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
+        <label class="fancy-font" style="font-size: 26px;">Assets</label>
+      </div> -->
 
       <div class="grid-container-three groove">
         <div class="grid-container groove-right" style="min-width: 200px; width: 225px;">
@@ -91,70 +94,23 @@
             <ul class="filter-list flexrow" data-filter="inventory">
                 <li class="filter-item" data-filter="attunement">Attunement</li>
                 <li class="filter-item" data-filter="equipped">Equipped</li>
+                <li class="filter-item" data-filter="inventory">Inventory</li>
+                <li class="filter-item" data-filter="weapon">Weapon</li>
+                <li class="filter-item" data-filter="equipment">Equipment</li>
+                <li class="filter-item" data-filter="proficiency">Proficiency</li>
             </ul>
         </div>
 
         <ol class="items-list inventory-list">
           <li class="items-header flexrow">
-            <h3 class="item-name flexrow">Equipment</h3>
+            <h3 class="item-name flexrow">Assets</h3>
 
             <div class="item-detail">Quantity</div>
             <div class="item-detail">Bulk</div>
             <div class="item-detail">Usages</div>
 
             <div class="item-controls flexrow">
-              <a class="item-control item-create" title="Add" data-type="item">
-                <i class="fas fa-plus"></i> Add
-              </a>
-            </div>
-          </li>
-
-          <ol class="item-list">
-          {{#each filtered_equipment as |item id|}}
-            <li class="item flexrow" data-item-id="{{item._id}}">
-              <div class="item-name flexrow rollable">
-                <div class="item-image" tabindex="0" role="button" aria-label="{{item.name}}" style="background-image: url('{{item.img}}')"></div>
-                <h4>
-                  {{item.name}}
-                </h4>
-              </div>
-
-              <div class="item-detail">
-                {{item.data.quantity}}
-              </div>
-              <div class="item-detail">
-                {{item.data.bulk.total}}
-              </div>
-              <div class="item-detail">
-                {{item.data.usages.value}}/{{item.data.usages.max}}
-              </div>
-
-              <div class="item-controls flexrow">
-                {{#if item.data.attunement.required}}
-                <a class="item-control item-toggle {{item.toggleAttune}}" title='{{item.toggleAttuneTitle}}' name="attune"><i class="fas fa-sun"></i></a>
-                {{/if}}
-                {{#if item.data.tags.item.equipment.enabled}}
-                <a class="item-control item-toggle {{item.toggleEquip}}" title='{{item.toggleEquipTitle}}' name="equip"><i class="fas fa-shield-alt"></i></a>
-                {{/if}}
-                <a class="item-control item-info" title="Info"><i class="fas fa-info"></i></a>
-                <a class="item-control item-edit" title="Edit"><i class="fas fa-edit"></i></a>
-                <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>
-              </div>
-            </li>
-          {{/each}}
-          </ol>
-        </ol>
-
-        <ol class="items-list inventory-list">
-          <li class="items-header flexrow">
-            <h3 class="item-name flexrow">Inventory</h3>
-
-            <div class="item-detail">Quantity</div>
-            <div class="item-detail">Bulk</div>
-            <div class="item-detail">Usages</div>
-
-            <div class="item-controls flexrow">
-              <a class="item-control item-create" title="Add" data-type="item">
+              <a class="item-control item-create" title="Add" data-type="object">
                 <i class="fas fa-plus"></i> Add
               </a>
             </div>
@@ -171,20 +127,20 @@
               </div>
 
               <div class="item-detail">
-                {{item.data.quantity}}
+                {{item.data.details.quantity}}
               </div>
               <div class="item-detail">
-                {{item.data.bulk.total}}
+                {{item.data.details.bulk}}
               </div>
               <div class="item-detail">
-                {{item.data.usages.value}}/{{item.data.usages.max}}
+                {{item.data.details.usages.value}}/{{item.data.details.usages.max}}
               </div>
 
               <div class="item-controls flexrow">
                 {{#if item.data.attunement.required}}
                 <a class="item-control item-toggle {{item.toggleAttune}}" title='{{item.toggleAttuneTitle}}' name="attune"><i class="fas fa-sun"></i></a>
                 {{/if}}
-                {{#if item.data.tags.item.equipment.enabled}}
+                {{#if item.data.tags.misc.equipment.enabled}}
                 <a class="item-control item-toggle {{item.toggleEquip}}" title='{{item.toggleEquipTitle}}' name="equip"><i class="fas fa-shield-alt"></i></a>
                 {{/if}}
                 <a class="item-control item-info" title="Info"><i class="fas fa-info"></i></a>
@@ -196,9 +152,10 @@
           </ol>
         </ol>
 
-        <div class="grid-item" style="height: 15px;"/>
-
       </div>
+
+      <div class="grid-item" style="height: 15px;"/>
+
     </div>
 
   </div>
