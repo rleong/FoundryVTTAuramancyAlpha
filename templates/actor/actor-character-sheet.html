@@ -12,7 +12,7 @@
 					<input type="text" name="data.traits.pronouns" value="{{data.traits.pronouns}}" placeholder="Pronouns"></input>
 				</div>
 
-				<div class="grid-container-three" style="border: 2px groove #eeede0;">
+				<div class="grid-container-four" style="border: 2px groove #eeede0;">
 					<div class="grid-item mini-header" style="border-right: 2px groove #eeede0;">
 						<label style="font-size: 12px;">Rest:</label>
 					</div>
@@ -21,9 +21,14 @@
 							<i class="fas fa-bed small-icon-alt"></i>
 						</a>
 					</div>
-					<div class="grid-item">
+					<div class="grid-item groove-right">
 						<a class="turn-reset" data-action="tags" title="Refresh Turn">
 							<i class="fas fa-undo small-icon-alt"></i>
+						</a>
+					</div>
+					<div class="grid-item">
+						<a class="reset-all" data-action="tags" title="Refresh All">
+							<i class="fas fa-heart small-icon-alt"></i>
 						</a>
 					</div>
 				</div>
@@ -242,8 +247,8 @@
 						</div>
 						<div class="grid-item grid-container-two" style="border-bottom: 2px groove #eeede0;">
 							<div class="grid-item-inline" style="border-right: 2px groove #eeede0;">
-								<label class="small-gray-text">Maximum:</label>
-								<input type="text" class="input-small-inline-borderless" name="data.ap.max" value="{{data.ap.max}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+								<label class="small-gray-text">Minimum:</label>
+								<input type="text" class="input-small-inline-borderless" name="data.ap.min" value="{{data.ap.min}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
 							</div>
 							<div class="grid-item-inline">
 								<label class="small-gray-text">Temporary:</label>

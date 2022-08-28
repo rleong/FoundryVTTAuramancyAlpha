@@ -284,7 +284,8 @@
           "charges": {
             "value": 6,
             "max": 6,
-            "temp": 0
+            "temp": 0,
+            "mod": 0
           }
         },
         "attributes": {
@@ -380,6 +381,7 @@
             "mod": 0,
             "max": 10,
             "default_carry": 5,
+            "default_carry_mod": 0,
             "wield_capacity": "L-2"
           },
           "damage_immunities": [],
@@ -554,6 +556,20 @@
           "biography": ""
         },
         "progression": {
+          "notes": "",
+          "aether_reserve": 0,
+          "aether_well": 0,
+          "attunement": 0,
+          "attribute": 0,
+          "cultivation": 0,
+          "familiar": 0,
+          "favored_enemy": 0,
+          "favored_terrain": 0,
+          "hit_die": 0,
+          "path": 0,
+          "perks": 0,
+          "proficiency": 0,
+          "saving_throw": 0
         }
       }
     },

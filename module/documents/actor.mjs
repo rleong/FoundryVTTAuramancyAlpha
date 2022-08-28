@@ -50,23 +50,21 @@ export class AuramancyActor extends Actor {
     data.stats.movement.max = CONFIG.AURAMANCY.sizeCategoryMovement[data.traits.size] + data.stats.movement.temp + data.stats.movement.ancestry_mod + data.stats.movement.mod;
     data.stats.movement.value = Math.max(0, Math.min(data.stats.movement.value, data.stats.movement.max));
 
-    // Armor class
-    let ac_capped = data.stats.ac.cap === 0 ? data.attributes.agi.value : Math.min(data.attributes.agi.value, data.stats.ac.cap);
-    data.stats.ac.value = 8 + data.stats.ac.temp + data.stats.ac.mod + ac_capped + data.stats.ac.armor;
-
     // Proficiency
     data.stats.proficiency.value = 1 + Math.ceil(data.auramancy.level/4);
     data.stats.proficiency.save = 10 + data.stats.proficiency.value;
+    this.getProficiencyDie(actorData);
 
     // AP
-    data.ap.max = 3 + data.ap.temp;
+    data.ap.min = 2 + Math.ceil(data.auramancy.level / 4)
+    data.ap.temp = Math.max(0, data.ap.value - data.ap.min);
 
     // Aether well
-    data.auramancy.charges.max = Math.max(0, 3 + (data.auramancy.level * 3)) + data.auramancy.charges.temp;
+    data.auramancy.charges.max = Math.max(0, (3 + data.auramancy.charges.mod + (data.auramancy.level * 3))) + data.auramancy.charges.temp;
 
     // HP
     data.health.hp.max = CONFIG.AURAMANCY.minHp[data.health.reserve.die] + ((data.auramancy.level) * data.attributes.con.value) + ((data.auramancy.level-1) * data.health.reserve.die);
-    data.health.reserve.max = Math.max(0, data.auramancy.level * 2);
+    data.health.reserve.max = Math.max(0, (data.auramancy.level * 2) + data.health.reserve.mod);
 
     // currency
     data.currency.credits = Math.max(0, data.currency.credits);
@@ -112,6 +110,20 @@ export class AuramancyActor extends Actor {
     data.attributes.cha.max = 5 + data.attributes.cha.max_mod;
     data.attributes.cha.value = Math.min(data.attributes.cha.max, Math.max(data.attributes.cha.min, data.attributes.cha.value));
     data.attributes.cha.passive = 10 + data.attributes.cha.value + data.attributes.cha.passive_mod;
+
+    // Armor class
+    this.getAC(actorData);
+
+    // Strain
+    data.health.strain.mental.max = Math.max(4, data.attributes.int.value + data.attributes.wil.value + data.attributes.per.value + data.attributes.cha.value);
+    data.health.strain.physical.max = Math.max(4, data.attributes.str.value + data.attributes.agi.value + data.attributes.dex.value + data.attributes.con.value);
+
+    // Magic
+    data.abilities.magic.tier = Math.ceil(data.auramancy.level / 2);
+
+    // EXP
+    data.auramancy.exp.available = data.auramancy.exp.total - data.auramancy.exp.expended;
+
   }
 
   /**
@@ -132,6 +144,47 @@ export class AuramancyActor extends Actor {
 
     // Make modifications to data here. For example:
     const data = actorData.data;
+  }
+
+  getAC(actorData) {
+    const data = actorData.data;
+    const items = actorData.items;
+    let ac_base = 0;
+    let ac_hindrance = 0;
+    for (const item of items) {
+      if (item.data.data.tags.item.equipment.enabled === true && item.data.data.equipped === true && item.data.data.tags.item.armor.enabled === true) {
+        ac_base += item.data.data.armor.ac;
+        ac_hindrance += item.data.data.armor.hindrance;
+      }
+    }
+    if (ac_base === 0) {
+      ac_base = 8;
+    }
+    let agi_bonus = data.attributes.agi.value;
+    if (ac_hindrance !== 0) {
+      agi_bonus = Math.max(0, data.attributes.agi.value - ac_hindrance);
+    }
+    data.stats.ac.value = ac_base + data.stats.ac.temp + data.stats.ac.mod + agi_bonus;
+  }
+
+  getProficiencyDie(actorData) {
+    const data = actorData.data;
+    if (data.auramancy.level <= 20) {
+      data.stats.proficiency.die_amount = 1;
+    } else {
+      data.stats.proficiency.die_amount = 1 + Math.ceil((data.auramancy.level - 20) / 4);
+    }
+    if (data.auramancy.level <= 4) {
+      data.stats.proficiency.die = 4;
+    } else if (data.auramancy.level >= 5 && data.auramancy.level <= 8) {
+      data.stats.proficiency.die = 6;
+    } else if (data.auramancy.level >= 9 && data.auramancy.level <= 12) {
+      data.stats.proficiency.die = 8;
+    } else if (data.auramancy.level >= 13 && data.auramancy.level <= 16) {
+      data.stats.proficiency.die = 10;
+    } else {
+      data.stats.proficiency.die = 12;
+    }
   }
 
   /**
@@ -179,26 +232,12 @@ export class AuramancyActor extends Actor {
   _getCurrentBulk(data, current_bulk){
     let total_bulk = current_bulk;
     for(const item of data){
-      if(item.type === "object"){
-        let bulk = item.data.data.details.quantity * this._getBulkValue(item.data.data.details.bulk);
+      if(item.type === "item"){
+        let bulk = item.data.data.bulk.total;
         total_bulk += bulk;
       }
     }
     return total_bulk;
-  }
-
-  _getBulkValue(bulk){
-    let bulk_float = parseFloat(bulk);
-    if(!isNaN(bulk_float)){
-      return bulk_float;
-    }
-    if(typeof bulk === "string"){
-      if(bulk.toLowerCase().trim() === "l"){
-        return 0.1;
-      } else {
-        return 0;
-      }
-    }
   }
 
 }

@@ -1001,3 +1001,19 @@ AURAMANCY.spellcastingExpertise = {
   "necromancy": "Necromancy",
   "restoration": "Restoration"
 };
+
+AURAMANCY.progressionOptions = {
+  "aether_reserve": "Aether Reserve",
+  "aether_well": "Aether Well",
+  "attunement": "Attunement",
+  "attribute": "Attribute",
+  "cultivation": "Cultivation",
+  "familiar": "Familiar",
+  "favored_enemy": "Favored Enemy",
+  "favored_terrain": "Favored Terrain",
+  "hit_die": "Hit Die",
+  "path": "Path",
+  "perk": "Perk",
+  "proficiency": "Proficiency",
+  "saving_throw": "Saving Throw"
+};

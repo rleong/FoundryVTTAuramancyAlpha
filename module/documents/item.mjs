@@ -33,6 +33,39 @@ export class AuramancyItem extends Item {
     const data = itemData.data;
     let chatdata = this._prepareChatData(itemData);
     data.chatdata = chatdata;
+
+    let bulk = 0;
+    let bulk_value = String(data.bulk.value).toUpperCase().trim();
+    switch (bulk_value) {
+      case "-":
+        bulk = 0;
+        break;
+      case "L":
+        bulk = 0.1;
+        break;
+      case "X":
+        bulk = 0;
+        break;
+      default:
+        bulk = parseInt(bulk_value);
+        if (isNaN(bulk)) {
+          bulk = 0;
+        }
+        break;
+    }
+
+    let per_bulk = parseInt(data.bulk.per);
+    if (isNaN(per_bulk)) {
+      per_bulk = 1;
+    }
+
+    let quantity = parseInt(data.quantity);
+    if (isNaN(quantity)) {
+      quantity = 0;
+    }
+
+    data.bulk.total = (quantity / per_bulk) * bulk;
+
   }
 
   /**
@@ -368,6 +401,9 @@ export class AuramancyItem extends Item {
     switch (item.type) {
       case "object":
         html_file = "systems/auramancy/templates/chat/object-card.html";
+        break;
+      case "item":
+        html_file = "systems/auramancy/templates/chat/item-card.html";
         break;
       case "ability":
         html_file = "systems/auramancy/templates/chat/ability-card.html";

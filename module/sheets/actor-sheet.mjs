@@ -204,6 +204,7 @@ export class AuramancyActorSheet extends ActorSheet {
     //
     // Configure Turn Reset
     html.find(".turn-reset").click(this._restTurn.bind(this));
+    html.find(".reset-all").click(this._restAll.bind(this));
 
     html.find(".increase-level").click(this._increaseLevel.bind(this));
 
@@ -599,10 +600,10 @@ export class AuramancyActorSheet extends ActorSheet {
     let data = actorData.data;
 
     let ap_dots = [];
-    for(let i = 0; i < Math.min(3, data.ap.value); i++){
+    for(let i = 0; i < Math.min(data.ap.min, data.ap.value); i++){
       ap_dots.push("active");
     }
-    for(let i = 0; i < 3-data.ap.value; i++){
+    for(let i = 0; i < data.ap.min - data.ap.value; i++){
       ap_dots.push("inactive");
     }
     if(data.ap.temp > 0){
@@ -619,8 +620,20 @@ export class AuramancyActorSheet extends ActorSheet {
   _restTurn(actorData) {
     const update_data = {};
     update_data['data.stats.movement.value'] = this.object.data.data.stats.movement.max;
-    update_data['data.ap.value'] = this.object.data.data.ap.max;
+    update_data['data.ap.value'] = this.object.data.data.ap.min;
     update_data['data.health.buffer.value'] = Math.max(this.object.data.data.health.buffer.value, this.object.data.data.health.buffer.min);
+    this.object.update(update_data);
+  }
+
+  _restAll(actorData) {
+    const update_data = {};
+    update_data['data.health.reserve.value'] = this.object.data.data.health.reserve.max;
+    update_data['data.health.hp.value'] = this.object.data.data.health.hp.max;
+    update_data['data.health.strain.mental.value'] = 0;
+    update_data['data.health.strain.physical.value'] = 0;
+    update_data['data.health.buffer.min'] = 0;
+    update_data['data.auramancy.charges.value'] = this.object.data.data.auramancy.charges.max;
+    this._restTurn(actorData);
     this.object.update(update_data);
   }
 
@@ -640,7 +653,7 @@ export class AuramancyActorSheet extends ActorSheet {
 
   _increaseAP(actorData) {
     const update_data = {};
-    let new_ap = Math.min(this.object.data.data.ap.max, this.object.data.data.ap.value + 1);
+    let new_ap = this.object.data.data.ap.value + 1;
     update_data['data.ap.value'] = new_ap;
     this.object.update(update_data);
   }

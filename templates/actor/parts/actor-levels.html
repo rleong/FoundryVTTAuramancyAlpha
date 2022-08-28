@@ -38,7 +38,7 @@
               <label class="fancy-font" style="font-size: 18px;">Expended</label>
             </div>
             <div class="grid-item">
-              <input type="text" class="input-large" name="data.auramancy.exp.expended" value="{{data.auramancy.exp.expended}}" placeholder="0" data-dtype="Number" disabled="disabled"/>
+              <input type="text" class="input-large" name="data.auramancy.exp.expended" value="{{data.auramancy.exp.expended}}" placeholder="0" data-dtype="Number"/>
             </div>
           </div>
           <div class="grid-container">
@@ -57,11 +57,13 @@
           <label class="fancy-font" style="font-size: 26px;">Magic</label>
         </div>
         <div class="grid-container" style="">
-          <div class="grid-item" style="">
-            <label class="fancy-font" style="font-size: 14px;">Highest Tier of Magic</label>
-          </div>
-          <div class="grid-item">
-            <label class="fancy-font" style="font-size: 20px;">{{data.abilities.magic.tier}}</label>
+          <div class="grid-container">
+            <div class="grid-item" style="">
+              <label class="fancy-font" style="font-size: 14px;">Highest Tier of Magic</label>
+            </div>
+            <div class="grid-item">
+              <label class="fancy-font" style="font-size: 20px;">{{data.abilities.magic.tier}}</label>
+            </div>
           </div>
         </div>
       </div>
@@ -69,13 +71,238 @@
     </div>
   </div>
 
-  <div class="grid-container groove" style="height: 150px;">
+  <div class="grid-container groove" style="">
+    <div class="grid-container grid-row-squish">
+      <div class="grid-item-inline mini-header groove-bottom" style="height: 30px;">
+        <label class="fancy-font" style="font-size: 26px;">Progression Notes</label>
+      </div>
+      <div class="grid-item" style="text-align: left; min-height: 350px;">
+        {{editor content=data.progression.notes target="data.progression.notes" rollData=rollData button=true owner=owner editable=editable}}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-container groove" style="">
     <div class="grid-container grid-item mini-header" style="height: 30px; border-bottom: 2px groove #eeede0;">
       <label class="fancy-font" style="font-size: 26px;">Point Buy Costs</label>
     </div>
-    <div class="grid-container" style="">
 
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Aether Reserve</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 1 + (1 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You increase your Aether Reserve by 2.</label>
+        </div>
+      </div>
     </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Aether Well</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 1 + (1 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You increase your Aether Well's Maximum by 2.</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Attunement</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 3 + (3 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You gain 1 additional Attunement Slot.</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Attribute</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> Equal to the current Attribute number you wish to increase, minimum of 1 EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You increase one of your Attributes by 1, up to its maximum (by default this number is 5).</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Cultivation</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 2 + (2 x the number of other Cultivation Techniques you have) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You gain a new Cultivation Technique, or an additional option of an existing Cultivation Technique.</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Familiar</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 5 + (5 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">The maximum number of Companions you can have at once is increased by 1. This additional increase can only be applied to Familiars.</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Favored Enemy</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 2 + (1 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You gain a Favored Enemy.</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Favored Terrain</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 2 + (1 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You gain a Favored Terrain that is not an Exotic Terrain.</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Hit Die</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 5 + (5 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">Increase your Hit Die by one size, to a maximum of a d12. (d4 → d6, d6 → d8, d8 → d10, d10 → d12.) See the “Health” section for how to calculate your new Maximum HP. You cannot pick this option if you are already at the maximum Hit Die size.</label>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Path</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> Varies</label>
+          <br/>
+          <label style="font-size: 12px;">You gain a new Path or advance an existing Path.</label>
+          <ul>
+            <li style="font-size: 12px;">The Cost for learning a <b>new</b> Path is equal to: 2 + (2 x the number of other Paths you have) EXP</li>
+            <li style="font-size: 12px;">The Cost for advancing an <b>existing</b> Path is equal to: 2 + (the current Tier of the Path) EXP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Perks</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> Varies</label>
+          <br/>
+          <label style="font-size: 12px;">The following Perks from the Perks Compendium can be obtained with their respective Costs:</label>
+          <ul>
+            <li style="font-size: 12px;"><b>Cost:</b> 2 + (1 x the number of times you’ve used this suboption for a particular Perk Category) EXP
+              <ul>
+                <li><b>Perk Categories:</b> Combat Perks, Major Arcane Perks.</li>
+              </ul>
+            </li>
+            <li style="font-size: 12px;"><b>Cost:</b> 1 + (1 x the number of times you’ve used this suboption for a particular Perk Category) EXP
+              <ul>
+                <li><b>Perk Categories:</b> Non-Combat Perks, Crafting Perks, Operating Perks, Minor Arcane Perks.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Proficiency</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> Varies</label>
+          <br/>
+          <label style="font-size: 12px;">You gain Proficiency in a new Proficiency Subject, or you gain Expertise in an existing Proficiency.</label>
+          <ul>
+            <li style="font-size: 12px;"><b>Cost:</b> 1 + (1 x the number of times you’ve used this suboption for a particular Proficiency Subject) EXP
+              <ul>
+                <li>Gain a Proficiency in a new Proficiency Subject.</li>
+              </ul>
+            </li>
+            <li style="font-size: 12px;"><b>Cost:</b> 2 + (1 x the number of times you’ve used this suboption for a particular Proficiency) EXP
+              <ul>
+                <li>Gain Expertise in an existing Proficiency.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="grid-container" style="">
+      <div class="grid-container">
+        <div class="grid-item-left">
+          <label class="fancy-font" style="font-size: 18px;">Saving Throw</label>
+        </div>
+        <div class="grid-item-left">
+          <label style="font-size: 12px;"><b>Cost:</b> 5 + (5 x the number of times you’ve picked this option) EXP</label>
+          <br/>
+          <label style="font-size: 12px;">You gain Proficiency in one of the following Saving Throw Attributes:</label>
+          <ul>
+            <li style="font-size: 12px;">Strength</li>
+            <li style="font-size: 12px;">Agility</li>
+            <li style="font-size: 12px;">Constitution</li>
+            <li style="font-size: 12px;">Willpower</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <br>
+
   </div>
 
 </section>
