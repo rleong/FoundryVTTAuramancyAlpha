@@ -1,77 +1,55 @@
 {
-  "name": "auramancy",
+  "id": "auramancy",
   "title": "Auramancy",
-  "description": "The Auramancy system for FoundryVTT!",
-  "version": "1.1.1",
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "10",
-  "author": "Asacolips",
-  "esmodules": ["module/auramancy.mjs"],
-  "styles": ["css/auramancy.css"],
-  "scripts": ["js/auramancy.js"],
-  "packs": [
+  "description": "Auramancy for Altrem.",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "9",
+    "verified": "10",
+    "maximum": "10"
+  },
+  "authors": [
     {
-      "name": "default_abilities",
-      "label": "Default Abilities",
-      "system": "auramancy",
-      "path": "./packs/default-abilities.db",
-      "entity": "Item",
-      "type": "ability"
-    },
-    {
-      "name": "standard_ammunition",
-      "label": "Standard Ammunition",
-      "system": "auramancy",
-      "path": "./packs/standard-ammunition.db",
-      "entity": "Item",
-      "type": "item"
-    },
-    {
-      "name": "standard_armor",
-      "label": "Standard Armor",
-      "system": "auramancy",
-      "path": "./packs/standard-armor.db",
-      "entity": "Item",
-      "type": "item"
-    },
-    {
-      "name": "standard_melee_weapons",
-      "label": "Standard Melee Weapons",
-      "system": "auramancy",
-      "path": "./packs/standard-melee-weapons.db",
-      "entity": "Item",
-      "type": "item"
-    },
-    {
-      "name": "standard_ranged_weapons",
-      "label": "Standard Ranged Weapons",
-      "system": "auramancy",
-      "path": "./packs/standard-ranged-weapons.db",
-      "entity": "Item",
-      "type": "item"
-    },
-    {
-      "name": "standard_shields",
-      "label": "Standard Shields",
-      "system": "auramancy",
-      "path": "./packs/standard-shields.db",
-      "entity": "Item",
-      "type": "item"
+      "name": "Russell Leong"
     }
   ],
-  "languages": [
+  "scripts": [
+    "js/auramancy.js"
+  ],
+  "esmodules": [
+    "module/auramancy.mjs"
+  ],
+  "styles": [
+    "css/auramancy.css"
+  ],
+  "packs": [
+    {
+      "name": "default abilities",
+      "label": "Default Abilities",
+      "path": "packs/default-abilities.db",
+      "type": "Item"
+    },
+    {
+      "name": "standard equipment",
+      "label": "Standard Equipment",
+      "path": "packs/standard-equipment.db",
+      "type": "Item"
+    }
+  ],
+"languages": [
     {
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
     }
   ],
-  "gridDistance": 5,
+  "socket": false,
+  "initiative": "1d20",
+  "gridDistance": 10,
   "gridUnits": "ft",
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
-  "url": "",
-  "manifest": "",
-  "download": "",
-  "license": "LICENSE.txt"
+  "primaryTokenAttribute": "resources.health",
+  "secondaryTokenAttribute": "resources.power",
+  "url": "https://your/hosted/system/repo/",
+  "manifest": "https://your/hosted/system/repo/system.json",
+  "download": "https://your/packaged/download/archive.zip"
 }
