@@ -227,7 +227,8 @@
             "mod": 0,
             "armor": 0,
             "cap": 0,
-            "hindrance": 0
+            "hindrance": 0,
+            "unarmored_base": 8
           },
           "proficiency": {
             "value": 2,
@@ -600,12 +601,14 @@
       },
       "bulk": {
         "value": "",
-        "per": "",
-        "total": ""
+        "per": 1,
+        "total": "",
+        "stored": 0,
+        "stored_max": 0
       },
-      "quantity": "",
-      "quality": "",
-      "rarity": "",
+      "quantity": 1,
+      "quality": "standard",
+      "rarity": "common",
       "standard_value": "",
       "usages": {
         "value": 0,
@@ -641,6 +644,10 @@
             "descriptor": ""
           },
           "shield": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "siege": {
             "enabled": false,
             "descriptor": ""
           },
@@ -694,6 +701,10 @@
           }
         },
         "weapon": {
+          "areal": {
+            "enabled": false,
+            "descriptor": ""
+          },
           "automatic": {
             "enabled": false,
             "descriptor": ""
@@ -703,14 +714,6 @@
             "descriptor": ""
           },
           "finesse": {
-            "enabled": false,
-            "descriptor": ""
-          },
-          "flail": {
-            "enabled": false,
-            "descriptor": ""
-          },
-          "flexible": {
             "enabled": false,
             "descriptor": ""
           },
@@ -731,10 +734,6 @@
             "descriptor": ""
           },
           "oversized": {
-            "enabled": false,
-            "descriptor": ""
-          },
-          "polearm": {
             "enabled": false,
             "descriptor": ""
           },
@@ -1156,7 +1155,7 @@
       },
       "magical": {
         "magical": "",
-        "tier": "",
+        "tier": 0,
         "school": "",
         "components": "",
         "material": ""

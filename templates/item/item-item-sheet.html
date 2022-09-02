@@ -13,7 +13,7 @@
 
     <div class="grid-container groove">
       <div class="grid-item groove-bottom mini-header">
-        <label class="fancy-font" style="font-size: 26px; text-align: center;">Object</label>
+        <label class="fancy-font" style="font-size: 26px; text-align: center;">Item</label>
       </div>
 
       <div class="grid-item-left">
@@ -35,7 +35,7 @@
 
       <div class="grid-item-left">
         <!-- <details> -->
-          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Details</summary>
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Bulk</summary>
           <div class="grid-container">
             <div class="grid-container-two-item">
               <div class="grid-item-left">
@@ -47,6 +47,26 @@
                 <input type="text" class="input-medium-inline" name="data.bulk.per" value="{{data.bulk.per}}" placeholder="1" data-dtype="Number"/>
               </div>
             </div>
+            <div class="grid-container-two-item">
+              <div class="grid-item-left">
+                <label>Storage: </label>
+              </div>
+              <div class="grid-item-left">
+                <div class="grid-item-left">
+                  <input type="text" class="input-medium-inline" name="data.bulk.stored" value="{{data.bulk.stored}}" placeholder="0" data-dtype="Number"/>
+                  <label> out of </label>
+                  <input type="text" class="input-medium-inline" name="data.bulk.stored_max" value="{{data.bulk.stored_max}}" placeholder="0" data-dtype="Number"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </details> -->
+      </div>
+
+      <div class="grid-item-left">
+        <!-- <details> -->
+          <summary class="groove-bottom groove-top mini-header fancy-font" style="font-size: 16px;">Details</summary>
+          <div class="grid-container">
             <div class="grid-container-two-item">
               <div class="grid-item-left">
                 <label>Quantity: </label>
@@ -62,7 +82,7 @@
                 <label>Quality: </label>
               </div>
               <div class="grid-item-left">
-                <select name="data.details.quality" style="font-size: 8px; width: 80px; height: 20px;">
+                <select name="data.quality" style="font-size: 8px; width: 80px; height: 20px;">
                   {{selectOptions config.quality selected=data.quality}}
                 </select>
               </div>
@@ -72,7 +92,7 @@
                 <label>Rarity: </label>
               </div>
               <div class="grid-item-left">
-                <select name="data.details.rarity" style="font-size: 8px; width: 80px; height: 20px;">
+                <select name="data.rarity" style="font-size: 8px; width: 80px; height: 20px;">
   								{{selectOptions config.rarity selected=data.rarity}}
   							</select>
               </div>
@@ -165,7 +185,7 @@
           <div class="grid-container">
             <div class="grid-container-two-item">
               <div class="grid-item-left">
-                <label>Is Armor: </label>
+                <label>Provides AC? </label>
               </div>
               <div class="checkbox">
                 <input type="checkbox" name="data.armor.armor" data-dtype="Boolean"

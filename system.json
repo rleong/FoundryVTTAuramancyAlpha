@@ -4,7 +4,7 @@
   "description": "The Auramancy system for FoundryVTT!",
   "version": "1.1.1",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "9",
+  "compatibleCoreVersion": "10",
   "author": "Asacolips",
   "esmodules": ["module/auramancy.mjs"],
   "styles": ["css/auramancy.css"],
@@ -17,6 +17,46 @@
       "path": "./packs/default-abilities.db",
       "entity": "Item",
       "type": "ability"
+    },
+    {
+      "name": "standard_ammunition",
+      "label": "Standard Ammunition",
+      "system": "auramancy",
+      "path": "./packs/standard-ammunition.db",
+      "entity": "Item",
+      "type": "item"
+    },
+    {
+      "name": "standard_armor",
+      "label": "Standard Armor",
+      "system": "auramancy",
+      "path": "./packs/standard-armor.db",
+      "entity": "Item",
+      "type": "item"
+    },
+    {
+      "name": "standard_melee_weapons",
+      "label": "Standard Melee Weapons",
+      "system": "auramancy",
+      "path": "./packs/standard-melee-weapons.db",
+      "entity": "Item",
+      "type": "item"
+    },
+    {
+      "name": "standard_ranged_weapons",
+      "label": "Standard Ranged Weapons",
+      "system": "auramancy",
+      "path": "./packs/standard-ranged-weapons.db",
+      "entity": "Item",
+      "type": "item"
+    },
+    {
+      "name": "standard_shields",
+      "label": "Standard Shields",
+      "system": "auramancy",
+      "path": "./packs/standard-shields.db",
+      "entity": "Item",
+      "type": "item"
     }
   ],
   "languages": [

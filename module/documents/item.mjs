@@ -16,10 +16,8 @@ export class AuramancyItem extends Item {
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    this._prepareObjectData(itemData);
     this._prepareItemData(itemData);
     this._prepareAbilityData(itemData);
-    this._prepareProgressionData(itemData);
 
   }
 
@@ -31,6 +29,20 @@ export class AuramancyItem extends Item {
 
     // Make modifications to data here. For example:
     const data = itemData.data;
+    // Add in additional key value pairs that were not present for previously created items
+    if (data.tags.item.siege === null || data.tags.item.siege === "undefined") {
+      data.tags.item.siege = {"enabled": false, "descriptor": ""};
+    }
+    if (data.tags.weapon.areal === null || data.tags.weapon.areal === "undefined") {
+      data.tags.weapon.areal = {"enabled": false, "descriptor": ""};
+    }
+    if (data.bulk.stored === null || data.bulk.stored === "undefined") {
+      data.bulk.stored = 0;
+    }
+    if (data.bulk.stored_max === null || data.bulk.stored_max === "undefined") {
+      data.bulk.stored_max = 0;
+    }
+
     let chatdata = this._prepareChatData(itemData);
     data.chatdata = chatdata;
 
@@ -64,7 +76,8 @@ export class AuramancyItem extends Item {
       quantity = 0;
     }
 
-    data.bulk.total = (quantity / per_bulk) * bulk;
+    let stored_bulk = (data.bulk.stored / 2) < 1 ? 0 : (data.bulk.stored / 2);
+    data.bulk.total = ((quantity / per_bulk) * bulk) + stored_bulk;
 
   }
 
@@ -90,6 +103,10 @@ export class AuramancyItem extends Item {
     const data = itemData.data;
     let chatdata = this._prepareChatData(itemData);
     data.chatdata = chatdata;
+
+    if (data.magical.other === null || data.magical.other === "undefined") {
+      data.magical.other = "";
+    }
   }
 
   /**
@@ -140,7 +157,6 @@ export class AuramancyItem extends Item {
     // console.log("------------");
 
     if(item.type === "object"){
-      // console.log("object");
       chatdata.push([`Quantity:`, ` ${item.data.details.quantity}`]);
       if (item.data.details.quality !== "") {
         chatdata.push([`Quality:`, ` ${CONFIG.AURAMANCY.quality[item.data.details.quality]}`]);
@@ -231,8 +247,6 @@ export class AuramancyItem extends Item {
         chatdata.push([`Tags: `, tags]);
       }
 
-      // console.log(chatdata);
-      // item.data.chatdata = chatdata;
     }else if (item.type === "ability"){
       let prerequisites = String(item.data.prerequisites).trim();
       if(prerequisites !== ""){
@@ -252,12 +266,16 @@ export class AuramancyItem extends Item {
         }
       }
       if (item.data.magical.magical !== "" && item.data.magical.magical !== "no") {
-        let tiers = item.data.magical.tier === "" ? "" : `Tier ${item.data.magical.tier} `;
-        let school = item.data.magical.school === "" || item.data.magical.school === "none" ? "" : `${CONFIG.AURAMANCY.magicSchools[item.data.magical.school]}`;
-        let components = item.data.magical.components === "" ? "" : ` - ${item.data.magical.components}`;
-        let materials = item.data.magical.material === "" ? "" : `: ${item.data.magical.material}`;
-        let magical = `${tiers}${school}${components}${materials}`;
-        chatdata.push([`Magical: `, `${magical}`]);
+        if (String(item.data.magical.other).trim() !== "") {
+          chatdata.push([`Magical: `, `${item.data.magical.other}`]);
+        } else {
+          let tiers = item.data.magical.tier === "" ? "" : `Tier ${item.data.magical.tier} `;
+          let school = item.data.magical.school === "" || item.data.magical.school === "none" ? "" : `${CONFIG.AURAMANCY.magicSchools[item.data.magical.school]}`;
+          let components = item.data.magical.components === "" ? "" : ` - ${item.data.magical.components}`;
+          let materials = item.data.magical.material === "" ? "" : `: ${item.data.magical.material}`;
+          let magical = `${tiers}${school}${components}${materials}`;
+          chatdata.push([`Magical: `, `${magical}`]);
+        }
       }
       if (item.data.duration.time !== "") {
         let dismiss = item.data.duration.dismissable === false ? "" : ` (${item.data.duration.dismiss} AP)`;
@@ -271,19 +289,19 @@ export class AuramancyItem extends Item {
         chatdata.push([`Recharge: `, `${item.data.recharge}`]);
       }
       let cost = "";
-      if (item.data.cost.ap !== 0 && item.data.cost.ap !== null) {
+      if (item.data.cost.ap !== 0 && item.data.cost.ap !== null && String(item.data.cost.ap).trim() !== "") {
         cost += `${item.data.cost.ap} AP, `;
       }
-      if (item.data.cost.charges !== 0 && item.data.cost.charges !== null) {
-        cost += `${item.data.cost.charges} Aether Charges, `;
+      if (item.data.cost.charges !== 0 && item.data.cost.charges !== null && String(item.data.cost.charges).trim() !== "") {
+        cost += `${item.data.cost.charges} Aether Charge(s), `;
       }
-      if (item.data.cost.usages !== 0 && item.data.cost.usages !== null) {
+      if (item.data.cost.usages !== 0 && item.data.cost.usages !== null && String(item.data.cost.usages).trim() !== "") {
         cost += `${item.data.cost.usages} Usages, `;
       }
-      if (item.data.cost.time !== 0 && item.data.cost.time !== null) {
+      if (item.data.cost.time !== 0 && item.data.cost.time !== null && String(item.data.cost.time).trim() !== "") {
         cost += `${item.data.cost.time}, `;
       }
-      if (item.data.cost.material !== 0 && item.data.cost.material !== null) {
+      if (item.data.cost.material !== 0 && item.data.cost.material !== null && String(item.data.cost.material).trim() !== "") {
         cost += `${item.data.cost.material}, `;
       }
       if (item.data.cost.other !== "") {
@@ -302,20 +320,28 @@ export class AuramancyItem extends Item {
         if (isNaN(float_range)) {
           chatdata.push([`Range: `, `${item.data.range.distance}`]);
         } else {
-          chatdata.push([`Range: `, `${item.data.range.distance}${item.data.range.unit}.`]);
+          if (item.data.range.unit === "none"){
+            chatdata.push([`Range: `, `${item.data.range.distance}`]);
+          } else {
+            chatdata.push([`Range: `, `${item.data.range.distance}${item.data.range.unit}.`]);
+          }
         }
       }
       if (item.data.area.dimensions !== "") {
-        chatdata.push([`Area: `, `${item.data.area.dimensions} ${CONFIG.AURAMANCY.shapes[item.data.area.shape]}`]);
+        if (String(item.data.area.dimensions).toLowerCase().trim() === "varies") {
+          chatdata.push([`Area: `, `${item.data.area.dimensions}`]);
+        } else {
+          chatdata.push([`Area: `, `${item.data.area.dimensions} ${CONFIG.AURAMANCY.shapes[item.data.area.shape]}`]);
+        }
       }
 
     } else if (item.type === "item") {
       chatdata.push([`Bulk:`, ` ${item.data.bulk.value} per ${item.data.bulk.per}`]);
       chatdata.push([`Quantity:`, ` ${item.data.quantity}`]);
-      if (item.data.quality !== "") {
+      if (item.data.quality !== "" && item.data.rarity !== "none") {
         chatdata.push([`Quality:`, ` ${CONFIG.AURAMANCY.quality[item.data.quality]}`]);
       }
-      if (item.data.rarity !== "") {
+      if (item.data.rarity !== "" && item.data.rarity !== "none") {
         chatdata.push([`Rarity:`, ` ${CONFIG.AURAMANCY.rarity[item.data.rarity]}`]);
       }
       if (item.data.standard_value !== 0 && item.data.standard_value !== null) {

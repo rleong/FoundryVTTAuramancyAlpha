@@ -12,6 +12,9 @@
 
 
     <div class="grid-container groove">
+      <div class="grid-item">
+        <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" style="border: none;"/>
+      </div>
       {{#each item.data.chatdata as |chatdata|}}
       <div class="grid-container-two-card">
         {{#each chatdata}}
@@ -28,9 +31,10 @@
         {{/each}}
       </div>
       {{/each}}
-      <div class="grid-item-left">
+      {{!-- Description Tab --}}
+      <div class="tab grid-item-left" style="">
         <b>Description:</b>
-        {{editor content=item.data.description target="item.data.description"}}
+        {{{item.data.description}}}
       </div>
     </div>
 

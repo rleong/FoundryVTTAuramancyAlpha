@@ -162,11 +162,11 @@ export class AuramancyActorSheet extends ActorSheet {
     context.abilities = abilities;
     context.filtered_abilities = this._filterItems(abilities, this._filters.abilities, "abilities");
     context.default_abilities = default_abilities;
-    context.filtered_default_abilities = this._filterItems(default_abilities, this._filters.default_abilities, "default_abilities");
+    context.filtered_default_abilities = this._filterItems(default_abilities, this._filters.abilities, "abilities");
     context.inventory = inventory;
     context.filtered_inventory = this._filterItems(inventory, this._filters.inventory, "inventory");
     context.equipment = equipment;
-    context.filtered_equipment = this._filterItems(equipment, this._filters.equipment, "equipment");
+    context.filtered_equipment = this._filterItems(equipment, this._filters.inventory, "inventory");
   }
 
   /* -------------------------------------------- */
@@ -436,11 +436,6 @@ export class AuramancyActorSheet extends ActorSheet {
             // console.log("Yes");
             if (!filtered_data.includes(element)) filtered_data.push(element);
           }
-        } else if(type === "default_abilities"){
-          if (filters.has(element.data.category.category)) {
-            // console.log("Yes");
-            if (!filtered_data.includes(element)) filtered_data.push(element);
-          }
         } else if (type === "inventory"){
           if (filters.has("attunement") && element.data.attunement.required === true) {
             if (!filtered_data.includes(element)) filtered_data.push(element);
@@ -448,15 +443,6 @@ export class AuramancyActorSheet extends ActorSheet {
           if (filters.has("equipped") && element.data.equipped === true) {
             if (!filtered_data.includes(element)) filtered_data.push(element);
           }
-        } else if (type === "equipment"){
-          if (filters.has("attunement") && element.data.attunement.required === true) {
-            if (!filtered_data.includes(element)) filtered_data.push(element);
-          }
-          if (filters.has("equipped") && element.data.equipped === true) {
-            if (!filtered_data.includes(element)) filtered_data.push(element);
-          }
-        } else {
-
         }
 
       }

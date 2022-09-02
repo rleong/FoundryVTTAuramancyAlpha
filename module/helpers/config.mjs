@@ -86,7 +86,8 @@ AURAMANCY.movementUnits = {
   "ft": "Feet",
   "mi": "Miles",
   "m": "Meters",
-  "km": "Kilometers"
+  "km": "Kilometers",
+  "none": "None"
 };
 
 AURAMANCY.movementOptions = {
@@ -522,6 +523,7 @@ AURAMANCY.abilitySources = {
   "artifice": "Artifice",
   "augmentation": "Augmentation",
   "combination": "Combination",
+  "companion": "Companion",
   "cultivation": "Cultivation",
   "default": "Default",
   "feat": "Feat",
@@ -571,7 +573,8 @@ AURAMANCY.magicComponents = {
 AURAMANCY.attackTypes = {
   "areal": "Areal",
   "melee": "Melee",
-  "ranged": "Ranged"
+  "ranged": "Ranged",
+  "varies": "Varies"
 };
 
 AURAMANCY.attackSubtypes = {
@@ -590,7 +593,8 @@ AURAMANCY.shapes = {
   "prism": "Prism",
   "rectangle": "Rectangle",
   "sphere": "Sphere",
-  "square": "Square"
+  "square": "Square",
+  "none": "None"
 };
 
 AURAMANCY.magicalOptions = {
@@ -710,23 +714,22 @@ AURAMANCY.itemTags = {
   "mundane": "Mundane",
   "oil": "Oil",
   "shield": "Shield",
+  "siege": "Siege",
   "sustenance": "Sustenance",
   "trap": "Trap",
   "weapon": "Weapon"
 };
 
 AURAMANCY.weaponTags = {
+  "areal": "Areal",
   "automatic": "Automatic",
   "balanced": "Balanced",
   "finesse": "Finesse",
-  "flail": "Flail",
-  "flexible": "Flexible",
   "improvised": "Improvised",
   "light": "Light",
   "melee": "Melee",
   "misfire": "Misfire",
   "oversized": "Oversized",
-  "polearm": "Polearm",
   "ranged": "Ranged",
   "reach": "Reach",
   "reload": "Reload",
@@ -805,6 +808,7 @@ AURAMANCY.paths = {
 };
 
 AURAMANCY.rarity = {
+  "none": "None",
   "trivial": "Trivial",
   "common": "Common",
   "uncommon": "Uncommon",
@@ -814,6 +818,7 @@ AURAMANCY.rarity = {
 };
 
 AURAMANCY.quality = {
+  "none": "None",
   "poor": "Poor",
   "standard": "Standard",
   "fine": "Fine",

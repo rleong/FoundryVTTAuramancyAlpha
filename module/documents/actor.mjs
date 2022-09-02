@@ -43,8 +43,8 @@ export class AuramancyActor extends Actor {
 
     // Carrying Capacity
     data.traits.carrying_capacity.current = this._getCurrentBulk(actorData.items, data.traits.carrying_capacity.current);
-    data.traits.carrying_capacity.value = Math.max(1, (5 + data.traits.carrying_capacity.mod + data.attributes.str.value));
-    data.traits.carrying_capacity.max = 10 + data.attributes.str.value + data.traits.carrying_capacity.mod;
+    data.traits.carrying_capacity.value = Math.max(1, (data.traits.carrying_capacity.default_carry + data.traits.carrying_capacity.default_carry_mod + data.traits.carrying_capacity.mod + data.attributes.str.value));
+    data.traits.carrying_capacity.max = ((data.traits.carrying_capacity.default_carry + data.traits.carrying_capacity.default_carry_mod) * 2) + data.attributes.str.value + data.traits.carrying_capacity.mod;
 
     // Movement Speed
     data.stats.movement.max = CONFIG.AURAMANCY.sizeCategoryMovement[data.traits.size] + data.stats.movement.temp + data.stats.movement.ancestry_mod + data.stats.movement.mod;
@@ -63,7 +63,7 @@ export class AuramancyActor extends Actor {
     data.auramancy.charges.max = Math.max(0, (3 + data.auramancy.charges.mod + (data.auramancy.level * 3))) + data.auramancy.charges.temp;
 
     // HP
-    data.health.hp.max = CONFIG.AURAMANCY.minHp[data.health.reserve.die] + ((data.auramancy.level) * data.attributes.con.value) + ((data.auramancy.level-1) * data.health.reserve.die);
+    data.health.hp.max = CONFIG.AURAMANCY.minHp[data.health.reserve.die] + ((data.auramancy.level) * data.attributes.con.value) + ((data.auramancy.level-1) * data.health.reserve.die) + data.health.hp.mod;
     data.health.reserve.max = Math.max(0, (data.auramancy.level * 2) + data.health.reserve.mod);
 
     // currency
@@ -134,6 +134,11 @@ export class AuramancyActor extends Actor {
 
     // Make modifications to data here. For example:
     const data = actorData.data;
+
+    if (data.stats.ac.unarmored_base === null || data.stats.ac.unarmored_base === "undefined") {
+      data.stats.ac.unarmored_base = 8;
+    }
+
   }
 
   /**
@@ -150,21 +155,48 @@ export class AuramancyActor extends Actor {
     const data = actorData.data;
     const items = actorData.items;
     let ac_base = 0;
-    let ac_hindrance = 0;
+    let ac_hindrance = 99;
+    let hindrance_x = false;
     for (const item of items) {
-      if (item.data.data.tags.item.equipment.enabled === true && item.data.data.equipped === true && item.data.data.tags.item.armor.enabled === true) {
-        ac_base += item.data.data.armor.ac;
-        ac_hindrance += item.data.data.armor.hindrance;
+      try {
+        if (item.type === "item") {
+          if (item.data.data.tags.item.equipment.enabled === true && item.data.data.equipped === true && item.data.data.armor.armor === true) {
+            ac_base += item.data.data.armor.ac;
+            // console.log(`ac_base: ${ac_base}`);
+            if (item.data.data.armor.hindrance < ac_hindrance && item.data.data.armor.hindrance !== 0){
+              ac_hindrance = item.data.data.armor.hindrance;
+            }
+            if (String(item.data.data.tags.armor.hindrance.descriptor).toUpperCase().trim() === "X") {
+              hindrance_x = true;
+            }
+          }
+        }
+      }
+      catch(e) {
+       console.log(`Error: ${e}`);
       }
     }
+    if (ac_hindrance === 99){
+      ac_hindrance = 0;
+    }
     if (ac_base === 0) {
-      ac_base = 8;
+      ac_base = data.stats.ac.unarmored_base;
     }
     let agi_bonus = data.attributes.agi.value;
     if (ac_hindrance !== 0) {
-      agi_bonus = Math.max(0, data.attributes.agi.value - ac_hindrance);
+      agi_bonus = Math.min(data.attributes.agi.value, ac_hindrance);
     }
-    data.stats.ac.value = ac_base + data.stats.ac.temp + data.stats.ac.mod + agi_bonus;
+    if (hindrance_x === true) {
+      agi_bonus = 0;
+    }
+    data.stats.ac.base = ac_base;
+    data.stats.ac.value = data.stats.ac.base + data.stats.ac.temp + data.stats.ac.mod + agi_bonus;
+    console.log(`ac_base: ${ac_base}`);
+    console.log(`data.stats.ac.base: ${data.stats.ac.base}`);
+    console.log(`ac_hindrance: ${ac_hindrance}`);
+    console.log(`agi_bonus: ${agi_bonus}`);
+    console.log(`data.stats.ac.temp: ${data.stats.ac.temp}`);
+    console.log(`data.stats.ac.mod: ${data.stats.ac.mod}`);
   }
 
   getProficiencyDie(actorData) {
