@@ -269,7 +269,7 @@ export class AuramancyActor extends Actor {
         total_bulk += bulk;
       }
     }
-    return total_bulk;
+    return parseFloat((total_bulk).toFixed(2));
   }
 
 }

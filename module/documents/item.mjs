@@ -42,6 +42,12 @@ export class AuramancyItem extends Item {
     if (data.bulk.stored_max === null || data.bulk.stored_max === "undefined") {
       data.bulk.stored_max = 0;
     }
+    if (data.tags.item.magical === null || data.tags.item.magical === "undefined") {
+      data.tags.item.magical = {"enabled": false, "descriptor": ""};
+    }
+    if (data.tags.item.electronic === null || data.tags.item.electronic === "undefined") {
+      data.tags.item.electronic = {"enabled": false, "descriptor": ""};
+    }
 
     let chatdata = this._prepareChatData(itemData);
     data.chatdata = chatdata;
@@ -59,7 +65,7 @@ export class AuramancyItem extends Item {
         bulk = 0;
         break;
       default:
-        bulk = parseInt(bulk_value);
+        bulk = parseFloat(bulk_value);
         if (isNaN(bulk)) {
           bulk = 0;
         }
@@ -77,7 +83,7 @@ export class AuramancyItem extends Item {
     }
 
     let stored_bulk = (data.bulk.stored / 2) < 1 ? 0 : (data.bulk.stored / 2);
-    data.bulk.total = ((quantity / per_bulk) * bulk) + stored_bulk;
+    data.bulk.total = parseFloat((((quantity / per_bulk) * bulk) + stored_bulk).toFixed(2));
 
   }
 

@@ -631,7 +631,15 @@
             "enabled": false,
             "descriptor": ""
           },
+          "electronic": {
+            "enabled": false,
+            "descriptor": ""
+          },
           "equipment": {
+            "enabled": false,
+            "descriptor": ""
+          },
+          "magical": {
             "enabled": false,
             "descriptor": ""
           },

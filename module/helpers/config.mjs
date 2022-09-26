@@ -710,13 +710,16 @@ AURAMANCY.itemTags = {
   "ammunition": "Ammunition",
   "arcanefocus": "Arcane Focus",
   "armor": "Armor",
+  "electronic": "Electronic",
   "equipment": "Equipment",
+  "magical": "Magical",
   "mundane": "Mundane",
   "oil": "Oil",
   "shield": "Shield",
   "siege": "Siege",
   "sustenance": "Sustenance",
   "trap": "Trap",
+  "varies": "Varies",
   "weapon": "Weapon"
 };
 
